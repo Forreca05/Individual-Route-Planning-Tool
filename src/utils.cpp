@@ -53,8 +53,8 @@ Graph<int> loadGraphFromCSV(const std::string &locationsFile, const std::string 
         int walkingTime = std::stoi(walkingStr);
 
         // Adiciona as arestas
-        graph.addEdge(loc1, loc2, drivingTime);
-        graph.addEdge(loc2, loc1, drivingTime);  // Se for bidirecional
+        graph.addBidirectionalEdge(loc1, loc2, walkingTime, drivingTime);
+        graph.addBidirectionalEdge(loc2, loc1, walkingTime, drivingTime);  // Se for bidirecional
     }
 
     return graph;
