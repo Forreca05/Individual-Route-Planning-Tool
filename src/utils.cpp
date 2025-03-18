@@ -47,7 +47,7 @@ Graph<std::string> loadGraphFromCSV(const std::string &locationsFile, const std:
         std::getline(stream, loc2Str, ',');
         std::getline(stream, drivingStr, ',');
         std::getline(stream, walkingStr, ',');
-z
+
         int drivingTime = (drivingStr == "X") ? INF : std::stoi(drivingStr);
         int walkingTime = std::stoi(walkingStr);
 
