@@ -26,6 +26,7 @@ void dijkstraDriving(Graph<T>* g, const T& origin) {
         v->setDist(INF);
         v->setPath(nullptr);
     }
+
     Vertex<T> *source = g->findVertex(origin);
     source->setDist(0);
     for (Vertex<T> *v : g->getVertexSet()) {

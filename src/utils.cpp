@@ -3,10 +3,12 @@
 #include "MutablePriorityQueue.h"
 #include <fstream>
 #include <sstream>
+#include <unordered_map>
 #include <iostream>
 
 Graph<std::string> loadGraphFromCSV(const std::string &locationsFile, const std::string &distancesFile) {
     Graph<std::string> graph;
+    std::unordered_map<std::string, std::string> code_to_id;
 
     // Ler Locations.csv
     std::ifstream locations(locationsFile);  // Caminho para o arquivo de locais
@@ -27,6 +29,7 @@ Graph<std::string> loadGraphFromCSV(const std::string &locationsFile, const std:
         std::getline(stream, parkingStr, ',');
 
         bool hasParking = (parkingStr == "1");
+        code_to_id[code] = nodeIdStr;
 
         graph.addVertex(nodeIdStr);  // Adiciona vértice
     }
@@ -52,8 +55,7 @@ Graph<std::string> loadGraphFromCSV(const std::string &locationsFile, const std:
         int walkingTime = std::stoi(walkingStr);
 
         // Adiciona as arestas
-        graph.addBidirectionalEdge(loc1Str, loc2Str, walkingTime, drivingTime);
-        graph.addBidirectionalEdge(loc2Str, loc1Str, walkingTime, drivingTime);  // Se for bidirecional
+        graph.addBidirectionalEdge(code_to_id[loc1Str], code_to_id[loc2Str], walkingTime, drivingTime);
     }
 
     return graph;
