@@ -5,6 +5,9 @@
 #include <string>
 #include "Graph.h"
 
-Graph loadGraphFromCSV(const std::string &locationsFile, const std::string &distancesFile);
+
+Graph<std::string> loadGraphFromCSV(const std::string &locationsFile, const std::string &distancesFile);
+
+
 
 #endif // UTILS_H

@@ -1,10 +1,12 @@
 #include "Graph.h"
+#include "utils.h"
+#include "MutablePriorityQueue.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
 
-Graph<int> loadGraphFromCSV(const std::string &locationsFile, const std::string &distancesFile) {
-    Graph<int> graph;
+Graph<std::string> loadGraphFromCSV(const std::string &locationsFile, const std::string &distancesFile) {
+    Graph<std::string> graph;
 
     // Ler Locations.csv
     std::ifstream locations(locationsFile);  // Caminho para o arquivo de locais
@@ -24,10 +26,9 @@ Graph<int> loadGraphFromCSV(const std::string &locationsFile, const std::string 
         std::getline(stream, code, ',');
         std::getline(stream, parkingStr, ',');
 
-        int nodeId = std::stoi(nodeIdStr);
         bool hasParking = (parkingStr == "1");
 
-        graph.addVertex(nodeId);  // Adiciona vértice
+        graph.addVertex(nodeIdStr);  // Adiciona vértice
     }
 
     // Ler Distances.csv
@@ -46,16 +47,61 @@ Graph<int> loadGraphFromCSV(const std::string &locationsFile, const std::string 
         std::getline(stream, loc2Str, ',');
         std::getline(stream, drivingStr, ',');
         std::getline(stream, walkingStr, ',');
-
-        int loc1 = std::stoi(loc1Str);
-        int loc2 = std::stoi(loc2Str);
-        int drivingTime = (drivingStr == "X") ? -1 : std::stoi(drivingStr);  // Use -1 para "X"
+z
+        int drivingTime = (drivingStr == "X") ? INF : std::stoi(drivingStr);
         int walkingTime = std::stoi(walkingStr);
 
         // Adiciona as arestas
-        graph.addBidirectionalEdge(loc1, loc2, walkingTime, drivingTime);
-        graph.addBidirectionalEdge(loc2, loc1, walkingTime, drivingTime);  // Se for bidirecional
+        graph.addBidirectionalEdge(loc1Str, loc2Str, walkingTime, drivingTime);
+        graph.addBidirectionalEdge(loc2Str, loc1Str, walkingTime, drivingTime);  // Se for bidirecional
     }
 
     return graph;
+}
+
+template <class T>
+bool relax(Edge<T>* edge) { // d[u] + w(u,v) < d[v]
+    Vertex<T> *u = edge->getOrig();
+    Vertex<T> *v = edge->getDest();
+    if (u->getDist() + edge->getWeight() < v->getDist()) {
+        v->setDist(u->getDist() + edge->getWeight());
+        v->setPath(edge);
+        return true;
+    }
+    return false;
+}
+
+template <class T>
+void dijkstra(Graph<T>* g, const T& origin) {
+    MutablePriorityQueue<Vertex<T>> pq;
+    for (Vertex<T> *v : g->getVertexSet()) {
+        v->setDist(INF);
+        v->setPath(nullptr);
+    }
+    Vertex<T> *source = g->findVertex(origin);
+    source->setDist(0);
+    for (Vertex<T> *v : g->getVertexSet()) {
+        pq.insert(v);
+    }
+    while (!pq.empty()) {
+        Vertex<T> *u = pq.extractMin();
+        for (Edge<T> *e : u->getAdj()) {
+            if (relax(e)) {
+                pq.decreaseKey(e->getDest());
+            }
+        }
+    }
+}
+
+template <class T>
+static std::vector<T> getPath(Graph<T>* g, const T& origin, const T& dest) {
+    std::vector<T> res;
+    Vertex<T> *v = g->findVertex(dest);
+    while (v->getInfo() != origin) {
+        res.push_back(v->getInfo());
+        v = v->getPath()->getOrig();
+    }
+    res.push_back(origin);
+    std::reverse(res.begin(), res.end());
+    return res;
 }
