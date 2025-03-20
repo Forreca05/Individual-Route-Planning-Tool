@@ -16,7 +16,7 @@ bool relaxDriving(Edge<int>* edge) {
     return false;
 }
 
-void dijkstraDriving(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoid) {
+void dijkstraDriving(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoidNodes) {
     MutablePriorityQueue<Vertex<int>> pq;
     for (Vertex<int> *v : g->getVertexSet()) {
         v->setDist(INF);
@@ -26,14 +26,14 @@ void dijkstraDriving(Graph<int>* g, const int& origin, const int& destination, c
     Vertex<int> *source = g->findVertex(origin);
     source->setDist(0);
     for (Vertex<int> *v : g->getVertexSet()) {
-        if (avoid.count(v->getInfo())) continue;
+        if (avoidNodes.count(v->getInfo())) continue;
         pq.insert(v);
     }
     while (!pq.empty()) {
         Vertex<int> *u = pq.extractMin();
         if (u->getInfo() == destination) return;
         for (Edge<int> *e : u->getAdj()) {
-            if (avoid.count(e->getDest()->getInfo())) continue;
+            if (avoidNodes.count(e->getDest()->getInfo())) continue;
             if (relaxDriving(e)) {
                 pq.decreaseKey(e->getDest());
             }

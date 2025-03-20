@@ -23,18 +23,18 @@ int main() {
     // Carregar o grafo a partir dos CSVs
     Graph<int> graph = loadGraphFromCSV("../data/Locations.csv", "../data/Distances.csv");
 
-    std::unordered_set<int> avoid;
-    dijkstraDriving(&graph, source, destination, avoid);
+    std::unordered_set<int> avoidNodes;
+    dijkstraDriving(&graph, source, destination, avoidNodes);
 
     std::vector<int> path = getPath(&graph, source, destination);
     std::cout << "Best path: ";
     for (int i : path) {
         std::cout << i << " ";
-        if (i != source && i != destination) avoid.insert(i);
+        if (i != source && i != destination) avoidNodes.insert(i);
     }
     std::cout << "(distance = " << graph.findVertex(destination)->getDist() << ")" << std::endl;
 
-    dijkstraDriving(&graph, source, destination, avoid);
+    dijkstraDriving(&graph, source, destination, avoidNodes);
     path = getPath(&graph, source, destination);
 
     std::cout << "Alternative path: ";
