@@ -7,10 +7,10 @@
 
 Graph<int> loadGraphFromCSV(const std::string &locationsFile, const std::string &distancesFile) {
     Graph<int> graph;
-    std::unordered_map<std::string, int> code_to_id;
+    std::unordered_map<std::string, int> code_to_id; // Mapeia código -> ID numérico
 
     // Ler Locations.csv
-    std::ifstream locations(locationsFile);  // Caminho para o arquivo de locais
+    std::ifstream locations(locationsFile);
     if (!locations.is_open()) {
         std::cerr << "Erro ao abrir o arquivo " << locationsFile << std::endl;
         return graph;
@@ -29,13 +29,22 @@ Graph<int> loadGraphFromCSV(const std::string &locationsFile, const std::string 
 
         bool hasParking = (parkingStr == "1");
         int nodeId = std::stoi(nodeIdStr);
-        code_to_id[code] = nodeId;
+        code_to_id[code] = nodeId; // Guarda o código associado ao ID
 
-        graph.addVertex(nodeId);  // Adiciona vértice
+        // Adiciona o vértice ao grafo
+        graph.addVertex(nodeId);
+        Vertex<int>* v = graph.findVertex(nodeId);
+        if (v) {
+            v->setHasParking(hasParking);
+            v->setLocation(location);
+            v->setCode(code);
+        }
     }
 
+    locations.close();
+
     // Ler Distances.csv
-    std::ifstream distances(distancesFile);  // Caminho para o arquivo de distâncias
+    std::ifstream distances(distancesFile);
     if (!distances.is_open()) {
         std::cerr << "Erro ao abrir o arquivo " << distancesFile << std::endl;
         return graph;
@@ -51,12 +60,21 @@ Graph<int> loadGraphFromCSV(const std::string &locationsFile, const std::string 
         std::getline(stream, drivingStr, ',');
         std::getline(stream, walkingStr, ',');
 
+        if (code_to_id.find(loc1Str) == code_to_id.end() || code_to_id.find(loc2Str) == code_to_id.end()) {
+            std::cerr << "Erro: Código de localização não encontrado (" << loc1Str << ", " << loc2Str << ")" << std::endl;
+            continue;
+        }
+
+        int id1 = code_to_id[loc1Str];
+        int id2 = code_to_id[loc2Str];
+
         int drivingTime = (drivingStr == "X") ? -1 : std::stoi(drivingStr);
         int walkingTime = std::stoi(walkingStr);
 
-        // Adiciona as arestas
-        graph.addBidirectionalEdge(code_to_id[loc1Str], code_to_id[loc2Str], walkingTime, drivingTime);
+        graph.addBidirectionalEdge(id1, id2, walkingTime, drivingTime);
     }
+
+    distances.close();
 
     return graph;
 }

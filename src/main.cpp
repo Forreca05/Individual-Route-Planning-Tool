@@ -20,6 +20,7 @@ int main() {
     if (type == "independent") {
         std::cout << "Mode: ";
         std::cin >> mode;
+        if (mode != "driving") {return 0;}
         std::cout << "Source: ";
         std::cin >> sourceStr;
         std::cout << "Destination: ";
@@ -41,11 +42,15 @@ int main() {
         dijkstraDriving(&graph, source, destination, avoidNodes);
         path = getPath(&graph, source, destination);
 
-        std::cout << "AlternativeDrivingRoute: ";
-        for (int i : path) {
-            std::cout << i << " ";
-        }
-        std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
+        if (path.empty()) {
+    		std::cout << "AlternativeDrivingRoute: none" << std::endl;
+		} else {
+    		std::cout << "AlternativeDrivingRoute: ";
+    		for (int i : path) {
+        		std::cout << i << " ";
+    		}
+    	std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
+		}
     }
 
     else if (type == "restricted") {
@@ -53,6 +58,7 @@ int main() {
 
         std::cout << "Mode: ";
         std::cin >> mode;
+        if (mode != "driving") {return 0;}
         std::cout << "Source: ";
         std::cin >> sourceStr;
         std::cout << "Destination: ";
@@ -90,6 +96,7 @@ int main() {
 
         std::cout << "Mode: ";
         std::cin >> mode;
+        if (mode != "driving-walking") {return 0;}
         std::cout << "Source: ";
         std::cin >> sourceStr;
         std::cout << "Destination: ";

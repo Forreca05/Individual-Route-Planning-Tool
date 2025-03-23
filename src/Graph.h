@@ -37,13 +37,14 @@ public:
 
     bool getParking() const;
     std::string getLocation() const;
-    void setLocation(const std::string &location);
+    void setLocation(std::string &location);
+    void setHasParking(bool hasParking);
     
     std::string getName() const;
     void setName(const std::string &name);
     
     std::string getCode() const;
-    void setCode(const std::string &code);
+    void setCode(std::string &code);
 
     int getLow() const;
     void setLow(int value);
@@ -243,8 +244,23 @@ std::vector<Edge<T>*> Vertex<T>::getAdj() const {
 }
 
 template <class T>
-bool Vertex<T>::isVisited() const {
-    return this->visited;
+void Vertex<T>::setLocation(std::string &location) {
+    this->location = location;
+}
+
+template <class T>
+std::string Vertex<T>::getLocation() const {
+  return this->location;
+}
+
+template <class T>
+void Vertex<T>::setCode(std::string &code) {
+    this->code = code;
+}
+
+template <class T>
+void Vertex<T>::setHasParking(bool hasParking) {
+  this->parking = hasParking;
 }
 
 template <class T>
