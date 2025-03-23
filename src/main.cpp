@@ -1,12 +1,9 @@
-//
-// Created by forreca05 on 04-03-2025.
-//
-
 #include <iostream>
 #include <unordered_set>
 #include "Graph.h"
 #include "utils.h"
 #include "algorithms.h"
+#include <sstream>
 
 int main() {
     Graph<int> graph = loadGraphFromCSV("../data/Locations.csv", "../data/Distances.csv");
@@ -29,7 +26,7 @@ int main() {
         int source = std::stoi(sourceStr);
         int destination = std::stoi(destinationStr);
 
-        dijkstraDriving(&graph, source, destination, avoidNodes);
+        dijkstraDriving(&graph, source, destination, avoidNodes, avoidEdges);
         std::vector<int> path = getPath(&graph, source, destination);
 
         std::cout << "BestDrivingRoute: ";
@@ -39,7 +36,7 @@ int main() {
         }
         std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
 
-        dijkstraDriving(&graph, source, destination, avoidNodes);
+        dijkstraDriving(&graph, source, destination, avoidNodes, avoidEdges);
         path = getPath(&graph, source, destination);
 
         if (path.empty()) {
@@ -54,7 +51,8 @@ int main() {
     }
 
     else if (type == "restricted") {
-        int node, segment, includeNode;
+        int node, includeNode, avoidinit, avoidend;
+        std::string segment;
 
         std::cout << "Mode: ";
         std::cin >> mode;
@@ -73,22 +71,29 @@ int main() {
         }
 
         std::cout << "AvoidSegments (enter -1 to stop): ";
-        while (std::cin >> segment && segment != -1) {
-            avoidEdges.insert(segment);
+        while (std::cin >> segment && segment != "-1") {
+            segment = segment.substr(segment.find('(') + 1, segment.find(')') - segment.find('(') - 1);
+		    std::stringstream ss(segment);
+    		char comma;
+    		ss >> avoidinit >> comma >> avoidend;
+			selectEdge(&graph, avoidinit, avoidend);
         }
 
         std::cout << "IncludeNode: ";
         std::cin >> includeNode;
 
-        dijkstraDriving(&graph, source, destination, avoidNodes);
+        dijkstraDriving(&graph, source, destination, avoidNodes, avoidEdges);
         std::vector<int> path = getPath(&graph, source, destination);
 
-        std::cout << "RestrictedDrivingRoute: ";
-        for (int i : path) {
-            std::cout << i << " ";
-            if (i != source && i != destination) avoidNodes.insert(i);
+        if (path.empty()) {
+           std::cout << "RestrictedDrivingRoute: none" << std::endl;
+        } else {
+			std::cout << "RestrictedDrivingRoute: ";
+        	for (int i : path) {
+            	std::cout << i << " ";
+        	}
+        	std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
         }
-        std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
     }
 
     else if (type == "environmentaly") {
@@ -115,7 +120,6 @@ int main() {
 
         std::cout << "AvoidSegments (enter -1 to stop): ";
         while (std::cin >> segment && segment != -1) {
-            avoidEdges.insert(segment);
         }
     }
 

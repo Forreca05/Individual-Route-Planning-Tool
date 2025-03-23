@@ -1,7 +1,4 @@
-//
-// Created by cryptic on 3/20/25.
-//
-
+#include <iostream>
 #include "algorithms.h"
 
 bool relaxDriving(Edge<int>* edge) {
@@ -16,7 +13,7 @@ bool relaxDriving(Edge<int>* edge) {
     return false;
 }
 
-void dijkstraDriving(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoidNodes) {
+void dijkstraDriving(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoidNodes, const std::unordered_set<int>& avoidEdges) {
     MutablePriorityQueue<Vertex<int>> pq;
     for (Vertex<int> *v : g->getVertexSet()) {
         v->setDist(INF);
@@ -33,6 +30,7 @@ void dijkstraDriving(Graph<int>* g, const int& origin, const int& destination, c
         Vertex<int> *u = pq.extractMin();
         if (u->getInfo() == destination) return;
         for (Edge<int> *e : u->getAdj()) {
+            if (e->isSelected()) continue;
             if (avoidNodes.count(e->getDest()->getInfo())) continue;
             if (relaxDriving(e)) {
                 pq.decreaseKey(e->getDest());
@@ -51,4 +49,17 @@ std::vector<int> getPath(Graph<int>* g, const int& origin, const int& dest) {
     res.push_back(origin);
     std::reverse(res.begin(), res.end());
     return res;
+}
+
+void selectEdge(Graph<int>* g, const int& origin, const int& dest) {
+    Vertex<int> *source = g->findVertex(origin);
+    Vertex<int> *destination = g->findVertex(dest);
+    if (source != nullptr && destination != nullptr) {
+        for (Edge<int>* edge : source->getAdj()) {
+            if (edge->getDest() == destination) {
+                edge->setSelected(true);
+                return;
+            }
+        }
+    }
 }
