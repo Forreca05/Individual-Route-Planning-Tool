@@ -1,4 +1,2 @@
-templates? interessa manter?
-adicionei novos parametros no edge e vertex
-graph.h pode ter algumas funcoes para os
-novos parametros nao implementadas
+falta implementar quando nao ha caminho, nao aparecer segfault(e porque costuma dar sequer?)
+o include node nao funciona e falta o environmentally-friendly

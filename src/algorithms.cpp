@@ -37,7 +37,7 @@ void dijkstraDriving(Graph<int>* g, const int& origin, const int& destination, c
             }
         }
     }
-}
+
 
 std::vector<int> getPath(Graph<int>* g, const int& origin, const int& dest) {
     std::vector<int> res;
