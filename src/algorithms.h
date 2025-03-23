@@ -7,7 +7,7 @@
 
 bool relaxDriving(Edge<int>* edge);
 
-void dijkstraDriving(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoidNodes, const std::unordered_set<int>& avoidEdges);
+void dijkstraDriving(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoidNodes, const std::unordered_set<int>& avoidEdges, const std::string& mode);
 
 std::vector<int> getPath(Graph<int>* g, const int& origin, const int& dest);
 

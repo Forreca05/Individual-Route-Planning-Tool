@@ -14,10 +14,10 @@ int main() {
     std::cout << "Type: ";
     std::cin >> type;
 
+
     if (type == "independent") {
         std::cout << "Mode: ";
         std::cin >> mode;
-        if (mode != "driving") {return 0;}
         std::cout << "Source: ";
         std::cin >> sourceStr;
         std::cout << "Destination: ";
@@ -26,7 +26,7 @@ int main() {
         int source = std::stoi(sourceStr);
         int destination = std::stoi(destinationStr);
 
-        dijkstraDriving(&graph, source, destination, avoidNodes, avoidEdges);
+        dijkstraDriving(&graph, source, destination, avoidNodes, avoidEdges, mode);
         std::vector<int> path = getPath(&graph, source, destination);
 
         std::cout << "BestDrivingRoute: ";
@@ -36,7 +36,7 @@ int main() {
         }
         std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
 
-        dijkstraDriving(&graph, source, destination, avoidNodes, avoidEdges);
+        dijkstraDriving(&graph, source, destination, avoidNodes, avoidEdges, mode);
         path = getPath(&graph, source, destination);
 
         if (path.empty()) {
@@ -82,7 +82,7 @@ int main() {
         std::cout << "IncludeNode: ";
         std::cin >> includeNode;
 
-        dijkstraDriving(&graph, source, destination, avoidNodes, avoidEdges);
+        dijkstraDriving(&graph, source, destination, avoidNodes, avoidEdges, mode);
         std::vector<int> path = getPath(&graph, source, destination);
 
         if (path.empty()) {
@@ -96,7 +96,7 @@ int main() {
         }
     }
 
-    else if (type == "environmentaly") {
+    else if (type == "environmentally") {
         int node, segment, maxWalk;
 
         std::cout << "Mode: ";
@@ -124,7 +124,7 @@ int main() {
     }
 
     else {
-        std::cerr << "Invalid type. Please enter 'independent', 'restricted', or 'environmentaly'." << std::endl;
+        std::cerr << "Invalid type. Please enter 'independent', 'restricted', or 'environmentally'." << std::endl;
     }
 
     return 0;
