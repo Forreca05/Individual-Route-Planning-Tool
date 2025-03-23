@@ -22,7 +22,7 @@ bool relaxDriving(Edge<int>* edge, const std::string& mode) {
     return false;
 }
 
-void dijkstraDriving(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoidNodes, const std::unordered_set<int>& avoidEdges, const std::string& mode) {
+void dijkstra(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoidNodes, const std::unordered_set<int>& avoidEdges, const std::string& mode) {
     MutablePriorityQueue<Vertex<int>> pq;
     for (Vertex<int> *v : g->getVertexSet()) {
         v->setDist(INF);

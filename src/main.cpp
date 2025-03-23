@@ -14,7 +14,6 @@ int main() {
     std::cout << "Type: ";
     std::cin >> type;
 
-
     if (type == "independent") {
         std::cout << "Mode: ";
         std::cin >> mode;
@@ -26,7 +25,7 @@ int main() {
         int source = std::stoi(sourceStr);
         int destination = std::stoi(destinationStr);
 
-        dijkstraDriving(&graph, source, destination, avoidNodes, avoidEdges, mode);
+        dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode);
         std::vector<int> path = getPath(&graph, source, destination);
 
         std::cout << "BestDrivingRoute: ";
@@ -36,17 +35,18 @@ int main() {
         }
         std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
 
-        dijkstraDriving(&graph, source, destination, avoidNodes, avoidEdges, mode);
+        dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode);
         path = getPath(&graph, source, destination);
 
         if (path.empty()) {
     		std::cout << "AlternativeDrivingRoute: none" << std::endl;
-		} else {
+		}
+        else {
     		std::cout << "AlternativeDrivingRoute: ";
     		for (int i : path) {
         		std::cout << i << " ";
-    		}
-    	std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
+    	    }
+    	    std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
 		}
     }
 
@@ -56,7 +56,6 @@ int main() {
 
         std::cout << "Mode: ";
         std::cin >> mode;
-        if (mode != "driving") {return 0;}
         std::cout << "Source: ";
         std::cin >> sourceStr;
         std::cout << "Destination: ";
@@ -82,7 +81,19 @@ int main() {
         std::cout << "IncludeNode: ";
         std::cin >> includeNode;
 
-        dijkstraDriving(&graph, source, destination, avoidNodes, avoidEdges, mode);
+        if (includeNode != -1) {
+            dijkstra(&graph, source, includeNode, avoidNodes, avoidEdges, mode);
+            std::vector<int> path = getPath(&graph, source, includeNode);
+            dijkstra(&graph, includeNode, destination, avoidNodes, avoidEdges, mode);
+            std::vector<int> path2 = getPath(&graph, includeNode, destination);
+            path.insert(path.end(), path2.begin() + 1, path2.end());
+        	for (int i : path) {
+            	std::cout << i << " ";
+        	}
+            return 0;
+        }
+
+        dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode);
         std::vector<int> path = getPath(&graph, source, destination);
 
         if (path.empty()) {
