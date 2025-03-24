@@ -87,10 +87,15 @@ int main() {
             dijkstra(&graph, includeNode, destination, avoidNodes, avoidEdges, mode);
             std::vector<int> path2 = getPath(&graph, includeNode, destination);
             path.insert(path.end(), path2.begin() + 1, path2.end());
-        	for (int i : path) {
-            	std::cout << i << " ";
+        	if (path.empty()) {
+        		std::cout << "RestrictedDrivingRoute: none" << std::endl;
+        	} else {
+        		std::cout << "RestrictedDrivingRoute: ";
+        		for (int i : path) {
+        			std::cout << i << " ";
+        		}
+        		std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
         	}
-            return 0;
         }
 
         dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode);
@@ -124,14 +129,19 @@ int main() {
         std::cout << "MaxWalkTime:";
         std::cin >> maxWalk;
 
-        std::cout << "AvoidNodes (enter -1 to stop): ";
-        while (std::cin >> node && node != -1) {
-            avoidNodes.insert(node);
-        }
+    	std::cout << "AvoidNodes (enter -1 to stop): ";
+    	while (std::cin >> node && node != -1) {
+    		avoidNodes.insert(node);
+    	}
 
-        std::cout << "AvoidSegments (enter -1 to stop): ";
-        while (std::cin >> segment && segment != -1) {
-        }
+    	std::cout << "AvoidSegments (enter -1 to stop): ";
+    	while (std::cin >> segment && segment != "-1") {
+    		segment = segment.substr(segment.find('(') + 1, segment.find(')') - segment.find('(') - 1);
+    		std::stringstream ss(segment);
+    		char comma;
+    		ss >> avoidinit >> comma >> avoidend;
+    		selectEdge(&graph, avoidinit, avoidend);
+    	}
     }
 
     else {
