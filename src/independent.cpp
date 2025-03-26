@@ -56,13 +56,19 @@ void independent(Graph<int> &graph) {
         std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
     }
 }
-
-void independentBatch(Graph<int> &graph, const std::string &filename) {
+void independentBatch(Graph<int> &graph, const std::string &filename, const std::string &outputFilename) {
     std::unordered_set<int> avoidNodes; // Definição do conjunto de nós a evitar
     std::unordered_set<int> avoidEdges; // Apenas declarado caso precise no futuro
     std::ifstream file(filename);
     if (!file) {
         std::cerr << "Error: Could not open file " << filename << std::endl;
+        return;
+    }
+
+    // Abra o arquivo de saída
+    std::ofstream outputFile(outputFilename);
+    if (!outputFile) {
+        std::cerr << "Error: Could not open file " << outputFilename << std::endl;
         return;
     }
 
@@ -86,37 +92,37 @@ void independentBatch(Graph<int> &graph, const std::string &filename) {
 
     file.close();  // Fecha o ficheiro após a leitura
 
-    // Exibe os valores lidos
-    std::cout << "Mode: " << mode << std::endl;
-    std::cout << "Source: " << source << std::endl;
-    std::cout << "Destination: " << destination << std::endl;
+    // Escreve os valores lidos no arquivo de saída
+    outputFile << "Mode: " << mode << std::endl;
+    outputFile << "Source: " << source << std::endl;
+    outputFile << "Destination: " << destination << std::endl;
 
     // Chama o algoritmo necessário (Dijkstra, A*, etc.)
     dijkstra(&graph, source, destination, {}, {}, mode);
     std::vector<int> path = getPath(&graph, source, destination);
 
-    std::cout << "BestDrivingRoute: ";
+    outputFile << "BestDrivingRoute: ";
     for (int i : path) {
-        std::cout << i << " ";
+        outputFile << i << " ";
         if (i != source && i != destination) {
             avoidNodes.insert(i);  // Marcar nós para evitar na próxima busca
         }
     }
-    std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
+    outputFile << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
 
     // 2ª Execução do algoritmo para encontrar rota alternativa
     dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode);
     path = getPath(&graph, source, destination);
 
-    // Impressão da rota alternativa
-    std::cout << "AlternativeDrivingRoute: ";
+    // Escreve a rota alternativa no arquivo
+    outputFile << "AlternativeDrivingRoute: ";
     if (path.empty()) {
-        std::cout << "none" << std::endl;
+        outputFile << "none" << std::endl;
     } else {
         for (int i : path) {
-            std::cout << i << " ";
+            outputFile << i << " ";
         }
-        std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
+        outputFile << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
     }
 }
 

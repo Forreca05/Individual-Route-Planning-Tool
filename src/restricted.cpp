@@ -71,4 +71,6 @@ void restricted(Graph<int> &graph) {
     }
 }
 
-void restrictedBatch(graph, const std::string &filename) {}
+void restrictedBatch(Graph<int> &graph, const std::string &filename, const std::string &outputFilename) {
+
+}

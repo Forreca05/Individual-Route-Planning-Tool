@@ -29,8 +29,8 @@ int main() {
 		std::cout << "Type: ";
     	std::cin >> type;
 
-        if (type == "independent") {independentBatch(graph, "../input.txt");}
-        else if (type == "restricted") {restrictedBatch(graph, "../input.txt");}
+        if (type == "independent") {independentBatch(graph, "../input.txt", "../output.txt");}
+        //else if (type == "restricted") {restrictedBatch(graph, "../input.txt");}
         else if (type == "environmentally") {environmentallyBatch(graph, "../input.txt");}
         else {std::cerr << "Invalid type. Please enter 'independent', 'restricted', or 'environmentally'." << std::endl;}
     }
