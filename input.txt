@@ -2,5 +2,5 @@ Mode: driving
 Source: 3
 Destination: 5
 AvoidNodes: -1
-AvoidSegments: -1
+AvoidSegments: (3,1064)
 IncludeNode: -1
