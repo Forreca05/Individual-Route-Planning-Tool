@@ -1,9 +1,11 @@
 #include <iostream>
 #include <unordered_set>
+#include <unordered_map>
 #include <sstream>
 #include <string>
 #include "algorithms.h"
 #include "Graph.h"
+#include "environmentally.h"
 
 void environmentally(Graph<int> &graph) {
     std::string sourceStr, destinationStr, mode, segment;
@@ -86,4 +88,6 @@ void environmentally(Graph<int> &graph) {
    }
 }
 
-void environmentallyBatch(Graph<int> &graph, const std::string &filename) {}
+void environmentallyBatch(Graph<int> &graph, const std::string &filename) {
+    return;
+}

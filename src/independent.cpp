@@ -1,10 +1,10 @@
 #include <iostream>
 #include <unordered_set>
 #include <vector>
-#include <string>
 #include <fstream>
+#include <sstream>
 #include "algorithms.h"
-#include "Graph.h"
+#include "independent.h"
 
 void independent(Graph<int> &graph) {
     std::string sourceStr, destinationStr, mode;

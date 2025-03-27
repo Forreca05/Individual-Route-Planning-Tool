@@ -5,6 +5,7 @@
 #include <string>
 #include "algorithms.h"
 #include "Graph.h"
+#include "restricted.h"
 
 void restricted(Graph<int> &graph) {
     int node, includeNode, avoidinit, avoidend, total;

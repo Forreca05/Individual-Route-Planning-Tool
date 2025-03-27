@@ -1,12 +1,12 @@
 #include <iostream>
 #include <unordered_set>
+#include <sstream>
 #include "Graph.h"
 #include "utils.h"
 #include "algorithms.h"
-#include <sstream>
-#include "independent.cpp"
-#include "restricted.cpp"
-#include "environmentally.cpp"
+#include "independent.h"
+#include "restricted.h"
+#include "environmentally.h"
 
 int main() {
     Graph<int> graph = loadGraphFromCSV("../data/Locations.csv", "../data/Distances.csv");
@@ -31,7 +31,7 @@ int main() {
 
         if (type == "independent") {independentBatch(graph, "../input.txt", "../output.txt");}
         else if (type == "restricted") {restrictedBatch(graph, "../input.txt", "../output.txt");}
-        else if (type == "environmentally") {environmentallyBatch(graph, "../input.txt");}
+        // else if (type == "environmentally") {environmentallyBatch(graph, "../input.txt", "../output.txt");}
         else {std::cerr << "Invalid type. Please enter 'independent', 'restricted', or 'environmentally'." << std::endl;}
     }
 
