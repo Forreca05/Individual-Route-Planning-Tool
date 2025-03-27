@@ -7,7 +7,7 @@
 
 void environmentally(Graph<int> &graph) {
     std::string sourceStr, destinationStr, mode, segment;
-    int node, maxWalk, avoidInit, avoidEnd;
+    int node, maxWalk, avoidInit, avoidEnd, total = INF, middle;
     bool parked = false;
     std::unordered_set<int> avoidNodes;
     std::unordered_set<int> avoidEdges;
@@ -55,11 +55,33 @@ void environmentally(Graph<int> &graph) {
             time_to_id[v->getInfo()] = graph.findVertex(v->getInfo())->getDist();  // Armazena a distância do nó de origem até o estacionamento
         }
     }
-    // Imprimir os nós de estacionamento com suas distâncias
-      std::cout << "\nParking Nodes and Distances:\n";
-      for (const auto& pair : time_to_id) {
-            std::cout << "Parking Node: " << pair.first << ", Distance: " << pair.second << std::endl;
-      }
+
+    parked = true;
+
+    for (const auto& pair : time_to_id) {
+        dijkstra(&graph, pair.first, destination, avoidNodes, avoidEdges, mode, parked);
+        if (graph.findVertex(destination)->getDist() <= maxWalk) {
+          int distt = pair.second + graph.findVertex(destination)->getDist();
+          if (distt < total) {
+            total = distt;
+            middle = pair.first;
+          }
+        }
+    }
+    dijkstra(&graph, source, middle, avoidNodes, avoidEdges, mode, parked);
+    std::vector<int> path = getPath(&graph, source, middle);
+    dijkstra(&graph, middle, destination, avoidNodes, avoidEdges, mode, parked);
+    std::vector<int> path2 = getPath(&graph, middle, destination);
+    path.insert(path.end(), path2.begin() + 1, path2.end());
+    if (path.empty()) {
+        std::cout << "RestrictedDrivingRoute: none" << std::endl;
+    } else {
+        std::cout << "RestrictedDrivingRoute: ";
+        for (int i : path) {
+            std::cout << i << " ";
+        }
+        std::cout << " (" << total << ")" << std::endl;
+    }
 }
 
 void environmentallyBatch(Graph<int> &graph, const std::string &filename) {}

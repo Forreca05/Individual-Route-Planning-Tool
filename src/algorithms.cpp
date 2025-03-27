@@ -21,12 +21,11 @@ bool relaxDriving(Edge<int>* edge, const std::string& mode, bool& parked) {
 	}
     else {
           if (parked) {
-            if (u->getDist() + edge->getDriving() < v->getDist()) {
-        	    v->setDist(u->getDist() + edge->getDriving());
+            if (u->getDist() + edge->getWalking() < v->getDist()) {
+        	    v->setDist(u->getDist() + edge->getWalking());
         	    v->setPath(edge);
         	    return true;
             }
-          }
           else {
             if (u->getDist() + edge->getDriving() < v->getDist()) {
         	    v->setDist(u->getDist() + edge->getDriving());
