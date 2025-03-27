@@ -8,6 +8,7 @@
 
 void restricted(Graph<int> &graph) {
     int node, includeNode, avoidinit, avoidend, total;
+    bool parked = false;
     std::string mode, sourceStr, destinationStr;
 	std::unordered_set<int> avoidNodes; // Definição do conjunto de nós a evitar
 	std::unordered_set<int> avoidEdges; // Apenas declarado caso precise no futuro
@@ -41,10 +42,10 @@ void restricted(Graph<int> &graph) {
     std::cin >> includeNode;
 
     if (includeNode != -1) {
-        dijkstra(&graph, source, includeNode, avoidNodes, avoidEdges, mode);
+        dijkstra(&graph, source, includeNode, avoidNodes, avoidEdges, mode, parked);
         std::vector<int> path = getPath(&graph, source, includeNode);
     	total = graph.findVertex(includeNode)->getDist();
-        dijkstra(&graph, includeNode, destination, avoidNodes, avoidEdges, mode);
+        dijkstra(&graph, includeNode, destination, avoidNodes, avoidEdges, mode, parked);
         std::vector<int> path2 = getPath(&graph, includeNode, destination);
         total += graph.findVertex(destination)->getDist();
         path.insert(path.end(), path2.begin() + 1, path2.end());
@@ -60,7 +61,7 @@ void restricted(Graph<int> &graph) {
     	return;
     }
 
-    dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode);
+    dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode, parked);
     std::vector<int> path = getPath(&graph, source, destination);
 
     if (path.empty()) {
@@ -92,6 +93,7 @@ void restrictedBatch(Graph<int> &graph, const std::string &filename, const std::
 
 	std::string line, mode;
 	int source, destination, includeNode = -1, avoidInit, avoidEnd, total;
+    bool parked = false;
 
 	while (std::getline(file, line)) {
 		std::istringstream iss(line);
@@ -129,7 +131,6 @@ void restrictedBatch(Graph<int> &graph, const std::string &filename, const std::
 							std::stringstream edgeStream(edge);
 							int start, end;
 							char comma;
-
 							// Tenta converter os números da aresta no formato (x,y)
 							if (edgeStream >> start >> comma >> end && comma == ',') {
 								// Se conseguiu, então seleciona a aresta para ser evitada
@@ -159,12 +160,12 @@ void restrictedBatch(Graph<int> &graph, const std::string &filename, const std::
 
 	if (includeNode != -1) {
 		// Primeira execução do Dijkstra (da origem até o nó de inclusão)
-		dijkstra(&graph, source, includeNode, avoidNodes, avoidEdges, mode);
+		dijkstra(&graph, source, includeNode, avoidNodes, avoidEdges, mode, parked);
 		std::vector<int> path = getPath(&graph, source, includeNode);
 		total = graph.findVertex(includeNode)->getDist();  // Distância até o nó de inclusão
 
 		// Segunda execução do Dijkstra (do nó de inclusão até o destino)
-		dijkstra(&graph, includeNode, destination, avoidNodes, avoidEdges, mode);
+		dijkstra(&graph, includeNode, destination, avoidNodes, avoidEdges, mode, parked);
 		std::vector<int> path2 = getPath(&graph, includeNode, destination);
 		total += graph.findVertex(destination)->getDist();  // Distância do nó de inclusão até o destino
 
@@ -185,8 +186,7 @@ void restrictedBatch(Graph<int> &graph, const std::string &filename, const std::
 		return;
 	}
 
-
-	dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode);
+	dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode, parked);
 	std::vector<int> path = getPath(&graph, source, destination);
 
 	if (path.empty()) {

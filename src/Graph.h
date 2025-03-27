@@ -35,7 +35,7 @@ public:
     void setVisited(bool visited);
     void setProcessing(bool processing);
 
-    bool getParking() const;
+    bool hasParking() const;
     std::string getLocation() const;
     void setLocation(std::string &location);
     void setHasParking(bool hasParking);
@@ -256,6 +256,11 @@ std::string Vertex<T>::getLocation() const {
 template <class T>
 void Vertex<T>::setCode(std::string &code) {
     this->code = code;
+}
+
+template <class T>
+bool  Vertex<T>::hasParking() const {
+  return this->parking;
 }
 
 template <class T>

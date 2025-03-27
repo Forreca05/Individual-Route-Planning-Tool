@@ -8,6 +8,7 @@
 
 void independent(Graph<int> &graph) {
     std::string sourceStr, destinationStr, mode;
+    bool parked = false;
     std::unordered_set<int> avoidNodes; // Definição do conjunto de nós a evitar
     std::unordered_set<int> avoidEdges; // Apenas declarado caso precise no futuro
 
@@ -23,7 +24,7 @@ void independent(Graph<int> &graph) {
     int destination = std::stoi(destinationStr);
 
     // 1ª Execução do algoritmo de Dijkstra
-    dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode);
+    dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode, parked);
     std::vector<int> path = getPath(&graph, source, destination);
 
     // Impressão da melhor rota
@@ -42,7 +43,7 @@ void independent(Graph<int> &graph) {
     std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
 
     // 2ª Execução do algoritmo para encontrar rota alternativa
-    dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode);
+    dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode, parked);
     path = getPath(&graph, source, destination);
 
     // Impressão da rota alternativa
@@ -56,6 +57,7 @@ void independent(Graph<int> &graph) {
         std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
     }
 }
+
 void independentBatch(Graph<int> &graph, const std::string &filename, const std::string &outputFilename) {
     std::unordered_set<int> avoidNodes; // Definição do conjunto de nós a evitar
     std::unordered_set<int> avoidEdges; // Apenas declarado caso precise no futuro
@@ -74,6 +76,7 @@ void independentBatch(Graph<int> &graph, const std::string &filename, const std:
 
     std::string line, mode;
     int source, destination;
+    bool parked = false;
 
     while (std::getline(file, line)) {
         std::istringstream iss(line);
@@ -98,7 +101,7 @@ void independentBatch(Graph<int> &graph, const std::string &filename, const std:
     outputFile << "Destination: " << destination << std::endl;
 
     // Chama o algoritmo necessário (Dijkstra, A*, etc.)
-    dijkstra(&graph, source, destination, {}, {}, mode);
+    dijkstra(&graph, source, destination, {}, {}, mode, parked);
     std::vector<int> path = getPath(&graph, source, destination);
 
     outputFile << "BestDrivingRoute: ";
@@ -111,7 +114,7 @@ void independentBatch(Graph<int> &graph, const std::string &filename, const std:
     outputFile << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
 
     // 2ª Execução do algoritmo para encontrar rota alternativa
-    dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode);
+    dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode, parked);
     path = getPath(&graph, source, destination);
 
     // Escreve a rota alternativa no arquivo

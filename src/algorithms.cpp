@@ -1,7 +1,7 @@
 #include <iostream>
 #include "algorithms.h"
 
-bool relaxDriving(Edge<int>* edge, const std::string& mode) {
+bool relaxDriving(Edge<int>* edge, const std::string& mode, bool& parked) {
     if (edge->getDriving() == -1) return false;
     Vertex<int> *u = edge->getOrig();
     Vertex<int> *v = edge->getDest();
@@ -19,10 +19,26 @@ bool relaxDriving(Edge<int>* edge, const std::string& mode) {
         	return true;
         }
 	}
+    else {
+          if (parked) {
+            if (u->getDist() + edge->getDriving() < v->getDist()) {
+        	    v->setDist(u->getDist() + edge->getDriving());
+        	    v->setPath(edge);
+        	    return true;
+            }
+          }
+          else {
+            if (u->getDist() + edge->getDriving() < v->getDist()) {
+        	    v->setDist(u->getDist() + edge->getDriving());
+        	    v->setPath(edge);
+        	    return true;
+            }
+          }
+    }
     return false;
 }
 
-void dijkstra(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoidNodes, const std::unordered_set<int>& avoidEdges, const std::string& mode) {
+void dijkstra(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoidNodes, const std::unordered_set<int>& avoidEdges, const std::string& mode, bool& parked) {
     MutablePriorityQueue<Vertex<int>> pq;
     for (Vertex<int> *v : g->getVertexSet()) {
         v->setDist(INF);
@@ -41,7 +57,7 @@ void dijkstra(Graph<int>* g, const int& origin, const int& destination, const st
         for (Edge<int> *e : u->getAdj()) {
             if (e->isSelected()) continue;
             if (avoidNodes.count(e->getDest()->getInfo())) continue;
-            if (relaxDriving(e, mode)) {
+            if (relaxDriving(e, mode, parked)) {
                 pq.decreaseKey(e->getDest());
             }
         }

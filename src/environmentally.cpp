@@ -8,8 +8,10 @@
 void environmentally(Graph<int> &graph) {
     std::string sourceStr, destinationStr, mode, segment;
     int node, maxWalk, avoidInit, avoidEnd;
+    bool parked = false;
     std::unordered_set<int> avoidNodes;
     std::unordered_set<int> avoidEdges;
+    std::unordered_map<int, double> time_to_id;
 
     // Entrada de dados
     std::cout << "Mode: ";
@@ -40,28 +42,24 @@ void environmentally(Graph<int> &graph) {
     // Coleta de segmentos a evitar
     std::cout << "AvoidSegments (enter -1 to stop): ";
     while (std::cin >> segment && segment != "-1") {
-        size_t openParen = segment.find('(');
-        size_t closeParen = segment.find(')');
-        if (openParen != std::string::npos && closeParen != std::string::npos && openParen < closeParen) {
-            segment = segment.substr(openParen + 1, closeParen - openParen - 1);
-        } else {
-            std::cerr << "Invalid segment format. Use (x,y)" << std::endl;
-            continue;
-        }
-
+        segment = segment.substr(segment.find('(') + 1, segment.find(')') - segment.find('(') - 1);
         std::stringstream ss(segment);
         char comma;
-        if (ss >> avoidInit >> comma >> avoidEnd && comma == ',') {
-            avoidEdges.insert(avoidInit);
-            avoidEdges.insert(avoidEnd);
-        } else {
-            std::cerr << "Invalid segment input." << std::endl;
-        }
+        ss >> avoidInit >> comma >> avoidEnd;
+        selectEdge(&graph, avoidInit, avoidEnd);
     }
 
-    // Aqui você pode chamar o algoritmo desejado, como Dijkstra, A* etc.
-    // Exemplo:
-    // dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode);
+    for (Vertex<int>* v : graph.getVertexSet()) {
+        if (v->hasParking()) {  // Certifique-se de que `hasParking()` existe
+            dijkstra(&graph, source, v->getInfo(), avoidNodes, avoidEdges, mode, parked);
+            time_to_id[v->getInfo()] = graph.findVertex(v->getInfo())->getDist();  // Armazena a distância do nó de origem até o estacionamento
+        }
+    }
+    // Imprimir os nós de estacionamento com suas distâncias
+      std::cout << "\nParking Nodes and Distances:\n";
+      for (const auto& pair : time_to_id) {
+            std::cout << "Parking Node: " << pair.first << ", Distance: " << pair.second << std::endl;
+      }
 }
 
 void environmentallyBatch(Graph<int> &graph, const std::string &filename) {}

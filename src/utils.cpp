@@ -28,7 +28,8 @@ Graph<int> loadGraphFromCSV(const std::string &locationsFile, const std::string 
         std::getline(stream, code, ',');
         std::getline(stream, parkingStr, ',');
 
-        bool hasParking = (parkingStr == "1");
+
+        bool hasParking = (std::stoi(parkingStr) == 1);
         int nodeId = std::stoi(nodeIdStr);
         code_to_id[code] = nodeId; // Guarda o código associado ao ID
 
