@@ -1,2 +1,4 @@
-falta implementar quando nao ha caminho, nao aparecer segfault(e porque costuma dar sequer?)
-o include node nao funciona e falta o environmentally-friendly
+avoidSegments maybe not working, batchMode, dOxygem, Powerpoint, approximate solution
+
+
+No input, so se houver um espaco depois dos : e que funciona, tentar sem espaço e quando nao queremos dar input a nada, em vez de termos d emeter -1, tar em branco
