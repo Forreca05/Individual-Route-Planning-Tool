@@ -7,7 +7,7 @@
 
 void environmentally(Graph<int> &graph) {
     std::string sourceStr, destinationStr, mode, segment;
-    int node, maxWalk, avoidInit, avoidEnd, total = INF, middle;
+    int node, maxWalk, avoidInit, avoidEnd, middle, total = 1000;
     bool parked = false;
     std::unordered_set<int> avoidNodes;
     std::unordered_set<int> avoidEdges;
@@ -68,6 +68,8 @@ void environmentally(Graph<int> &graph) {
           }
         }
     }
+    std::cout << total << ' ' << middle << std::endl;
+
     dijkstra(&graph, source, middle, avoidNodes, avoidEdges, mode, parked);
     std::vector<int> path = getPath(&graph, source, middle);
     dijkstra(&graph, middle, destination, avoidNodes, avoidEdges, mode, parked);
@@ -81,7 +83,7 @@ void environmentally(Graph<int> &graph) {
             std::cout << i << " ";
         }
         std::cout << " (" << total << ")" << std::endl;
-    }
+   }
 }
 
 void environmentallyBatch(Graph<int> &graph, const std::string &filename) {}
