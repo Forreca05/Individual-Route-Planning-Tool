@@ -10,8 +10,8 @@
 
 void environmentally(Graph<int> &graph) {
     std::string sourceStr, destinationStr, mode, segment;
-    int node, maxWalk, avoidInit, avoidEnd, middle, total = 1000;
-    bool parked = false;
+    int node, maxWalk, avoidInit, avoidEnd, middle, total = 100000;
+    bool parked = false, route = false;
     std::unordered_set<int> avoidNodes;
     std::unordered_set<int> avoidEdges;
     std::unordered_map<int, double> time_to_id;
@@ -64,12 +64,21 @@ void environmentally(Graph<int> &graph) {
 	for (const auto& pair : time_to_id) {
 		dijkstra(&graph, pair.first, destination, avoidNodes, avoidEdges, mode, parked);
 		if (graph.findVertex(destination)->getDist() <= maxWalk) {
+            route = true;
 			int distt = pair.second + graph.findVertex(destination)->getDist();
 			if (distt < total) {
 				total = distt;
 				middle = pair.first;
 			}
 		}
+	}
+	if (route) {
+		std::cout << "DrivingRoute:" << std::endl;
+		std::cout << "ParkingNode:" << std::endl;
+		std::cout << "WalkingRoute:" << std::endl;
+		std::cout << "TotalTime:" << std::endl;
+		std::cout << "Message: No possible route with max. walking time of " << maxWalk << " minutes." << std::endl;
+		return;
 	}
 
 	parked = false;
@@ -118,7 +127,7 @@ void environmentallyBatch(Graph<int> &graph, const std::string &filename, const 
 
 	std::string line, mode;
 	int source, destination, includeNode = -1, avoidInit, avoidEnd, maxWalk, total = 1000, middle;
-    bool parked = false;
+    bool parked = false, route=false;
 
 	while (std::getline(file, line)) {
 		std::istringstream iss(line);
@@ -180,12 +189,6 @@ void environmentallyBatch(Graph<int> &graph, const std::string &filename, const 
 
 	file.close();  // Fecha o ficheiro após a leitura
 
-
-
-
-
-
-
     for (Vertex<int>* v : graph.getVertexSet()) {
         if (v->hasParking()) {  // Certifique-se de que `hasParking()` existe
             dijkstra(&graph, source, v->getInfo(), avoidNodes, avoidEdges, mode, parked);
@@ -198,6 +201,7 @@ void environmentallyBatch(Graph<int> &graph, const std::string &filename, const 
     for (const auto& pair : time_to_id) {
         dijkstra(&graph, pair.first, destination, avoidNodes, avoidEdges, mode, parked);
         if (graph.findVertex(destination)->getDist() <= maxWalk) {
+          route = true;
           int distt = pair.second + graph.findVertex(destination)->getDist();
           if (distt < total) {
             total = distt;
@@ -205,6 +209,14 @@ void environmentallyBatch(Graph<int> &graph, const std::string &filename, const 
           }
         }
     }
+	if (route) {
+		std::cout << "DrivingRoute:" << std::endl;
+		std::cout << "ParkingNode:" << std::endl;
+		std::cout << "WalkingRoute:" << std::endl;
+		std::cout << "TotalTime:" << std::endl;
+		std::cout << "Message: No possible route with max. walking time of " << maxWalk << " minutes." << std::endl;
+		return;
+	}
 
     outputFile << "Source: " << source << std::endl;
     outputFile << "Destination: " << destination << std::endl;

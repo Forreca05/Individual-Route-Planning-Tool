@@ -1,6 +1,5 @@
-Source: 1
-Destination: 7
-DrivingRoute:1,1219,1097,482,657 (14)
-ParkingNode:657
-WalkingRoute:657,87,7 (19)
-TotalTime:33
+Mode: driving
+Source: 8
+Destination: 1
+BestDrivingRoute: 8 4 2 1  (24)
+AlternativeDrivingRoute: none

@@ -9,7 +9,7 @@
 #include "environmentally.h"
 
 int main() {
-    Graph<int> graph = loadGraphFromCSV("../data/Locations.csv", "../data/Distances.csv");
+    Graph<int> graph = loadGraphFromCSV("../data/LocSample.txt", "../data/DisSample.txt");
     std::string type, batchStr;
 
     std::cout << "Batch or Terminal: ";

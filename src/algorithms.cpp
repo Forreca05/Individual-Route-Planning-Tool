@@ -72,7 +72,13 @@ std::vector<int> getPath(Graph<int>* g, const int& origin, const int& dest) {
     std::vector<int> res;
     Vertex<int> *v = g->findVertex(dest);
 
+    // Verifica se o destino é acessível
+    if (!v || v->getDist() == INF) {
+        return res;  // Retorna um vetor vazio se não houver caminho
+    }
+
     while (v->getInfo() != origin) {
+        if (!v->getPath()) return {};  // Se não há caminho, retorna vazio
         res.push_back(v->getInfo());
         v = v->getPath()->getOrig();
     }
@@ -81,6 +87,7 @@ std::vector<int> getPath(Graph<int>* g, const int& origin, const int& dest) {
     std::reverse(res.begin(), res.end());
     return res;
 }
+
 
 void selectEdge(Graph<int>* g, const int& origin, const int& dest) {
     Vertex<int> *source = g->findVertex(origin);
