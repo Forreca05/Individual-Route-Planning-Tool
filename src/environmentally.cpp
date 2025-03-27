@@ -87,7 +87,7 @@ void environmentally(Graph<int> &graph) {
 	int meioDist = graph.findVertex(middle)->getDist();
 	std::cout << "DrivingRoute:";
 	std::cout << path[0];
-	for (int i = 1; i < path.size(); i++) {
+	for (unsigned i = 1; i < path.size(); i++) {
 		std::cout << ',' << path[i];
 	}
 	std::cout << " (" << meioDist << ")" << std::endl;
@@ -99,7 +99,7 @@ void environmentally(Graph<int> &graph) {
 	std::vector<int> path2 = getPath(&graph, middle, destination);
 	std::cout << "WalkingRoute:";
 	std::cout << path2[0];
-	for (int i = 1; i < path.size(); i++) {
+	for (unsigned i = 1; i < path.size(); i++) {
 		std::cout << ',' << path2[i];
 	}
 	int fimDist = graph.findVertex(destination)->getDist();
@@ -126,7 +126,7 @@ void environmentallyBatch(Graph<int> &graph, const std::string &filename, const 
 	}
 
 	std::string line, mode;
-	int source, destination, includeNode = -1, avoidInit, avoidEnd, maxWalk, total = 1000, middle;
+	int source, destination, includeNode = -1, maxWalk, total = 1000, middle;
     bool parked = false, route=false;
 
 	while (std::getline(file, line)) {
@@ -187,7 +187,7 @@ void environmentallyBatch(Graph<int> &graph, const std::string &filename, const 
 		}
     }
 
-	file.close();  // Fecha o ficheiro após a leitura
+	file.close();
 
     for (Vertex<int>* v : graph.getVertexSet()) {
         if (v->hasParking()) {  // Certifique-se de que `hasParking()` existe
@@ -228,7 +228,7 @@ void environmentallyBatch(Graph<int> &graph, const std::string &filename, const 
 	int meioDist = graph.findVertex(middle)->getDist();
 	outputFile << "DrivingRoute:";
 	outputFile << path[0];
-	for (int i = 1; i < path.size(); i++) {
+	for (unsigned i = 1; i < path.size(); i++) {
 		outputFile << ',' << path[i];
 	}
 	outputFile << " (" << meioDist << ")" << std::endl;
@@ -240,7 +240,7 @@ void environmentallyBatch(Graph<int> &graph, const std::string &filename, const 
 	std::vector<int> path2 = getPath(&graph, middle, destination);
 	outputFile << "WalkingRoute:";
 	outputFile << path2[0];
-	for (int i = 1; i < path2.size(); i++) {
+	for (unsigned i = 1; i < path2.size(); i++) {
 		outputFile << ',' << path2[i];
 	}
 	int fimDist = graph.findVertex(destination)->getDist();

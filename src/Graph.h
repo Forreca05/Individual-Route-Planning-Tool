@@ -101,7 +101,7 @@ public:
     void setReverse(Edge<T> *reverse);
     void setFlow(double flow);
 protected:
-    Vertex<T> * dest; // destination vertex
+    Vertex<T> *dest; // destination vertex
     double walking, driving; // edge weight, can also be used for capacity
 
     // auxiliary fields
