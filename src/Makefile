@@ -13,18 +13,15 @@ CXX = g++
 # Flags de compilação (opcional)
 CXXFLAGS = -Wall -Wextra -std=c++11
 
-# Regra principal: compila todos os .o num único executável "main"
+# Regra principal: compila todos os .o num único executável "main" e apaga os .o no fim
 $(TARGET): $(OBJS)
 	$(CXX) -o $(TARGET) $(OBJS)
+	rm -f $(OBJS)  # Apaga os ficheiros .o depois da compilação
 
 # Regra para compilar cada ficheiro .cpp em .o
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Limpar ficheiros compilados
+# Limpar tudo (executável e .o)
 clean:
 	rm -f $(OBJS) $(TARGET)
-
-# Limpar apenas os .o
-clean_o:
-	rm -f $(OBJS)
