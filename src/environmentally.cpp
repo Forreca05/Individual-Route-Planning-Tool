@@ -2,6 +2,7 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <sstream>
+#include <fstream>
 #include <string>
 #include "algorithms.h"
 #include "Graph.h"
@@ -70,7 +71,6 @@ void environmentally(Graph<int> &graph) {
           }
         }
     }
-    std::cout << total << ' ' << middle << std::endl;
 
     dijkstra(&graph, source, middle, avoidNodes, avoidEdges, mode, parked);
     std::vector<int> path = getPath(&graph, source, middle);
@@ -88,6 +88,125 @@ void environmentally(Graph<int> &graph) {
    }
 }
 
-void environmentallyBatch(Graph<int> &graph, const std::string &filename) {
-    return;
+void environmentallyBatch(Graph<int> &graph, const std::string &filename, const std::string &outputFilename) {
+    std::unordered_set<int> avoidNodes; // Definição do conjunto de nós a evitar
+	std::unordered_set<int> avoidEdges; // Apenas declarado caso precise no futuro
+    std::unordered_map<int, double> time_to_id;
+	std::ifstream file(filename);
+	if (!file) {
+		std::cerr << "Error: Could not open file " << filename << std::endl;
+		return;
+	}
+
+	// Abra o arquivo de saída
+	std::ofstream outputFile(outputFilename);
+	if (!outputFile) {
+		std::cerr << "Error: Could not open file " << outputFilename << std::endl;
+		return;
+	}
+
+	std::string line, mode;
+	int source, destination, includeNode = -1, avoidInit, avoidEnd, maxWalk, total = 1000, middle;
+    bool parked = false;
+
+	while (std::getline(file, line)) {
+		std::istringstream iss(line);
+		std::string key, value;
+
+		while (iss >> key >> value) {
+			if (key == "Mode:") {
+				mode = value;
+			} else if (key == "Source:") {
+				source = std::stoi(value);
+			} else if (key == "Destination:") {
+				destination = std::stoi(value);
+            } else if (key == "MaxWalkTime:") {
+                maxWalk = std::stoi(value);
+			} else if (key == "AvoidNodes:") {
+                if (value != "-1") {
+                	std::stringstream ss(value);
+                	std::string token;
+                	while (std::getline(ss, token, ',')) {
+                		avoidNodes.insert(std::stoi(token));
+                	}
+				}
+			} else if (key == "AvoidSegments:") {
+				if (value != "-1") {
+					// O valor contém uma string com as arestas a evitar (ex: (1,2) (3,4))
+					// Usamos um loop para dividir a string em cada par de nós
+					std::stringstream ss(value);
+					std::string edge;
+
+					while (ss >> edge) {
+						// Remover os parênteses ao redor da aresta
+						size_t openParen = edge.find('(');
+						size_t closeParen = edge.find(')');
+
+						if (openParen != std::string::npos && closeParen != std::string::npos) {
+							edge = edge.substr(openParen + 1, closeParen - openParen - 1);
+							std::stringstream edgeStream(edge);
+							int start, end;
+							char comma;
+							// Tenta converter os números da aresta no formato (x,y)
+							if (edgeStream >> start >> comma >> end && comma == ',') {
+								// Se conseguiu, então seleciona a aresta para ser evitada
+								selectEdge(&graph, start, end);  // Chama a função selectEdge
+							} else {
+								std::cerr << "Erro: Formato inválido na aresta " << edge << std::endl;
+							}
+						} else {
+							std::cerr << "Erro: Aresta mal formatada. Use (x,y)" << std::endl;
+						}
+					}
+				}
+			} else if (key == "IncludeNode:") {
+                if (value != "-1") {
+					includeNode = std::stoi(value);
+                }
+			}
+		}
+    }
+
+	file.close();  // Fecha o ficheiro após a leitura
+
+
+
+
+
+
+
+    for (Vertex<int>* v : graph.getVertexSet()) {
+        if (v->hasParking()) {  // Certifique-se de que `hasParking()` existe
+            dijkstra(&graph, source, v->getInfo(), avoidNodes, avoidEdges, mode, parked);
+            time_to_id[v->getInfo()] = graph.findVertex(v->getInfo())->getDist();  // Armazena a distância do nó de origem até o estacionamento
+        }
+    }
+
+    parked = true;
+
+    for (const auto& pair : time_to_id) {
+        dijkstra(&graph, pair.first, destination, avoidNodes, avoidEdges, mode, parked);
+        if (graph.findVertex(destination)->getDist() <= maxWalk) {
+          int distt = pair.second + graph.findVertex(destination)->getDist();
+          if (distt < total) {
+            total = distt;
+            middle = pair.first;
+          }
+        }
+    }
+
+    dijkstra(&graph, source, middle, avoidNodes, avoidEdges, mode, parked);
+    std::vector<int> path = getPath(&graph, source, middle);
+    dijkstra(&graph, middle, destination, avoidNodes, avoidEdges, mode, parked);
+    std::vector<int> path2 = getPath(&graph, middle, destination);
+    path.insert(path.end(), path2.begin() + 1, path2.end());
+    if (path.empty()) {
+        outputFile << "RestrictedDrivingRoute: none" << std::endl;
+    } else {
+        outputFile << "RestrictedDrivingRoute: ";
+        for (int i : path) {
+            outputFile << i << " ";
+        }
+        outputFile << " (" << total << ")" << std::endl;
+   }
 }
