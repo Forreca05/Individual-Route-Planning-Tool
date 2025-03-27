@@ -1,1 +1,6 @@
-RestrictedDrivingRoute: 1 1219 1097 482 657 87 7  (33)
+Source: 1
+Destination: 7
+DrivingRoute:1,1219,1097,482,657 (14)
+ParkingNode:657
+WalkingRoute:657,87,7 (19)
+TotalTime:33

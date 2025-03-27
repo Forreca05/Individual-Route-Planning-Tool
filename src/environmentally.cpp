@@ -61,31 +61,42 @@ void environmentally(Graph<int> &graph) {
 
     parked = true;
 
-    for (const auto& pair : time_to_id) {
-        dijkstra(&graph, pair.first, destination, avoidNodes, avoidEdges, mode, parked);
-        if (graph.findVertex(destination)->getDist() <= maxWalk) {
-          int distt = pair.second + graph.findVertex(destination)->getDist();
-          if (distt < total) {
-            total = distt;
-            middle = pair.first;
-          }
-        }
-    }
+	for (const auto& pair : time_to_id) {
+		dijkstra(&graph, pair.first, destination, avoidNodes, avoidEdges, mode, parked);
+		if (graph.findVertex(destination)->getDist() <= maxWalk) {
+			int distt = pair.second + graph.findVertex(destination)->getDist();
+			if (distt < total) {
+				total = distt;
+				middle = pair.first;
+			}
+		}
+	}
 
-    dijkstra(&graph, source, middle, avoidNodes, avoidEdges, mode, parked);
-    std::vector<int> path = getPath(&graph, source, middle);
-    dijkstra(&graph, middle, destination, avoidNodes, avoidEdges, mode, parked);
-    std::vector<int> path2 = getPath(&graph, middle, destination);
-    path.insert(path.end(), path2.begin() + 1, path2.end());
-    if (path.empty()) {
-        std::cout << "RestrictedDrivingRoute: none" << std::endl;
-    } else {
-        std::cout << "RestrictedDrivingRoute: ";
-        for (int i : path) {
-            std::cout << i << " ";
-        }
-        std::cout << " (" << total << ")" << std::endl;
-   }
+	parked = false;
+	dijkstra(&graph, source, middle, avoidNodes, avoidEdges, mode, parked);
+	std::vector<int> path = getPath(&graph, source, middle);
+	int meioDist = graph.findVertex(middle)->getDist();
+	std::cout << "DrivingRoute:";
+	std::cout << path[0];
+	for (int i = 1; i < path.size(); i++) {
+		std::cout << ',' << path[i];
+	}
+	std::cout << " (" << meioDist << ")" << std::endl;
+
+	std::cout << "ParkingNode:" << middle << std::endl;
+	parked = true;
+
+	dijkstra(&graph, middle, destination, avoidNodes, avoidEdges, mode, parked);
+	std::vector<int> path2 = getPath(&graph, middle, destination);
+	std::cout << "WalkingRoute:";
+	std::cout << path2[0];
+	for (int i = 1; i < path.size(); i++) {
+		std::cout << ',' << path2[i];
+	}
+	int fimDist = graph.findVertex(destination)->getDist();
+	std::cout << " (" << fimDist << ")" << std::endl;
+	std::cout << "TotalTime:" << total << std::endl;
+	path.insert(path.end(), path2.begin() + 1, path2.end());
 }
 
 void environmentallyBatch(Graph<int> &graph, const std::string &filename, const std::string &outputFilename) {
@@ -195,18 +206,32 @@ void environmentallyBatch(Graph<int> &graph, const std::string &filename, const 
         }
     }
 
-    dijkstra(&graph, source, middle, avoidNodes, avoidEdges, mode, parked);
-    std::vector<int> path = getPath(&graph, source, middle);
-    dijkstra(&graph, middle, destination, avoidNodes, avoidEdges, mode, parked);
-    std::vector<int> path2 = getPath(&graph, middle, destination);
-    path.insert(path.end(), path2.begin() + 1, path2.end());
-    if (path.empty()) {
-        outputFile << "RestrictedDrivingRoute: none" << std::endl;
-    } else {
-        outputFile << "RestrictedDrivingRoute: ";
-        for (int i : path) {
-            outputFile << i << " ";
-        }
-        outputFile << " (" << total << ")" << std::endl;
-   }
+    outputFile << "Source: " << source << std::endl;
+    outputFile << "Destination: " << destination << std::endl;
+
+	parked = false;
+	dijkstra(&graph, source, middle, avoidNodes, avoidEdges, mode, parked);
+	std::vector<int> path = getPath(&graph, source, middle);
+	int meioDist = graph.findVertex(middle)->getDist();
+	outputFile << "DrivingRoute:";
+	outputFile << path[0];
+	for (int i = 1; i < path.size(); i++) {
+		outputFile << ',' << path[i];
+	}
+	outputFile << " (" << meioDist << ")" << std::endl;
+
+	outputFile << "ParkingNode:" << middle << std::endl;
+	parked = true;
+
+	dijkstra(&graph, middle, destination, avoidNodes, avoidEdges, mode, parked);
+	std::vector<int> path2 = getPath(&graph, middle, destination);
+	outputFile << "WalkingRoute:";
+	outputFile << path2[0];
+	for (int i = 1; i < path2.size(); i++) {
+		outputFile << ',' << path2[i];
+	}
+	int fimDist = graph.findVertex(destination)->getDist();
+	outputFile << " (" << fimDist << ")" << std::endl;
+	outputFile << "TotalTime:" << total << std::endl;
+	path.insert(path.end(), path2.begin() + 1, path2.end());
 }
