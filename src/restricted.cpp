@@ -52,11 +52,11 @@ void restricted(Graph<int> &graph) {
     source = std::stoi(sourceStr);
     destination = std::stoi(destinationStr);
 
-    std::cout << "AvoidNodes (enter -1 to stop): ";
+    std::cout << "AvoidNodes: ";
     std::string line;
     std::cin.ignore();  // Limpa buffer para evitar problemas com `getline`
     std::getline(std::cin, line);
-    if (!line.empty()) {  // Só processa se não for vazio ou "-1"
+    if (!line.empty()) {
         std::stringstream ss(line);
         std::string token;
         while (std::getline(ss, token, ',')) {
@@ -68,7 +68,7 @@ void restricted(Graph<int> &graph) {
         }
     }
 
-    std::cout << "AvoidSegments (enter -1 to stop): ";
+    std::cout << "AvoidSegments: ";
     std::getline(std::cin, line);
     if (!line.empty()) {
         size_t pos = 0;
