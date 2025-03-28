@@ -7,9 +7,9 @@
 #include "independent.h"
 
 void runAlgorithm(Graph<int> &graph, int source, int destination, std::unordered_set<int> &avoidNodes,
-                  std::unordered_set<int> &avoidEdges, const std::string &mode, bool parked,
-                  std::ostream &out, bool isFirstRun) {
-    dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode, parked);
+                  const std::string &mode, bool parked, std::ostream &out, bool isFirstRun) {
+
+    dijkstra(&graph, source, destination, avoidNodes, mode, parked);
     std::vector<int> path = getPath(&graph, source, destination);
 
     out << (isFirstRun ? "BestDrivingRoute:" : "AlternativeDrivingRoute:");
@@ -18,9 +18,9 @@ void runAlgorithm(Graph<int> &graph, int source, int destination, std::unordered
         out << "none" << std::endl;
     } else {
         out << path.front();
-        for (int i = 1; i < path.size(); i++) {
+        for (size_t i = 1; i < path.size(); i++) {
             out << "," << path[i];
-            if (isFirstRun && i != source && i != destination) {
+            if (isFirstRun && static_cast<int>(i) != source && static_cast<int>(i) != destination) {
                 avoidNodes.insert(i);
             }
         }
@@ -39,8 +39,8 @@ void independent(Graph<int> &graph) {
 
     int source = std::stoi(sourceStr), destination = std::stoi(destinationStr);
 
-    runAlgorithm(graph, source, destination, avoidNodes, avoidEdges, mode, parked, std::cout, true);
-    runAlgorithm(graph, source, destination, avoidNodes, avoidEdges, mode, parked, std::cout, false);
+    runAlgorithm(graph, source, destination, avoidNodes, mode, parked, std::cout, true);
+    runAlgorithm(graph, source, destination, avoidNodes, mode, parked, std::cout, false);
 }
 
 void independentBatch(Graph<int> &graph, const std::string &inputFilename, const std::string &outputFilename) {
@@ -72,6 +72,6 @@ void independentBatch(Graph<int> &graph, const std::string &inputFilename, const
 
     outputFile << "Source:" << source << "\nDestination:" << destination << std::endl;
 
-    runAlgorithm(graph, source, destination, avoidNodes, avoidEdges, mode, parked, outputFile, true);
-    runAlgorithm(graph, source, destination, avoidNodes, avoidEdges, mode, parked, outputFile, false);
+    runAlgorithm(graph, source, destination, avoidNodes, mode, parked, outputFile, true);
+    runAlgorithm(graph, source, destination, avoidNodes, mode, parked, outputFile, false);
 }

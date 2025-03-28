@@ -101,15 +101,14 @@ public:
     void setReverse(Edge<T> *reverse);
     void setFlow(double flow);
 protected:
-    Vertex<T> *dest; // destination vertex
-    double walking, driving; // edge weight, can also be used for capacity
-
     // auxiliary fields
     bool selected = false;
 
     // used for bidirectional edges
     Vertex<T> *orig;
+    Vertex<T> *dest; // destination vertex
     Edge<T> *reverse = nullptr;
+    double walking, driving; // edge weight, can also be used for capacity
 
     double flow; // for flow-related problems
 };

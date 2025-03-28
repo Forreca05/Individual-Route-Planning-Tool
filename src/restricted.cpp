@@ -8,23 +8,22 @@
 #include "restricted.h"
 
 void runRestrictedAlgorithm(Graph<int> &graph, int source, int destination, int includeNode,
-                            std::unordered_set<int> &avoidNodes, std::unordered_set<int> &avoidEdges,
-                            const std::string &mode, bool parked, std::ostream &out) {
+                            std::unordered_set<int> &avoidNodes, const std::string &mode, bool parked, std::ostream &out) {
     int total = 0;
     std::vector<int> path;
 
     if (includeNode != -1) {
-        dijkstra(&graph, source, includeNode, avoidNodes, avoidEdges, mode, parked);
+        dijkstra(&graph, source, includeNode, avoidNodes, mode, parked);
         path = getPath(&graph, source, includeNode);
         total = graph.findVertex(includeNode)->getDist();
 
-        dijkstra(&graph, includeNode, destination, avoidNodes, avoidEdges, mode, parked);
+        dijkstra(&graph, includeNode, destination, avoidNodes, mode, parked);
         std::vector<int> path2 = getPath(&graph, includeNode, destination);
         total += graph.findVertex(destination)->getDist();
 
         path.insert(path.end(), path2.begin() + 1, path2.end());
     } else {
-        dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode, parked);
+        dijkstra(&graph, source, destination, avoidNodes, mode, parked);
         path = getPath(&graph, source, destination);
         total = graph.findVertex(destination)->getDist();
     }
@@ -34,7 +33,7 @@ void runRestrictedAlgorithm(Graph<int> &graph, int source, int destination, int 
         out << "none" << std::endl;
     } else {
         out << path[0];
-        for (int i = 1; i < path.size(); i++) out << "," << path[i];
+        for (size_t i = 1; i < path.size(); i++) out << "," << path[i];
         out << "(" << total << ")" << std::endl;
     }
 }
@@ -54,7 +53,7 @@ void restricted(Graph<int> &graph) {
 
     std::cout << "AvoidNodes: ";
     std::string line;
-    std::cin.ignore();  // Limpa buffer para evitar problemas com `getline`
+    std::cin.ignore();
     std::getline(std::cin, line);
     if (!line.empty()) {
         std::stringstream ss(line);
@@ -94,7 +93,7 @@ void restricted(Graph<int> &graph) {
     std::getline(std::cin, line);
     if (!line.empty()) {std::cin >> includeNode;}
 
-    runRestrictedAlgorithm(graph, source, destination, includeNode, avoidNodes, avoidEdges, mode, parked, std::cout);
+    runRestrictedAlgorithm(graph, source, destination, includeNode, avoidNodes, mode, parked, std::cout);
 }
 
 
@@ -157,5 +156,5 @@ void restrictedBatch(Graph<int> &graph, const std::string &filename, const std::
     }
 
     outputFile << "Source:" << source << "\nDestination:" << destination << std::endl;
-    runRestrictedAlgorithm(graph, source, destination, includeNode, avoidNodes, avoidEdges, mode, parked, outputFile);
+    runRestrictedAlgorithm(graph, source, destination, includeNode, avoidNodes, mode, parked, outputFile);
 }

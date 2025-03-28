@@ -8,18 +8,16 @@
 #include "Graph.h"
 #include "environmentally.h"
 
-// Função genérica para rodar o algoritmo de "driving-walking"
 void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination, int maxWalk,
-                                  const std::unordered_set<int>& avoidNodes, const std::unordered_set<int>& avoidEdges,
-                                  const std::unordered_map<int, double>& time_to_id, const std::string &mode, bool parked,
-                                  std::ostream &out) {
+                                  const std::unordered_set<int>& avoidNodes,const std::unordered_map<int,
+                                  double>& time_to_id, const std::string &mode, bool parked, std::ostream &out) {
 
     int total = 100000, middle = -1;
     bool route = false;
 
     parked = true;
     for (const auto& pair : time_to_id) {
-        dijkstra(&graph, pair.first, destination, avoidNodes, avoidEdges, mode, parked);
+        dijkstra(&graph, pair.first, destination, avoidNodes, mode, parked);
         if (graph.findVertex(destination)->getDist() <= maxWalk) {
             route = true;
             int distt = pair.second + graph.findVertex(destination)->getDist();
@@ -31,6 +29,7 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
     }
 
     if (!route) {
+        out << "Source:" << source << "\nDestination:" << destination << std::endl;
         out << "DrivingRoute:" << std::endl;
         out << "ParkingNode:" << std::endl;
         out << "WalkingRoute:" << std::endl;
@@ -40,7 +39,7 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
     }
 
     parked = false;
-    dijkstra(&graph, source, middle, avoidNodes, avoidEdges, mode, parked);
+    dijkstra(&graph, source, middle, avoidNodes, mode, parked);
     std::vector<int> path = getPath(&graph, source, middle);
     int meioDist = graph.findVertex(middle)->getDist();
     out << "Source:" << source << std::endl << "Destination:" << destination << std::endl;
@@ -53,7 +52,7 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
     out << "ParkingNode:" << middle << std::endl;
 
     parked = true;
-    dijkstra(&graph, middle, destination, avoidNodes, avoidEdges, mode, parked);
+    dijkstra(&graph, middle, destination, avoidNodes, mode, parked);
     std::vector<int> path2 = getPath(&graph, middle, destination);
     out << "WalkingRoute:" << path2[0];
     for (unsigned i = 1; i < path2.size(); i++) {
@@ -62,22 +61,19 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
     int fimDist = graph.findVertex(destination)->getDist();
     out << "(" << fimDist << ")" << std::endl;
 
-    // Tempo total
     out << "TotalTime:" << total << std::endl;
 
     path.insert(path.end(), path2.begin() + 1, path2.end());  // Junta as duas rotas
 }
 
-// Função interativa
 void environmentally(Graph<int>& graph) {
     std::string sourceStr, destinationStr, mode, segment;
-    int node, maxWalk, avoidInit, avoidEnd, middle, total = 100000;
-    bool parked = false, route = false;
+    int maxWalk;
+    bool parked = false;
     std::unordered_set<int> avoidNodes;
     std::unordered_set<int> avoidEdges;
     std::unordered_map<int, double> time_to_id;
 
-    // Entrada de dados
     std::cout << "Mode: ";
     std::cin >> mode;
 
@@ -97,10 +93,9 @@ void environmentally(Graph<int>& graph) {
     std::cout << "MaxWalkTime: ";
     std::cin >> maxWalk;
 
-    // Coleta de nós a evitar
     std::cout << "AvoidNodes: ";
     std::string line;
-    std::cin.ignore();  // Limpa buffer para evitar problemas com `getline`
+    std::cin.ignore();
     std::getline(std::cin, line);
     if (!line.empty()) {
         std::stringstream ss(line);
@@ -114,7 +109,6 @@ void environmentally(Graph<int>& graph) {
         }
     }
 
-    // Coleta de segmentos a evitar
     std::cout << "AvoidSegments: ";
     std::getline(std::cin, line);
     if (!line.empty()) {
@@ -138,17 +132,15 @@ void environmentally(Graph<int>& graph) {
     }
 
     for (Vertex<int>* v : graph.getVertexSet()) {
-        if (v->hasParking()) {  // Certifique-se de que `hasParking()` existe
-            dijkstra(&graph, source, v->getInfo(), avoidNodes, avoidEdges, mode, parked);
-            time_to_id[v->getInfo()] = graph.findVertex(v->getInfo())->getDist();  // Armazena a distância do nó de origem até o estacionamento
+        if (v->hasParking()) {
+            dijkstra(&graph, source, v->getInfo(), avoidNodes, mode, parked);
+            time_to_id[v->getInfo()] = graph.findVertex(v->getInfo())->getDist();
         }
     }
 
-    // Chama a função genérica para processar a rota
-    runEnvironmentallyAlgorithm(graph, source, destination, maxWalk, avoidNodes, avoidEdges, time_to_id, mode, parked, std::cout);
+    runEnvironmentallyAlgorithm(graph, source, destination, maxWalk, avoidNodes, time_to_id, mode, parked, std::cout);
 }
 
-// Função em lote
 void environmentallyBatch(Graph<int>& graph, const std::string& filename, const std::string& outputFilename) {
     std::unordered_set<int> avoidNodes;
     std::unordered_set<int> avoidEdges;
@@ -168,7 +160,7 @@ void environmentallyBatch(Graph<int>& graph, const std::string& filename, const 
 
     std::string line, mode;
     int source, destination, maxWalk;
-    bool parked = false, route = false;
+    bool parked = false;
 
     while (std::getline(file, line)) {
         std::istringstream iss(line);
@@ -215,12 +207,11 @@ void environmentallyBatch(Graph<int>& graph, const std::string& filename, const 
 
     for (Vertex<int>* v : graph.getVertexSet()) {
         if (v->hasParking()) {
-            dijkstra(&graph, source, v->getInfo(), avoidNodes, avoidEdges, mode, parked);
+            dijkstra(&graph, source, v->getInfo(), avoidNodes, mode, parked);
             time_to_id[v->getInfo()] = graph.findVertex(v->getInfo())->getDist();
         }
     }
 
-    // Chama a função genérica para processar a rota em lote
-    runEnvironmentallyAlgorithm(graph, source, destination, maxWalk, avoidNodes, avoidEdges, time_to_id, mode, parked, outputFile);
+    runEnvironmentallyAlgorithm(graph, source, destination, maxWalk, avoidNodes, time_to_id, mode, parked, outputFile);
     outputFile.close();
 }

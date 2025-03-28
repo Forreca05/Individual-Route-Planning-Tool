@@ -39,7 +39,7 @@ bool relaxDriving(Edge<int>* edge, const std::string& mode, bool& parked) {
     return false;
 }
 
-void dijkstra(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoidNodes, const std::unordered_set<int>& avoidEdges, const std::string& mode, bool& parked) {
+void dijkstra(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoidNodes, const std::string& mode, bool& parked) {
     MutablePriorityQueue<Vertex<int>> pq;
     for (Vertex<int> *v : g->getVertexSet()) {
         v->setDist(INF);
