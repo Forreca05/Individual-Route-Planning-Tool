@@ -18,8 +18,8 @@ void runAlgorithm(Graph<int> &graph, int source, int destination, std::unordered
         out << "none" << std::endl;
     } else {
         out << path.front();
-        for (int i = 0; i < path.size(); i++) {
-            out << "," << i;
+        for (int i = 1; i < path.size(); i++) {
+            out << "," << path[i];
             if (isFirstRun && i != source && i != destination) {
                 avoidNodes.insert(i);
             }
@@ -68,11 +68,6 @@ void independentBatch(Graph<int> &graph, const std::string &inputFilename, const
             else if (key == "Source") source = std::stoi(value);
             else if (key == "Destination") destination = std::stoi(value);
         }
-    }
-
-    if (source == -1 || destination == -1) {
-        std::cerr << "Error: Invalid input data" << std::endl;
-        return;
     }
 
     outputFile << "Source:" << source << "\nDestination:" << destination << std::endl;

@@ -7,196 +7,155 @@
 #include "Graph.h"
 #include "restricted.h"
 
-void restricted(Graph<int> &graph) {
-    int node, includeNode, avoidinit, avoidend, total;
-    bool parked = false;
-    std::string mode, sourceStr, destinationStr;
-	std::unordered_set<int> avoidNodes; // Definição do conjunto de nós a evitar
-	std::unordered_set<int> avoidEdges; // Apenas declarado caso precise no futuro
-    std::string segment;
-
-    std::cout << "Mode: ";
-    std::cin >> mode;
-    std::cout << "Source: ";
-    std::cin >> sourceStr;
-    std::cout << "Destination: ";
-    std::cin >> destinationStr;
-
-    int source = std::stoi(sourceStr);
-    int destination = std::stoi(destinationStr);
-
-    std::cout << "AvoidNodes (enter -1 to stop): ";
-    while (std::cin >> node && node != -1) {
-        avoidNodes.insert(node);
-    }
-
-    std::cout << "AvoidSegments (enter -1 to stop): ";
-    while (std::cin >> segment && segment != "-1") {
-        segment = segment.substr(segment.find('(') + 1, segment.find(')') - segment.find('(') - 1);
-	    std::stringstream ss(segment);
-    	char comma;
-    	ss >> avoidinit >> comma >> avoidend;
-		selectEdge(&graph, avoidinit, avoidend);
-    }
-
-    std::cout << "IncludeNode: ";
-    std::cin >> includeNode;
+void runRestrictedAlgorithm(Graph<int> &graph, int source, int destination, int includeNode,
+                            std::unordered_set<int> &avoidNodes, std::unordered_set<int> &avoidEdges,
+                            const std::string &mode, bool parked, std::ostream &out) {
+    int total = 0;
+    std::vector<int> path;
 
     if (includeNode != -1) {
         dijkstra(&graph, source, includeNode, avoidNodes, avoidEdges, mode, parked);
-        std::vector<int> path = getPath(&graph, source, includeNode);
-    	total = graph.findVertex(includeNode)->getDist();
+        path = getPath(&graph, source, includeNode);
+        total = graph.findVertex(includeNode)->getDist();
+
         dijkstra(&graph, includeNode, destination, avoidNodes, avoidEdges, mode, parked);
         std::vector<int> path2 = getPath(&graph, includeNode, destination);
         total += graph.findVertex(destination)->getDist();
+
         path.insert(path.end(), path2.begin() + 1, path2.end());
-        if (path.empty()) {
-        	std::cout << "RestrictedDrivingRoute: none" << std::endl;
-        } else {
-        	std::cout << "RestrictedDrivingRoute: ";
-        	for (int i : path) {
-        		std::cout << i << " ";
-        	}
-        	std::cout << " (" << total << ")" << std::endl;
-        }
-    	return;
+    } else {
+        dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode, parked);
+        path = getPath(&graph, source, destination);
+        total = graph.findVertex(destination)->getDist();
     }
 
-    dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode, parked);
-    std::vector<int> path = getPath(&graph, source, destination);
-
+    out << "RestrictedDrivingRoute:";
     if (path.empty()) {
-       std::cout << "RestrictedDrivingRoute: none" << std::endl;
+        out << "none" << std::endl;
     } else {
-		std::cout << "RestrictedDrivingRoute: ";
-        for (int i : path) {
-            std::cout << i << " ";
-        }
-        std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
+        out << path[0];
+        for (int i = 1; i < path.size(); i++) out << "," << path[i];
+        out << "(" << total << ")" << std::endl;
     }
 }
 
-void restrictedBatch(Graph<int> &graph, const std::string &filename, const std::string &outputFilename) {
-	std::unordered_set<int> avoidNodes; // Definição do conjunto de nós a evitar
-	std::unordered_set<int> avoidEdges; // Apenas declarado caso precise no futuro
-	std::ifstream file(filename);
-	if (!file) {
-		std::cerr << "Error: Could not open file " << filename << std::endl;
-		return;
-	}
-
-	// Abra o arquivo de saída
-	std::ofstream outputFile(outputFilename);
-	if (!outputFile) {
-		std::cerr << "Error: Could not open file " << outputFilename << std::endl;
-		return;
-	}
-
-	std::string line, mode;
-	int source, destination, includeNode = -1, avoidInit, avoidEnd, total;
+void restricted(Graph<int> &graph) {
+    std::string mode, sourceStr, destinationStr;
+    int source, destination, includeNode = -1;
+    std::unordered_set<int> avoidNodes, avoidEdges;
     bool parked = false;
 
-	while (std::getline(file, line)) {
-		std::istringstream iss(line);
-		std::string key, value;
+    std::cout << "Mode: "; std::cin >> mode;
+    std::cout << "Source: "; std::cin >> sourceStr;
+    std::cout << "Destination: "; std::cin >> destinationStr;
 
-		while (iss >> key >> value) {
-			if (key == "Mode:") {
-				mode = value;
-			} else if (key == "Source:") {
-				source = std::stoi(value);
-			} else if (key == "Destination:") {
-				destination = std::stoi(value);
-			} else if (key == "AvoidNodes:") {
-                if (value != "-1") {
-                	std::stringstream ss(value);
-                	std::string token;
-                	while (std::getline(ss, token, ',')) {
-                		avoidNodes.insert(std::stoi(token));
-                	}
-				}
-			} else if (key == "AvoidSegments:") {
-				if (value != "-1") {
-					// O valor contém uma string com as arestas a evitar (ex: (1,2) (3,4))
-					// Usamos um loop para dividir a string em cada par de nós
-					std::stringstream ss(value);
-					std::string edge;
+    source = std::stoi(sourceStr);
+    destination = std::stoi(destinationStr);
 
-					while (ss >> edge) {
-						// Remover os parênteses ao redor da aresta
-						size_t openParen = edge.find('(');
-						size_t closeParen = edge.find(')');
-
-						if (openParen != std::string::npos && closeParen != std::string::npos) {
-							edge = edge.substr(openParen + 1, closeParen - openParen - 1);
-							std::stringstream edgeStream(edge);
-							int start, end;
-							char comma;
-							// Tenta converter os números da aresta no formato (x,y)
-							if (edgeStream >> start >> comma >> end && comma == ',') {
-								// Se conseguiu, então seleciona a aresta para ser evitada
-								selectEdge(&graph, start, end);  // Chama a função selectEdge
-							} else {
-								std::cerr << "Erro: Formato inválido na aresta " << edge << std::endl;
-							}
-						} else {
-							std::cerr << "Erro: Aresta mal formatada. Use (x,y)" << std::endl;
-						}
-					}
-				}
-			} else if (key == "IncludeNode:") {
-                if (value != "-1") {
-					includeNode = std::stoi(value);
-                }
-			}
-		}
+    std::cout << "AvoidNodes (enter -1 to stop): ";
+    std::string line;
+    std::cin.ignore();  // Limpa buffer para evitar problemas com `getline`
+    std::getline(std::cin, line);
+    if (!line.empty()) {  // Só processa se não for vazio ou "-1"
+        std::stringstream ss(line);
+        std::string token;
+        while (std::getline(ss, token, ',')) {
+            try {
+                avoidNodes.insert(std::stoi(token));
+            } catch (...) {
+                std::cerr << "Warning: Ignoring invalid AvoidNodes value: " << token << std::endl;
+            }
+        }
     }
 
-	file.close();  // Fecha o ficheiro após a leitura
+    std::cout << "AvoidSegments (enter -1 to stop): ";
+    std::getline(std::cin, line);
+    if (!line.empty()) {
+        size_t pos = 0;
+        while ((pos = line.find('(')) != std::string::npos) {
+            size_t closeParen = line.find(')', pos);
+            if (closeParen == std::string::npos) break;
 
-	// Escreve os valores lidos no arquivo de saída
-	outputFile << "Mode: " << mode << std::endl;
-	outputFile << "Source: " << source << std::endl;
-	outputFile << "Destination: " << destination << std::endl;
+            std::string edge = line.substr(pos + 1, closeParen - pos - 1);
+            line = line.substr(closeParen + 1);
 
-	if (includeNode != -1) {
-		// Primeira execução do Dijkstra (da origem até o nó de inclusão)
-		dijkstra(&graph, source, includeNode, avoidNodes, avoidEdges, mode, parked);
-		std::vector<int> path = getPath(&graph, source, includeNode);
-		total = graph.findVertex(includeNode)->getDist();  // Distância até o nó de inclusão
+            std::stringstream edgeStream(edge);
+            int start, end;
+            char comma;
+            if (edgeStream >> start >> comma >> end && comma == ',') {
+                selectEdge(&graph, start, end);
+            } else {
+                std::cerr << "Warning: Invalid AvoidSegments format: " << edge << std::endl;
+            }
+        }
+    }
 
-		// Segunda execução do Dijkstra (do nó de inclusão até o destino)
-		dijkstra(&graph, includeNode, destination, avoidNodes, avoidEdges, mode, parked);
-		std::vector<int> path2 = getPath(&graph, includeNode, destination);
-		total += graph.findVertex(destination)->getDist();  // Distância do nó de inclusão até o destino
+    std::cout << "IncludeNode: ";
+    std::getline(std::cin, line);
+    if (!line.empty()) {std::cin >> includeNode;}
 
-		// Concatenar os caminhos (ignorando o nó de inclusão duplicado)
-		path.insert(path.end(), path2.begin() + 1, path2.end());  // Ignorar o nó de inclusão no segundo caminho
+    runRestrictedAlgorithm(graph, source, destination, includeNode, avoidNodes, avoidEdges, mode, parked, std::cout);
+}
 
-		// Escrever o resultado no arquivo
-		if (path.empty()) {
-			outputFile << "RestrictedDrivingRoute: none" << std::endl;
-		} else {
-			outputFile << "RestrictedDrivingRoute: ";
-			for (int i : path) {
-				outputFile << i << " ";
-			}
-			outputFile << " (" << total << ")" << std::endl;  // Distância total corretamente calculada
-		}
 
-		return;
-	}
+void restrictedBatch(Graph<int> &graph, const std::string &filename, const std::string &outputFilename) {
+    std::ifstream file(filename);
+    if (!file) {
+        std::cerr << "Error: Could not open file " << filename << std::endl;
+        return;
+    }
 
-	dijkstra(&graph, source, destination, avoidNodes, avoidEdges, mode, parked);
-	std::vector<int> path = getPath(&graph, source, destination);
+    std::ofstream outputFile(outputFilename);
+    if (!outputFile) {
+        std::cerr << "Error: Could not open file " << outputFilename << std::endl;
+        return;
+    }
 
-	if (path.empty()) {
-		outputFile << "RestrictedDrivingRoute: none" << std::endl;
-	} else {
-		outputFile << "RestrictedDrivingRoute: ";
-		for (int i : path) {
-			outputFile << i << " ";
-		}
-		outputFile << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
-	}
+    std::unordered_set<int> avoidNodes, avoidEdges;
+    std::string mode, key, value, line;
+    int source = -1, destination = -1, includeNode = -1;
+    bool parked = false;
+
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        if (std::getline(iss, key, ':') && std::getline(iss >> std::ws, value)) {
+            if (key == "Mode") mode = value;
+            else if (key == "Source") source = std::stoi(value);
+            else if (key == "Destination") destination = std::stoi(value);
+            else if (key == "AvoidNodes" && !value.empty()) {
+                std::stringstream ss(value);
+                std::string token;
+                while (std::getline(ss, token, ',')) {
+                    try {
+                        avoidNodes.insert(std::stoi(token));
+                    } catch (...) {
+                        std::cerr << "Warning: Invalid AvoidNodes value: " << token << std::endl;
+                    }
+                }
+            }
+            else if (key == "AvoidSegments" && !value.empty()) {
+                size_t pos = 0;
+                while ((pos = value.find('(')) != std::string::npos) {
+                    size_t closeParen = value.find(')', pos);
+                    if (closeParen == std::string::npos) break;
+
+                    std::string edge = value.substr(pos + 1, closeParen - pos - 1);
+                    value = value.substr(closeParen + 1);
+
+                    std::stringstream edgeStream(edge);
+                    int start, end;
+                    char comma;
+                    if (edgeStream >> start >> comma >> end && comma == ',') {
+                        selectEdge(&graph, start, end);
+                    } else {
+                        std::cerr << "Warning: Invalid AvoidSegments format: " << edge << std::endl;
+                    }
+                }
+            }
+            else if (key == "IncludeNode") includeNode = std::stoi(value);
+        }
+    }
+
+    outputFile << "Source:" << source << "\nDestination:" << destination << std::endl;
+    runRestrictedAlgorithm(graph, source, destination, includeNode, avoidNodes, avoidEdges, mode, parked, outputFile);
 }
