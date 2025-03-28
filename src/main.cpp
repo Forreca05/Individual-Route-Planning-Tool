@@ -41,12 +41,18 @@ int main(int argc, char* argv[]) {
         std::getline(file, line);
         std::istringstream iss(line);
         std::string key, value;
-        iss >> key >> value;
-        if (key != "Type:") {
-            std::cout << "Invalid input file" << std::endl;
+
+        // Divide a string pelo ':'
+        if (std::getline(iss, key, ':') && std::getline(iss >> std::ws, value)) {
+            if (key != "Type") {  // Agora, "Type:" será lido como "Type"
+                std::cout << "Invalid input file" << std::endl;
+                return 1;
+            }
+            type = value; // Armazena o valor corretamente
+        } else {
+            std::cout << "Invalid input format" << std::endl;
             return 1;
         }
-        type = value;
 
         file.close();
 
