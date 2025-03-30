@@ -30,7 +30,7 @@
  * @param destination The target node.
  * @param avoidNodes Set of nodes to be avoided (used in the second run).
  * @param mode The mode of transportation 
- * @param parked Indicates of there is parking avaliable.
+ * @param parked Indicates if there is parking avaliable.
  * @param out The output stream.
  * @param isFirstRun Indicates if it is the first execution.
  *

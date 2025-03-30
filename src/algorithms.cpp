@@ -18,7 +18,7 @@
  * 
  * @param edge The edge to relax.
  * @param mode The mode of transportation.
- * @param parked Indicates of there is parking avaliable.
+ * @param parked Indicates if there is parking available.
  * @return True if the relaxation was successful, false otherwise.
  * 
  * Complexity O(1)

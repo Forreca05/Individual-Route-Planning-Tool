@@ -32,11 +32,11 @@
  * @param avoidNodes Set of nodes to be avoided.
  * @param time_to_id Map of parking nodes to their respective driving times.
  * @param mode The mode of transportation (only "driving-walking" is valid).
- * @param parked Indicates of there is parking avaliable.
+ * @param parked Indicates if there is parking avaliable.
  * @param out The output stream to write the result.
  * 
- * Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges, 
- * since Dijkstra's algorithm is used multiple times. [O(n log(n))]
+ * Complexity is O(P(V + E) log V), where P is the number of parking nodes, V is the number of vertices and E is the number of edges, 
+ * since Dijkstra's algorithm is used multiple times.
  */
 
 void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination, int maxWalk,
@@ -63,6 +63,7 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
     }
     
     if (!route) {
+        // This code is commented out in case we need to present a message to the user
         // out << "Source:" << source << "\nDestination:" << destination << std::endl;
         // out << "DrivingRoute:" << std::endl;
         // out << "ParkingNode:" << std::endl;
@@ -187,7 +188,6 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
     avoidNodes.erase(destination);
     std::vector<int> path = getPath(&graph, source, middle);
     int meioDist = graph.findVertex(middle)->getDist();
-    std::cout << meioDist << std::endl;
     out << "Source:" << source << std::endl << "Destination:" << destination << std::endl;
     out << "DrivingRoute:" << path[0];
     for (unsigned i = 1; i < path.size(); i++) {
@@ -219,7 +219,8 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
  * 
  * @param graph The graph where to search.
  * 
- * Complexity is O(V log V + E), due to multiple executions of Dijkstra's algorithm.
+ * Complexity is O(P(V + E) log V), where P is the number of parking nodes, V is the number of vertices and E is the number of edges, 
+ * since Dijkstra's algorithm is used multiple times (in the runEnvironmentallyAlgorithm function).
  */
 
 void environmentally(Graph<int>& graph) {
@@ -309,7 +310,8 @@ void environmentally(Graph<int>& graph) {
  * @param inputFilename Input file containing route queries.
  * @param outputFilename Output file to store the results.
  *
- * Complexity O((V + E) log V).
+ * Complexity is O(P(V + E) log V), where P is the number of parking nodes, V is the number of vertices and E is the number of edges, 
+ * since Dijkstra's algorithm is used multiple times (in the runEnvironmentallyAlgorithm function).
  */
 
 void environmentallyBatch(Graph<int>& graph, const std::string& filename, const std::string& outputFilename) {

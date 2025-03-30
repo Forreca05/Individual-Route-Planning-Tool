@@ -30,10 +30,10 @@
  * @param includeNode A node that must be included in the path (-1 if not applicable).
  * @param avoidNodes Set of nodes to be avoided.
  * @param mode The mode of transportation.
- * @param parked Indicates of there is parking avaliable.
+ * @param parked Indicates if there is parking avaliable.
  * @param out The output stream to write the result.
  * 
- * Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges in the graph.[O(n log(n))]
+ * Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges in the graph.
  */
  
 
