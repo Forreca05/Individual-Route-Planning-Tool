@@ -6,6 +6,7 @@
 #include "algorithms.h"
 #include "independent.h"
 
+<<<<<<< HEAD
 /**
  * @brief Finds and prints the nost alternative route between 2 points.
  * 
@@ -62,49 +63,84 @@ void independent(Graph<int> &graph) {
     std::cout << "AlternativeDrivingRoute: ";
     if (path.empty()) {
         std::cout << "none" << std::endl;
+=======
+void runAlgorithm(Graph<int> &graph, int source, int destination, std::unordered_set<int> &avoidNodes,
+                  const std::string &mode, bool parked, std::ostream &out, bool isFirstRun) {
+
+    dijkstra(&graph, source, destination, avoidNodes, mode, parked);
+    std::vector<int> path = getPath(&graph, source, destination);
+
+    out << (isFirstRun ? "BestDrivingRoute:" : "AlternativeDrivingRoute:");
+
+    if (path.empty()) {
+        out << "none" << std::endl;
+>>>>>>> refs/remotes/origin/main
     } else {
-        for (int i : path) {
-            std::cout << i << " ";
+        out << path.front();
+        for (size_t i = 1; i < path.size(); i++) {
+            out << "," << path[i];
+            if (isFirstRun && static_cast<int>(i) != source && static_cast<int>(i) != destination) {
+                avoidNodes.insert(i);
+            }
         }
-        std::cout << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
+        out << "(" << graph.findVertex(destination)->getDist() << ")" << std::endl;
     }
 }
 
+<<<<<<< HEAD
 void independentBatch(Graph<int> &graph, const std::string &filename, const std::string &outputFilename) {
     std::unordered_set<int> avoidNodes; // Defining the set of nodes to avoid
     std::unordered_set<int> avoidEdges; // Only stated in case you need it in the future
     std::ifstream file(filename);
+=======
+void independent(Graph<int> &graph) {
+    std::string sourceStr, destinationStr, mode;
+    std::unordered_set<int> avoidNodes, avoidEdges;
+    bool parked = false;
+
+    std::cout << "Mode: "; std::cin >> mode;
+    std::cout << "Source: "; std::cin >> sourceStr;
+    std::cout << "Destination: "; std::cin >> destinationStr;
+
+    int source = std::stoi(sourceStr), destination = std::stoi(destinationStr);
+
+    runAlgorithm(graph, source, destination, avoidNodes, mode, parked, std::cout, true);
+    runAlgorithm(graph, source, destination, avoidNodes, mode, parked, std::cout, false);
+}
+
+void independentBatch(Graph<int> &graph, const std::string &inputFilename, const std::string &outputFilename) {
+    std::ifstream file(inputFilename);
+>>>>>>> refs/remotes/origin/main
     if (!file) {
-        std::cerr << "Error: Could not open file " << filename << std::endl;
+        std::cerr << "Error: Could not open file " << inputFilename << std::endl;
         return;
     }
 
+<<<<<<< HEAD
     // Opens output file
+=======
+>>>>>>> refs/remotes/origin/main
     std::ofstream outputFile(outputFilename);
     if (!outputFile) {
         std::cerr << "Error: Could not open file " << outputFilename << std::endl;
         return;
     }
 
-    std::string line, mode;
-    int source, destination;
+    std::string mode, key, value, line;
+    int source = -1, destination = -1;
     bool parked = false;
+    std::unordered_set<int> avoidNodes, avoidEdges;
 
     while (std::getline(file, line)) {
         std::istringstream iss(line);
-        std::string key, value;
-
-        while (iss >> key >> value) {
-            if (key == "Mode:") {
-                mode = value;
-            } else if (key == "Source:") {
-                source = std::stoi(value);
-            } else if (key == "Destination:") {
-                destination = std::stoi(value);
-            }
+        if (std::getline(iss >> std::ws, key, ':') && std::getline(iss >> std::ws, value)) {
+            if (key == "Mode") mode = value;
+            else if (key == "Source") source = std::stoi(value);
+            else if (key == "Destination") destination = std::stoi(value);
         }
     }
 
+<<<<<<< HEAD
     file.close();  //  Closes the file after read
 
     // Writes the read values ​​to the output file
@@ -139,5 +175,10 @@ void independentBatch(Graph<int> &graph, const std::string &filename, const std:
         }
         outputFile << " (" << graph.findVertex(destination)->getDist() << ")" << std::endl;
     }
-}
+=======
+    outputFile << "Source:" << source << "\nDestination:" << destination << std::endl;
 
+    runAlgorithm(graph, source, destination, avoidNodes, mode, parked, outputFile, true);
+    runAlgorithm(graph, source, destination, avoidNodes, mode, parked, outputFile, false);
+>>>>>>> refs/remotes/origin/main
+}
