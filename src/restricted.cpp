@@ -1,3 +1,15 @@
+/**
+ * @file restricted.cpp
+ * @brief Implementation of the restricted route algorithm.
+ * 
+ * Computes the best route with resctictions as:
+ *  Avoiding specific nodes,
+ *  Avoiding specific segments of the graph,
+ *  Simultaniously avoiding nodes and sections,
+ *  Including specific nodes the route has to visit. 
+ * 
+ * 
+*/
 
 #include <iostream>
 #include <unordered_set>
@@ -7,6 +19,24 @@
 #include "algorithms.h"
 #include "Graph.h"
 #include "restricted.h"
+/**
+ * @brief Runs the restricted pathfinding algorithm, considering avoidance and inclusion constraints.
+ * 
+ *  This function first checks if a specific node must be included in the path. If so, it calculates the shortest path
+ *  to that node first and then continues from it to the final destination. If no inclusion is required, a direct shortest path is computed.
+ * 
+ * @param graph The graph where to search.
+ * @param source The starting node.
+ * @param destination The target node.
+ * @param includeNode A node that must be included in the path (-1 if not applicable).
+ * @param avoidNodes A set of nodes to be avoided.
+ * @param mode The mode of transportation.
+ * @param parked Indicates of there is parking avaliable.
+ * @param out The output stream to write the result.
+ * 
+ * Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges in the graph.[O(n log(n))]
+ */
+ 
 
 void runRestrictedAlgorithm(Graph<int> &graph, int source, int destination, int includeNode,
                             std::unordered_set<int> &avoidNodes, const std::string &mode, bool parked, std::ostream &out) {
@@ -38,6 +68,17 @@ void runRestrictedAlgorithm(Graph<int> &graph, int source, int destination, int 
         out << "(" << total << ")" << std::endl;
     }
 }
+
+/**
+ * @brief Handles user input for restricted routes.
+ * 
+ * This function reads user input for mode, source, destination, nodes to avoid, edges to avoid,
+ * and an optional node to include in the path. It then calls the restricted pathfinding algorithm.
+ * 
+ * @param graph The graph representing the road network.
+ * 
+ * Complexity is O((V + E) log V), due to calling the pathfinding algorithm.
+ */
 
 void restricted(Graph<int> &graph) {
     std::string mode, sourceStr, destinationStr;
@@ -96,7 +137,18 @@ void restricted(Graph<int> &graph) {
 
     runRestrictedAlgorithm(graph, source, destination, includeNode, avoidNodes, mode, parked, std::cout);
 }
-
+/**
+ * @brief Processes a batch file for restricted pathfinding.
+ * 
+ * Reads input parameters from a file and executes the restricted pathfinding algorithm for batch processing.
+ * (Batch mode)
+ * 
+ * @param graph The graph representing the road network.
+ * @param filename The input file name.
+ * @param outputFilename The output file name.
+ * 
+ * @complexity O((V + E) log V) per query, as it calls the pathfinding function.
+ */
 
 void restrictedBatch(Graph<int> &graph, const std::string &filename, const std::string &outputFilename) {
     std::ifstream file(filename);

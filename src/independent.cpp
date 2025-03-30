@@ -60,9 +60,9 @@ void runAlgorithm(Graph<int> &graph, int source, int destination, std::unordered
     }
 }
 /**
- * @brief Reads input from the console and computes the best and alternative routes.
+ * @brief Reads user input and computes the best and alternative routes.
  *
- * The function asks the user for the source, destination, and mode of transport.
+ * The function reads the user for the source, destination, and mode of transport.
  * Then computes the best route and an alternative route by avoiding the intermediate nodes.
  *
  * @param graph The graph where to search.
