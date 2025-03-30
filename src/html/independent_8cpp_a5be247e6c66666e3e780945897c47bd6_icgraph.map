@@ -1,0 +1,6 @@
+<map id="runAlgorithm" name="runAlgorithm">
+<area shape="rect" id="node1" title="Runs the shortest path algorithm in order to output the result." alt="" coords="279,31,373,57"/>
+<area shape="rect" id="node2" href="$independent_8cpp.html#a3d4070fe6b54ae9d9fe96b6d0886f19e" title="Reads user input and computes the best and alternative routes." alt="" coords="121,5,213,32"/>
+<area shape="rect" id="node4" href="$independent_8cpp.html#a2e96ae2bc3470165a9ff98dac7be186f" title="Reads input from a file and computes the best and alternative routes to an output file." alt="" coords="104,56,231,83"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Entry point of the program." alt="" coords="5,31,56,57"/>
+</map>

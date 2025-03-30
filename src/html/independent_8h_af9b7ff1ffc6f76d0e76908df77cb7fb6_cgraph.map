@@ -1,0 +1,23 @@
+<map id="independentBatch" name="independentBatch">
+<area shape="rect" id="node1" title="Computes the best and alternative routes in batch mode from a file." alt="" coords="5,471,132,497"/>
+<area shape="rect" id="node2" href="$independent_8cpp.html#a5be247e6c66666e3e780945897c47bd6" title="Runs the shortest path algorithm in order to output the result." alt="" coords="180,471,275,497"/>
+<area shape="rect" id="node3" href="$algorithms_8cpp.html#a94ff579e4623e9d804213cfe654c1a99" title="Implements Dijkstra&#39;s algorithm to find the shortest path in a graph." alt="" coords="324,311,388,337"/>
+<area shape="rect" id="node7" href="$classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="449,471,573,497"/>
+<area shape="rect" id="node20" href="$algorithms_8cpp.html#ab7aef16e7a3d361d03b62363222cd13b" title="Retrieves the path from origin to destination." alt="" coords="323,521,389,548"/>
+<area shape="rect" id="node4" href="$classMutablePriorityQueue.html#a0878839cc1d2dba2b8ab2e589ecc6405" title=" " alt="" coords="437,173,584,214"/>
+<area shape="rect" id="node5" href="$classMutablePriorityQueue.html#a2edbb1f4a6fa3ff735700dfcebebe8d4" title=" " alt="" coords="437,238,584,279"/>
+<area shape="rect" id="node6" href="$classMutablePriorityQueue.html#a3880874d7364279ac0d6d31302b28853" title=" " alt="" coords="437,303,584,345"/>
+<area shape="rect" id="node8" href="$classVertex.html#a0010a7d0b7db1bb81dd2ebb1ffae650a" title=" " alt="" coords="458,5,563,32"/>
+<area shape="rect" id="node9" href="$classVertex.html#a48eae2f7af2362634adab02b7b2dbec6" title=" " alt="" coords="457,521,565,548"/>
+<area shape="rect" id="node10" href="$classGraph.html#a41624b03fcb6bd29e4df574a1ec58541" title=" " alt="" coords="440,56,581,83"/>
+<area shape="rect" id="node11" href="$classMutablePriorityQueue.html#a058fc182052af82e10cc3719e448b62d" title=" " alt="" coords="437,107,584,149"/>
+<area shape="rect" id="node12" href="$algorithms_8cpp.html#a66d9be712c57900cde4bbab69dd0e4d5" title="Relaxes an edge based on the given mode of transportation." alt="" coords="465,369,556,396"/>
+<area shape="rect" id="node18" href="$classVertex.html#a060fbea0c3738cc3e09d84ad8c431b34" title=" " alt="" coords="639,471,749,497"/>
+<area shape="rect" id="node13" href="$classEdge.html#a9a2de066dff8513dd788d553fc1d0c81" title=" " alt="" coords="641,268,747,295"/>
+<area shape="rect" id="node14" href="$classVertex.html#a01e90e3cdb2ee11dd3b1d593c8207382" title=" " alt="" coords="639,572,749,599"/>
+<area shape="rect" id="node15" href="$classEdge.html#ae8ebcbdf43a401d92e861eecc28447f2" title=" " alt="" coords="635,319,753,345"/>
+<area shape="rect" id="node16" href="$classEdge.html#a40fc1470c5339203defca19b67c2535b" title=" " alt="" coords="643,369,745,396"/>
+<area shape="rect" id="node17" href="$classEdge.html#ad81552257b0296e38e5167de287c3a43" title=" " alt="" coords="632,420,756,447"/>
+<area shape="rect" id="node19" href="$classVertex.html#a5ebf4b550ec94b89a8f80df1a53cc97d" title=" " alt="" coords="637,217,751,244"/>
+<area shape="rect" id="node21" href="$classVertex.html#a15e4ff95fba2bb5970a6551137ceb950" title=" " alt="" coords="454,572,567,599"/>
+</map>

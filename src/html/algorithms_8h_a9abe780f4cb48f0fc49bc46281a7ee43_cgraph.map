@@ -1,0 +1,5 @@
+<map id="selectEdge" name="selectEdge">
+<area shape="rect" id="node1" title="Selects an edge between two vertices." alt="" coords="5,31,92,57"/>
+<area shape="rect" id="node2" href="$classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="140,5,264,32"/>
+<area shape="rect" id="node3" href="$classVertex.html#a0010a7d0b7db1bb81dd2ebb1ffae650a" title=" " alt="" coords="149,56,255,83"/>
+</map>

@@ -1,5 +1,10 @@
 \hypertarget{utils_8h}{}\doxysection{utils.\+h File Reference}
 \label{utils_8h}\index{utils.h@{utils.h}}
+
+
+Header file for utility functions related to graph construction from CSV files.  
+
+
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include \char`\"{}Graph.\+h\char`\"{}}\newline
 Include dependency graph for utils.\+h\+:
@@ -22,8 +27,13 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \mbox{\hyperlink{utils_8h_a9678f56ff8191d9cd0bb6f3388dd3304}{load\+Graph\+From\+CSV}} (const std\+::string \&locations\+File, const std\+::string \&distances\+File)
-\begin{DoxyCompactList}\small\item\em load a graph from CSV files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Loads a graph from CSV files containing location and distance data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Header file for utility functions related to graph construction from CSV files. 
+
+This file provides the declaration of functions to load a graph by parsing location and distance data from CSV files. 
 
 \doxysubsection{Function Documentation}
 \mbox{\Hypertarget{utils_8h_a9678f56ff8191d9cd0bb6f3388dd3304}\label{utils_8h_a9678f56ff8191d9cd0bb6f3388dd3304}} 
@@ -34,7 +44,21 @@ This graph shows which files directly or indirectly include this file\+:
 
 
 
-load a graph from CSV files. 
+Loads a graph from CSV files containing location and distance data. 
+
+This function reads two CSV files\+: one for the location data (including parking info and location codes) and another for the distance data (including walking and driving times), and uses this information to build a graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em locations\+File} & Path to the Locations.\+csv file. \\
+\hline
+{\em distances\+File} & Path to the Distances.\+csv file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Graph$<$int$>$ object that represents the graph built from the data in the files.
+\end{DoxyReturn}
+Loads a graph from CSV files containing location and distance data.
 
 Reads two CSV files with the information about locations and distances and biuld the corresponding graph.
 
@@ -54,4 +78,19 @@ $<$ Assocciates location code to its id
 
 $<$ Driving time. (-\/1 when not appliable)
 
-$<$ Walking time.
+$<$ Walking time.Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8h_a9678f56ff8191d9cd0bb6f3388dd3304_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{utils_8h_a9678f56ff8191d9cd0bb6f3388dd3304_icgraph}
+\end{center}
+\end{figure}

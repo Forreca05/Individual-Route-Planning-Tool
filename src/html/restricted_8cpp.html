@@ -83,20 +83,20 @@ Include dependency graph for restricted.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="restricted_8cpp__incl.png" border="0" usemap="#arestricted_8cpp" alt=""/></div>
 <map name="arestricted_8cpp" id="arestricted_8cpp">
-<area shape="rect" title="Implementation of the restricted route algorithm." alt="" coords="149,5,250,32"/>
+<area shape="rect" title="Implementation of the restricted route algorithm." alt="" coords="157,5,259,32"/>
 <area shape="rect" title=" " alt="" coords="209,229,281,256"/>
-<area shape="rect" title=" " alt="" coords="36,155,140,181"/>
-<area shape="rect" title=" " alt="" coords="30,80,100,107"/>
-<area shape="rect" title=" " alt="" coords="124,80,190,107"/>
-<area shape="rect" title=" " alt="" coords="215,80,270,107"/>
-<area shape="rect" href="algorithms_8h.html" title=" " alt="" coords="294,80,388,107"/>
-<area shape="rect" href="Graph_8h.html" title=" " alt="" coords="391,155,459,181"/>
-<area shape="rect" href="restricted_8h.html" title=" " alt="" coords="463,80,550,107"/>
-<area shape="rect" title=" " alt="" coords="477,304,536,331"/>
-<area shape="rect" title=" " alt="" coords="356,229,414,256"/>
-<area shape="rect" title=" " alt="" coords="438,229,492,256"/>
-<area shape="rect" title=" " alt="" coords="516,229,590,256"/>
-<area shape="rect" href="MutablePriorityQueue_8h.html" title=" " alt="" coords="615,229,774,256"/>
+<area shape="rect" title=" " alt="" coords="283,155,387,181"/>
+<area shape="rect" title=" " alt="" coords="31,80,100,107"/>
+<area shape="rect" title=" " alt="" coords="124,80,191,107"/>
+<area shape="rect" title=" " alt="" coords="67,155,122,181"/>
+<area shape="rect" href="algorithms_8h.html" title="Header file for search algorithms used in graph&#45;based navigation." alt="" coords="377,80,471,107"/>
+<area shape="rect" href="Graph_8h.html" title=" " alt="" coords="462,155,530,181"/>
+<area shape="rect" href="restricted_8h.html" title="Header file for the Restricted route algorithm." alt="" coords="215,80,302,107"/>
+<area shape="rect" title=" " alt="" coords="513,304,572,331"/>
+<area shape="rect" title=" " alt="" coords="639,229,697,256"/>
+<area shape="rect" title=" " alt="" coords="721,229,775,256"/>
+<area shape="rect" title=" " alt="" coords="305,229,380,256"/>
+<area shape="rect" href="MutablePriorityQueue_8h.html" title=" " alt="" coords="405,229,563,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -133,6 +133,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Handles user input for restricted routes. </p>
+<p>Handles user input for restricted routes in interactive mode.</p>
 <p>This function reads user input for mode, source, destination, nodes to avoid, edges to avoid, and an optional node to include in the path. It then calls the restricted pathfinding algorithm.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -141,6 +142,44 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>Complexity is O((V + E) log V), due to calling the pathfinding algorithm. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="restricted_8cpp_a0d1c3c7f9007152506d7c99574f1a0f8_cgraph.png" border="0" usemap="#arestricted_8cpp_a0d1c3c7f9007152506d7c99574f1a0f8_cgraph" alt=""/></div>
+<map name="arestricted_8cpp_a0d1c3c7f9007152506d7c99574f1a0f8_cgraph" id="arestricted_8cpp_a0d1c3c7f9007152506d7c99574f1a0f8_cgraph">
+<area shape="rect" title="Handles user input for restricted routes." alt="" coords="5,446,81,473"/>
+<area shape="rect" href="restricted_8cpp.html#a6dafc87dd3bc69c8cf9b9ef7d0caa6bb" title="Runs the restricted pathfinding algorithm, considering avoidance and inclusion constraints." alt="" coords="129,421,284,447"/>
+<area shape="rect" href="algorithms_8cpp.html#a6e3c30511a7532d78abe383107827f5f" title="Selects an edge between two vertices." alt="" coords="332,471,419,498"/>
+<area shape="rect" href="algorithms_8cpp.html#a94ff579e4623e9d804213cfe654c1a99" title="Implements Dijkstra&#39;s algorithm to find the shortest path in a graph." alt="" coords="343,319,407,346"/>
+<area shape="rect" href="classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="478,471,602,498"/>
+<area shape="rect" href="algorithms_8cpp.html#ab7aef16e7a3d361d03b62363222cd13b" title="Retrieves the path from origin to destination." alt="" coords="342,522,409,549"/>
+<area shape="rect" href="classMutablePriorityQueue.html#a0878839cc1d2dba2b8ab2e589ecc6405" title=" " alt="" coords="467,5,613,47"/>
+<area shape="rect" href="classMutablePriorityQueue.html#a2edbb1f4a6fa3ff735700dfcebebe8d4" title=" " alt="" coords="467,71,613,112"/>
+<area shape="rect" href="classMutablePriorityQueue.html#a3880874d7364279ac0d6d31302b28853" title=" " alt="" coords="467,136,613,177"/>
+<area shape="rect" href="classVertex.html#a0010a7d0b7db1bb81dd2ebb1ffae650a" title=" " alt="" coords="487,421,593,447"/>
+<area shape="rect" href="classVertex.html#a48eae2f7af2362634adab02b7b2dbec6" title=" " alt="" coords="486,522,594,549"/>
+<area shape="rect" href="classGraph.html#a41624b03fcb6bd29e4df574a1ec58541" title=" " alt="" coords="469,202,611,229"/>
+<area shape="rect" href="classMutablePriorityQueue.html#a058fc182052af82e10cc3719e448b62d" title=" " alt="" coords="467,253,613,295"/>
+<area shape="rect" href="algorithms_8cpp.html#a66d9be712c57900cde4bbab69dd0e4d5" title="Relaxes an edge based on the given mode of transportation." alt="" coords="495,319,585,346"/>
+<area shape="rect" href="classVertex.html#a060fbea0c3738cc3e09d84ad8c431b34" title=" " alt="" coords="668,421,779,447"/>
+<area shape="rect" href="classEdge.html#a9a2de066dff8513dd788d553fc1d0c81" title=" " alt="" coords="670,167,777,194"/>
+<area shape="rect" href="classVertex.html#a01e90e3cdb2ee11dd3b1d593c8207382" title=" " alt="" coords="668,522,779,549"/>
+<area shape="rect" href="classEdge.html#ae8ebcbdf43a401d92e861eecc28447f2" title=" " alt="" coords="664,218,783,245"/>
+<area shape="rect" href="classEdge.html#a40fc1470c5339203defca19b67c2535b" title=" " alt="" coords="672,269,775,295"/>
+<area shape="rect" href="classEdge.html#ad81552257b0296e38e5167de287c3a43" title=" " alt="" coords="661,319,785,346"/>
+<area shape="rect" href="classVertex.html#a5ebf4b550ec94b89a8f80df1a53cc97d" title=" " alt="" coords="667,370,780,397"/>
+<area shape="rect" href="classVertex.html#a15e4ff95fba2bb5970a6551137ceb950" title=" " alt="" coords="483,623,597,650"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="restricted_8cpp_a0d1c3c7f9007152506d7c99574f1a0f8_icgraph.png" border="0" usemap="#arestricted_8cpp_a0d1c3c7f9007152506d7c99574f1a0f8_icgraph" alt=""/></div>
+<map name="arestricted_8cpp_a0d1c3c7f9007152506d7c99574f1a0f8_icgraph" id="arestricted_8cpp_a0d1c3c7f9007152506d7c99574f1a0f8_icgraph">
+<area shape="rect" title="Handles user input for restricted routes." alt="" coords="104,5,180,32"/>
+<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Entry point of the program." alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -177,6 +216,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Processes a batch file for the restricted pathfinding. </p>
+<p>Processes a batch file for the restricted pathfinding algorithm.</p>
 <p>Reads input parameters from a file and executes the restricted pathfinding algorithm for batch processing. (Batch mode)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -187,6 +227,44 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>@complexity O((V + E) log V) per query, as it calls the pathfinding function. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="restricted_8cpp_abfbdad06caba3c398b069bda12f07e04_cgraph.png" border="0" usemap="#arestricted_8cpp_abfbdad06caba3c398b069bda12f07e04_cgraph" alt=""/></div>
+<map name="arestricted_8cpp_abfbdad06caba3c398b069bda12f07e04_cgraph" id="arestricted_8cpp_abfbdad06caba3c398b069bda12f07e04_cgraph">
+<area shape="rect" title="Processes a batch file for the restricted pathfinding." alt="" coords="5,446,116,473"/>
+<area shape="rect" href="restricted_8cpp.html#a6dafc87dd3bc69c8cf9b9ef7d0caa6bb" title="Runs the restricted pathfinding algorithm, considering avoidance and inclusion constraints." alt="" coords="164,421,319,447"/>
+<area shape="rect" href="algorithms_8cpp.html#a6e3c30511a7532d78abe383107827f5f" title="Selects an edge between two vertices." alt="" coords="367,471,453,498"/>
+<area shape="rect" href="algorithms_8cpp.html#a94ff579e4623e9d804213cfe654c1a99" title="Implements Dijkstra&#39;s algorithm to find the shortest path in a graph." alt="" coords="378,319,442,346"/>
+<area shape="rect" href="classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="513,471,637,498"/>
+<area shape="rect" href="algorithms_8cpp.html#ab7aef16e7a3d361d03b62363222cd13b" title="Retrieves the path from origin to destination." alt="" coords="377,522,443,549"/>
+<area shape="rect" href="classMutablePriorityQueue.html#a0878839cc1d2dba2b8ab2e589ecc6405" title=" " alt="" coords="501,5,648,47"/>
+<area shape="rect" href="classMutablePriorityQueue.html#a2edbb1f4a6fa3ff735700dfcebebe8d4" title=" " alt="" coords="501,71,648,112"/>
+<area shape="rect" href="classMutablePriorityQueue.html#a3880874d7364279ac0d6d31302b28853" title=" " alt="" coords="501,136,648,177"/>
+<area shape="rect" href="classVertex.html#a0010a7d0b7db1bb81dd2ebb1ffae650a" title=" " alt="" coords="522,421,627,447"/>
+<area shape="rect" href="classVertex.html#a48eae2f7af2362634adab02b7b2dbec6" title=" " alt="" coords="521,522,629,549"/>
+<area shape="rect" href="classGraph.html#a41624b03fcb6bd29e4df574a1ec58541" title=" " alt="" coords="504,202,645,229"/>
+<area shape="rect" href="classMutablePriorityQueue.html#a058fc182052af82e10cc3719e448b62d" title=" " alt="" coords="501,253,648,295"/>
+<area shape="rect" href="algorithms_8cpp.html#a66d9be712c57900cde4bbab69dd0e4d5" title="Relaxes an edge based on the given mode of transportation." alt="" coords="529,319,620,346"/>
+<area shape="rect" href="classVertex.html#a060fbea0c3738cc3e09d84ad8c431b34" title=" " alt="" coords="703,421,813,447"/>
+<area shape="rect" href="classEdge.html#a9a2de066dff8513dd788d553fc1d0c81" title=" " alt="" coords="705,167,811,194"/>
+<area shape="rect" href="classVertex.html#a01e90e3cdb2ee11dd3b1d593c8207382" title=" " alt="" coords="703,522,813,549"/>
+<area shape="rect" href="classEdge.html#ae8ebcbdf43a401d92e861eecc28447f2" title=" " alt="" coords="699,218,817,245"/>
+<area shape="rect" href="classEdge.html#a40fc1470c5339203defca19b67c2535b" title=" " alt="" coords="707,269,809,295"/>
+<area shape="rect" href="classEdge.html#ad81552257b0296e38e5167de287c3a43" title=" " alt="" coords="696,319,820,346"/>
+<area shape="rect" href="classVertex.html#a5ebf4b550ec94b89a8f80df1a53cc97d" title=" " alt="" coords="701,370,815,397"/>
+<area shape="rect" href="classVertex.html#a15e4ff95fba2bb5970a6551137ceb950" title=" " alt="" coords="518,623,631,650"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="restricted_8cpp_abfbdad06caba3c398b069bda12f07e04_icgraph.png" border="0" usemap="#arestricted_8cpp_abfbdad06caba3c398b069bda12f07e04_icgraph" alt=""/></div>
+<map name="arestricted_8cpp_abfbdad06caba3c398b069bda12f07e04_icgraph" id="arestricted_8cpp_abfbdad06caba3c398b069bda12f07e04_icgraph">
+<area shape="rect" title="Processes a batch file for the restricted pathfinding." alt="" coords="104,5,215,32"/>
+<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Entry point of the program." alt="" coords="5,5,56,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -268,6 +346,44 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges in the graph.[O(n log(n))] </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="restricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb_cgraph.png" border="0" usemap="#arestricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb_cgraph" alt=""/></div>
+<map name="arestricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb_cgraph" id="arestricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb_cgraph">
+<area shape="rect" title="Runs the restricted pathfinding algorithm, considering avoidance and inclusion constraints." alt="" coords="5,471,160,497"/>
+<area shape="rect" href="algorithms_8cpp.html#a94ff579e4623e9d804213cfe654c1a99" title="Implements Dijkstra&#39;s algorithm to find the shortest path in a graph." alt="" coords="209,311,273,337"/>
+<area shape="rect" href="classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="334,471,458,497"/>
+<area shape="rect" href="algorithms_8cpp.html#ab7aef16e7a3d361d03b62363222cd13b" title="Retrieves the path from origin to destination." alt="" coords="208,521,275,548"/>
+<area shape="rect" href="classMutablePriorityQueue.html#a0878839cc1d2dba2b8ab2e589ecc6405" title=" " alt="" coords="323,173,469,214"/>
+<area shape="rect" href="classMutablePriorityQueue.html#a2edbb1f4a6fa3ff735700dfcebebe8d4" title=" " alt="" coords="323,238,469,279"/>
+<area shape="rect" href="classMutablePriorityQueue.html#a3880874d7364279ac0d6d31302b28853" title=" " alt="" coords="323,303,469,345"/>
+<area shape="rect" href="classVertex.html#a0010a7d0b7db1bb81dd2ebb1ffae650a" title=" " alt="" coords="343,5,449,32"/>
+<area shape="rect" href="classVertex.html#a48eae2f7af2362634adab02b7b2dbec6" title=" " alt="" coords="342,521,450,548"/>
+<area shape="rect" href="classGraph.html#a41624b03fcb6bd29e4df574a1ec58541" title=" " alt="" coords="325,56,467,83"/>
+<area shape="rect" href="classMutablePriorityQueue.html#a058fc182052af82e10cc3719e448b62d" title=" " alt="" coords="323,107,469,149"/>
+<area shape="rect" href="algorithms_8cpp.html#a66d9be712c57900cde4bbab69dd0e4d5" title="Relaxes an edge based on the given mode of transportation." alt="" coords="351,369,441,396"/>
+<area shape="rect" href="classVertex.html#a060fbea0c3738cc3e09d84ad8c431b34" title=" " alt="" coords="524,471,635,497"/>
+<area shape="rect" href="classEdge.html#a9a2de066dff8513dd788d553fc1d0c81" title=" " alt="" coords="526,268,633,295"/>
+<area shape="rect" href="classVertex.html#a01e90e3cdb2ee11dd3b1d593c8207382" title=" " alt="" coords="524,572,635,599"/>
+<area shape="rect" href="classEdge.html#ae8ebcbdf43a401d92e861eecc28447f2" title=" " alt="" coords="520,319,639,345"/>
+<area shape="rect" href="classEdge.html#a40fc1470c5339203defca19b67c2535b" title=" " alt="" coords="528,369,631,396"/>
+<area shape="rect" href="classEdge.html#ad81552257b0296e38e5167de287c3a43" title=" " alt="" coords="517,420,641,447"/>
+<area shape="rect" href="classVertex.html#a5ebf4b550ec94b89a8f80df1a53cc97d" title=" " alt="" coords="523,217,636,244"/>
+<area shape="rect" href="classVertex.html#a15e4ff95fba2bb5970a6551137ceb950" title=" " alt="" coords="339,572,453,599"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="restricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb_icgraph.png" border="0" usemap="#arestricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb_icgraph" alt=""/></div>
+<map name="arestricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb_icgraph" id="arestricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb_icgraph">
+<area shape="rect" title="Runs the restricted pathfinding algorithm, considering avoidance and inclusion constraints." alt="" coords="263,31,417,57"/>
+<area shape="rect" href="restricted_8cpp.html#a0d1c3c7f9007152506d7c99574f1a0f8" title="Handles user input for restricted routes." alt="" coords="121,5,197,32"/>
+<area shape="rect" href="restricted_8cpp.html#abfbdad06caba3c398b069bda12f07e04" title="Processes a batch file for the restricted pathfinding." alt="" coords="104,56,215,83"/>
+<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Entry point of the program." alt="" coords="5,31,56,57"/>
+</map>
+</div>
 
 </div>
 </div>

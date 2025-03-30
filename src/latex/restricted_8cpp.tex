@@ -48,6 +48,8 @@ Computes the best route with resctictions as\+: Avoiding specific nodes, Avoidin
 
 Handles user input for restricted routes. 
 
+Handles user input for restricted routes in interactive mode.
+
 This function reads user input for mode, source, destination, nodes to avoid, edges to avoid, and an optional node to include in the path. It then calls the restricted pathfinding algorithm.
 
 
@@ -55,7 +57,23 @@ This function reads user input for mode, source, destination, nodes to avoid, ed
 {\em graph} & The graph representing the road network.\\
 \hline
 \end{DoxyParams}
-Complexity is O((V + E) log V), due to calling the pathfinding algorithm. \mbox{\Hypertarget{restricted_8cpp_abfbdad06caba3c398b069bda12f07e04}\label{restricted_8cpp_abfbdad06caba3c398b069bda12f07e04}} 
+Complexity is O((V + E) log V), due to calling the pathfinding algorithm. Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{restricted_8cpp_a0d1c3c7f9007152506d7c99574f1a0f8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{restricted_8cpp_a0d1c3c7f9007152506d7c99574f1a0f8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{restricted_8cpp_abfbdad06caba3c398b069bda12f07e04}\label{restricted_8cpp_abfbdad06caba3c398b069bda12f07e04}} 
 \index{restricted.cpp@{restricted.cpp}!restrictedBatch@{restrictedBatch}}
 \index{restrictedBatch@{restrictedBatch}!restricted.cpp@{restricted.cpp}}
 \doxysubsubsection{\texorpdfstring{restrictedBatch()}{restrictedBatch()}}
@@ -64,6 +82,8 @@ Complexity is O((V + E) log V), due to calling the pathfinding algorithm. \mbox{
 
 
 Processes a batch file for the restricted pathfinding. 
+
+Processes a batch file for the restricted pathfinding algorithm.
 
 Reads input parameters from a file and executes the restricted pathfinding algorithm for batch processing. (Batch mode)
 
@@ -76,7 +96,23 @@ Reads input parameters from a file and executes the restricted pathfinding algor
 {\em output\+Filename} & The output file name.\\
 \hline
 \end{DoxyParams}
-@complexity O((V + E) log V) per query, as it calls the pathfinding function. \mbox{\Hypertarget{restricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb}\label{restricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb}} 
+@complexity O((V + E) log V) per query, as it calls the pathfinding function. Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{restricted_8cpp_abfbdad06caba3c398b069bda12f07e04_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{restricted_8cpp_abfbdad06caba3c398b069bda12f07e04_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{restricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb}\label{restricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb}} 
 \index{restricted.cpp@{restricted.cpp}!runRestrictedAlgorithm@{runRestrictedAlgorithm}}
 \index{runRestrictedAlgorithm@{runRestrictedAlgorithm}!restricted.cpp@{restricted.cpp}}
 \doxysubsubsection{\texorpdfstring{runRestrictedAlgorithm()}{runRestrictedAlgorithm()}}
@@ -107,4 +143,19 @@ This function first checks if a specific node must be included in the path. If s
 {\em out} & The output stream to write the result.\\
 \hline
 \end{DoxyParams}
-Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges in the graph.\mbox{[}O(n log(n))\mbox{]} 
+Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges in the graph.\mbox{[}O(n log(n))\mbox{]} Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{restricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{restricted_8cpp_a6dafc87dd3bc69c8cf9b9ef7d0caa6bb_icgraph}
+\end{center}
+\end{figure}

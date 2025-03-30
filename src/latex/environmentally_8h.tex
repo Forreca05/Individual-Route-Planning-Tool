@@ -1,6 +1,16 @@
 \hypertarget{environmentally_8h}{}\doxysection{environmentally.\+h File Reference}
 \label{environmentally_8h}\index{environmentally.h@{environmentally.h}}
+
+
+Header file for environmentally friendly route algorithm.  
+
+
 {\ttfamily \#include \char`\"{}Graph.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
 Include dependency graph for environmentally.\+h\+:
 \nopagebreak
 \begin{figure}[H]
@@ -20,11 +30,18 @@ This graph shows which files directly or indirectly include this file\+:
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \mbox{\hyperlink{environmentally_8h_a31f218195ea06653aca2e57c925b8ac6}{run\+Environmentally\+Algorithm}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&graph, int source, int destination, int max\+Walk, std\+::unordered\+\_\+set$<$ int $>$ \&avoid\+Nodes, std\+::unordered\+\_\+map$<$ int, double $>$ \&time\+\_\+to\+\_\+id, const std\+::string \&mode, bool parked, std\+::ostream \&out)
+\begin{DoxyCompactList}\small\item\em Runs the environmentally friendly route algorithm. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{environmentally_8h_a037d5f4a1af8df6d06723fea13eaeecf}{environmentally}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&graph)
-\begin{DoxyCompactList}\small\item\em Processes a batch file for the environemental pathfinding. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Interactively computes environmentally friendly routes for a user. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{environmentally_8h_a7d9fff25af0390175c3f0a283d40439e}{environmentally\+Batch}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&graph, const std\+::string \&input\+File, const std\+::string \&output\+File)
-\begin{DoxyCompactList}\small\item\em Reads input from a file and computes the environmental routes to an output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Processes a batch of route requests and computes environmentally friendly routes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Header file for environmentally friendly route algorithm. 
+
+This file contains function declarations for calculating and processing environmentally friendly routes that combine both driving and walking. The routes aim to minimize driving while ensuring that walking distances from parking nodes to the destination are within the user\textquotesingle{}s maximum walking time. 
 
 \doxysubsection{Function Documentation}
 \mbox{\Hypertarget{environmentally_8h_a037d5f4a1af8df6d06723fea13eaeecf}\label{environmentally_8h_a037d5f4a1af8df6d06723fea13eaeecf}} 
@@ -35,7 +52,18 @@ void \mbox{\hyperlink{environmentally_8h_a7d9fff25af0390175c3f0a283d40439e}{envi
 
 
 
-Processes a batch file for the environemental pathfinding. 
+Interactively computes environmentally friendly routes for a user. 
+
+This function prompts the user for input regarding source, destination, maximum walking time, avoid nodes, and avoid segments. It then calls the {\ttfamily run\+Environmentally\+Algorithm} to compute the best driving-\/walking route and outputs the results to the console.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph representing the transportation network.\\
+\hline
+\end{DoxyParams}
+@complexity O(V log V + E), due to the execution of Dijkstra\textquotesingle{}s algorithm.
+
+Interactively computes environmentally friendly routes for a user.
 
 This function reads user inputs for mode(must be \char`\"{}driving-\/walking\char`\"{}), processes them, and calls the environmentally friendly route algorithm.
 
@@ -44,7 +72,23 @@ This function reads user inputs for mode(must be \char`\"{}driving-\/walking\cha
 {\em graph} & The graph where to search.\\
 \hline
 \end{DoxyParams}
-Complexity is O(V log V + E), due to multiple executions of Dijkstra\textquotesingle{}s algorithm. \mbox{\Hypertarget{environmentally_8h_a7d9fff25af0390175c3f0a283d40439e}\label{environmentally_8h_a7d9fff25af0390175c3f0a283d40439e}} 
+Complexity is O(V log V + E), due to multiple executions of Dijkstra\textquotesingle{}s algorithm. Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{environmentally_8h_a037d5f4a1af8df6d06723fea13eaeecf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{environmentally_8h_a037d5f4a1af8df6d06723fea13eaeecf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{environmentally_8h_a7d9fff25af0390175c3f0a283d40439e}\label{environmentally_8h_a7d9fff25af0390175c3f0a283d40439e}} 
 \index{environmentally.h@{environmentally.h}!environmentallyBatch@{environmentallyBatch}}
 \index{environmentallyBatch@{environmentallyBatch}!environmentally.h@{environmentally.h}}
 \doxysubsubsection{\texorpdfstring{environmentallyBatch()}{environmentallyBatch()}}
@@ -52,7 +96,22 @@ Complexity is O(V log V + E), due to multiple executions of Dijkstra\textquotesi
 
 
 
-Reads input from a file and computes the environmental routes to an output file. 
+Processes a batch of route requests and computes environmentally friendly routes. 
+
+This function reads the batch route requests from an input file, processes them, and writes the results to an output file. Each route request includes details such as the source, destination, maximum walk time, and any nodes or segments to avoid.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph representing the transportation network. \\
+\hline
+{\em input\+File} & The input file containing route requests. \\
+\hline
+{\em output\+File} & The output file to write the results.\\
+\hline
+\end{DoxyParams}
+@complexity O((V + E) log V), due to the repeated execution of Dijkstra\textquotesingle{}s algorithm.
+
+Processes a batch of route requests and computes environmentally friendly routes.
 
 This function reads the route request from an input file and writes the results to an output file. (Batch mode)
 
@@ -65,4 +124,93 @@ This function reads the route request from an input file and writes the results 
 {\em output\+Filename} & Output file to store the results.\\
 \hline
 \end{DoxyParams}
-Complexity O((V + E) log V). 
+Complexity O((V + E) log V). Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{environmentally_8h_a7d9fff25af0390175c3f0a283d40439e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{environmentally_8h_a7d9fff25af0390175c3f0a283d40439e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{environmentally_8h_a31f218195ea06653aca2e57c925b8ac6}\label{environmentally_8h_a31f218195ea06653aca2e57c925b8ac6}} 
+\index{environmentally.h@{environmentally.h}!runEnvironmentallyAlgorithm@{runEnvironmentallyAlgorithm}}
+\index{runEnvironmentallyAlgorithm@{runEnvironmentallyAlgorithm}!environmentally.h@{environmentally.h}}
+\doxysubsubsection{\texorpdfstring{runEnvironmentallyAlgorithm()}{runEnvironmentallyAlgorithm()}}
+{\footnotesize\ttfamily void run\+Environmentally\+Algorithm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&}]{graph,  }\item[{int}]{source,  }\item[{int}]{destination,  }\item[{int}]{max\+Walk,  }\item[{std\+::unordered\+\_\+set$<$ int $>$ \&}]{avoid\+Nodes,  }\item[{std\+::unordered\+\_\+map$<$ int, double $>$ \&}]{time\+\_\+to\+\_\+id,  }\item[{const std\+::string \&}]{mode,  }\item[{bool}]{parked,  }\item[{std\+::ostream \&}]{out }\end{DoxyParamCaption})}
+
+
+
+Runs the environmentally friendly route algorithm. 
+
+This function calculates a route that minimizes the driving distance, ensuring that the walking distance from a parking node to the destination does not exceed a given maximum walking time. It computes the best route with both driving and walking and prints the result to the specified output stream.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph representing the transportation network. \\
+\hline
+{\em source} & The starting node of the route. \\
+\hline
+{\em destination} & The target destination node. \\
+\hline
+{\em max\+Walk} & The maximum walking distance the user is willing to walk after parking. \\
+\hline
+{\em avoid\+Nodes} & A set of nodes to be avoided during the search. \\
+\hline
+{\em time\+\_\+to\+\_\+id} & A map that contains parking nodes and their respective driving times. \\
+\hline
+{\em mode} & The mode of transportation, should be \char`\"{}driving-\/walking\char`\"{}. \\
+\hline
+{\em parked} & A boolean indicating if parking is available. \\
+\hline
+{\em out} & The output stream where the results will be written.\\
+\hline
+\end{DoxyParams}
+@complexity O((V + E) log V), due to the repeated execution of Dijkstra\textquotesingle{}s algorithm.
+
+This function calculates a route that minimizes driving distance while ensuring the walking distance from a parking node to the destination does not exceed a given maximum.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph where to search. \\
+\hline
+{\em source} & The starting node. \\
+\hline
+{\em destination} & The target node. \\
+\hline
+{\em max\+Walk} & The maximum walking distance the user is willing to walk. \\
+\hline
+{\em avoid\+Nodes} & Set of nodes to be avoided. \\
+\hline
+{\em time\+\_\+to\+\_\+id} & Map of parking nodes to their respective driving times. \\
+\hline
+{\em mode} & The mode of transportation (only \char`\"{}driving-\/walking\char`\"{} is valid). \\
+\hline
+{\em parked} & Indicates of there is parking avaliable. \\
+\hline
+{\em out} & The output stream to write the result.\\
+\hline
+\end{DoxyParams}
+Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges, since Dijkstra\textquotesingle{}s algorithm is used multiple times. \mbox{[}O(n log(n))\mbox{]} Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{environmentally_8h_a31f218195ea06653aca2e57c925b8ac6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{environmentally_8h_a31f218195ea06653aca2e57c925b8ac6_icgraph}
+\end{center}
+\end{figure}

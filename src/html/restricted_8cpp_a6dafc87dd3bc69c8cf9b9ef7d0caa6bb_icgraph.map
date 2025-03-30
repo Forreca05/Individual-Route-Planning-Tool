@@ -1,0 +1,6 @@
+<map id="runRestrictedAlgorithm" name="runRestrictedAlgorithm">
+<area shape="rect" id="node1" title="Runs the restricted pathfinding algorithm, considering avoidance and inclusion constraints." alt="" coords="263,31,417,57"/>
+<area shape="rect" id="node2" href="$restricted_8cpp.html#a0d1c3c7f9007152506d7c99574f1a0f8" title="Handles user input for restricted routes." alt="" coords="121,5,197,32"/>
+<area shape="rect" id="node4" href="$restricted_8cpp.html#abfbdad06caba3c398b069bda12f07e04" title="Processes a batch file for the restricted pathfinding." alt="" coords="104,56,215,83"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Entry point of the program." alt="" coords="5,31,56,57"/>
+</map>

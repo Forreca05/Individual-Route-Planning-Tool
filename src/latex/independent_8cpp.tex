@@ -37,6 +37,8 @@ void \mbox{\hyperlink{independent_8cpp_a2e96ae2bc3470165a9ff98dac7be186f}{indepe
 
 Reads user input and computes the best and alternative routes. 
 
+Computes the best and alternative routes interactively.
+
 The function reads the user for the source, destination, and mode of transport. Then computes the best route and an alternative route by avoiding the intermediate nodes.
 
 
@@ -44,7 +46,23 @@ The function reads the user for the source, destination, and mode of transport. 
 {\em graph} & The graph where to search.\\
 \hline
 \end{DoxyParams}
-Complexity O((V + E) log V). \mbox{\Hypertarget{independent_8cpp_a2e96ae2bc3470165a9ff98dac7be186f}\label{independent_8cpp_a2e96ae2bc3470165a9ff98dac7be186f}} 
+Complexity O((V + E) log V). Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{independent_8cpp_a3d4070fe6b54ae9d9fe96b6d0886f19e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{independent_8cpp_a3d4070fe6b54ae9d9fe96b6d0886f19e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{independent_8cpp_a2e96ae2bc3470165a9ff98dac7be186f}\label{independent_8cpp_a2e96ae2bc3470165a9ff98dac7be186f}} 
 \index{independent.cpp@{independent.cpp}!independentBatch@{independentBatch}}
 \index{independentBatch@{independentBatch}!independent.cpp@{independent.cpp}}
 \doxysubsubsection{\texorpdfstring{independentBatch()}{independentBatch()}}
@@ -53,6 +71,8 @@ Complexity O((V + E) log V). \mbox{\Hypertarget{independent_8cpp_a2e96ae2bc34701
 
 
 Reads input from a file and computes the best and alternative routes to an output file. 
+
+Computes the best and alternative routes in batch mode from a file.
 
 This function reads the route request from an input file and writes the results to an output file. (Batch mode)
 
@@ -65,7 +85,23 @@ This function reads the route request from an input file and writes the results 
 {\em output\+Filename} & Output file to store the results.\\
 \hline
 \end{DoxyParams}
-Complexity O((V + E) log V). \mbox{\Hypertarget{independent_8cpp_a5be247e6c66666e3e780945897c47bd6}\label{independent_8cpp_a5be247e6c66666e3e780945897c47bd6}} 
+Complexity O((V + E) log V). Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{independent_8cpp_a2e96ae2bc3470165a9ff98dac7be186f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{independent_8cpp_a2e96ae2bc3470165a9ff98dac7be186f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{independent_8cpp_a5be247e6c66666e3e780945897c47bd6}\label{independent_8cpp_a5be247e6c66666e3e780945897c47bd6}} 
 \index{independent.cpp@{independent.cpp}!runAlgorithm@{runAlgorithm}}
 \index{runAlgorithm@{runAlgorithm}!independent.cpp@{independent.cpp}}
 \doxysubsubsection{\texorpdfstring{runAlgorithm()}{runAlgorithm()}}
@@ -96,4 +132,19 @@ This function executes Dijkstra\textquotesingle{}s algorithm to find the best or
 {\em is\+First\+Run} & Indicates if it is the first execution.\\
 \hline
 \end{DoxyParams}
-Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges. \mbox{[}O(n log(n))\mbox{]} Dijkstra\textquotesingle{}s algorithm runs twice. 
+Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges. \mbox{[}O(n log(n))\mbox{]} Dijkstra\textquotesingle{}s algorithm runs twice. Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{independent_8cpp_a5be247e6c66666e3e780945897c47bd6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{independent_8cpp_a5be247e6c66666e3e780945897c47bd6_icgraph}
+\end{center}
+\end{figure}

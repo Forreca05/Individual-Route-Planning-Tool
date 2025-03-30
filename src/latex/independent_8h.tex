@@ -1,7 +1,14 @@
 \hypertarget{independent_8h}{}\doxysection{independent.\+h File Reference}
 \label{independent_8h}\index{independent.h@{independent.h}}
+
+
+Header file for the Independent algorithm that computes the best and alternative routes.  
+
+
 {\ttfamily \#include \char`\"{}Graph.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
 Include dependency graph for independent.\+h\+:
 \nopagebreak
 \begin{figure}[H]
@@ -22,11 +29,24 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{independent_8h_a92c624e96d06dbc1be4ebfbd69560552}{run\+Algorithm}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&graph, int source, int destination, std\+::unordered\+\_\+set$<$ int $>$ \&avoid\+Nodes, std\+::unordered\+\_\+set$<$ int $>$ \&avoid\+Edges, const std\+::string \&mode, bool parked, std\+::ostream \&out, bool is\+First\+Run)
-\item 
+\begin{DoxyCompactList}\small\item\em Runs the shortest path algorithm to compute the best and alternative routes. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{independent_8h_a3d4070fe6b54ae9d9fe96b6d0886f19e}{independent}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&graph)
-\begin{DoxyCompactList}\small\item\em Reads user input and computes the best and alternative routes. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Computes the best and alternative routes interactively. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{independent_8h_af9b7ff1ffc6f76d0e76908df77cb7fb6}{independent\+Batch}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&graph, const std\+::string \&input\+File, const std\+::string \&output\+File)
-\begin{DoxyCompactList}\small\item\em Reads input from a file and computes the best and alternative routes to an output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Computes the best and alternative routes in batch mode from a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the Independent algorithm that computes the best and alternative routes. 
+
+This header defines the functions related to the \char`\"{}independent\char`\"{} algorithm, which computes the best and alternative routes between two nodes in a graph, ensuring that the two routes do not share any intermediate nodes or segments, except for the source and destination. It also handles both interactive (terminal) and batch processing modes.
+
+\begin{DoxyAuthor}{Author}
+João Pascoal Faria 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+March 2025 
+\end{DoxyDate}
 
 
 \doxysubsection{Function Documentation}
@@ -38,7 +58,19 @@ void \mbox{\hyperlink{independent_8h_af9b7ff1ffc6f76d0e76908df77cb7fb6}{independ
 
 
 
-Reads user input and computes the best and alternative routes. 
+Computes the best and alternative routes interactively. 
+
+This function prompts the user for input to specify the source, destination, and mode of transportation. It computes the best route and an alternative route by avoiding the intermediate nodes during the second run.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph where the routes will be computed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges.
+\end{DoxyNote}
+Computes the best and alternative routes interactively.
 
 The function reads the user for the source, destination, and mode of transport. Then computes the best route and an alternative route by avoiding the intermediate nodes.
 
@@ -47,7 +79,23 @@ The function reads the user for the source, destination, and mode of transport. 
 {\em graph} & The graph where to search.\\
 \hline
 \end{DoxyParams}
-Complexity O((V + E) log V). \mbox{\Hypertarget{independent_8h_af9b7ff1ffc6f76d0e76908df77cb7fb6}\label{independent_8h_af9b7ff1ffc6f76d0e76908df77cb7fb6}} 
+Complexity O((V + E) log V). Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{independent_8h_a3d4070fe6b54ae9d9fe96b6d0886f19e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{independent_8h_a3d4070fe6b54ae9d9fe96b6d0886f19e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{independent_8h_af9b7ff1ffc6f76d0e76908df77cb7fb6}\label{independent_8h_af9b7ff1ffc6f76d0e76908df77cb7fb6}} 
 \index{independent.h@{independent.h}!independentBatch@{independentBatch}}
 \index{independentBatch@{independentBatch}!independent.h@{independent.h}}
 \doxysubsubsection{\texorpdfstring{independentBatch()}{independentBatch()}}
@@ -55,7 +103,23 @@ Complexity O((V + E) log V). \mbox{\Hypertarget{independent_8h_af9b7ff1ffc6f76d0
 
 
 
-Reads input from a file and computes the best and alternative routes to an output file. 
+Computes the best and alternative routes in batch mode from a file. 
+
+This function reads route requests from an input file and writes the results to an output file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph where the routes will be computed. \\
+\hline
+{\em input\+File} & The input file containing route queries. \\
+\hline
+{\em output\+File} & The output file to store the results.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges.
+\end{DoxyNote}
+Computes the best and alternative routes in batch mode from a file.
 
 This function reads the route request from an input file and writes the results to an output file. (Batch mode)
 
@@ -68,9 +132,55 @@ This function reads the route request from an input file and writes the results 
 {\em output\+Filename} & Output file to store the results.\\
 \hline
 \end{DoxyParams}
-Complexity O((V + E) log V). \mbox{\Hypertarget{independent_8h_a92c624e96d06dbc1be4ebfbd69560552}\label{independent_8h_a92c624e96d06dbc1be4ebfbd69560552}} 
+Complexity O((V + E) log V). Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{independent_8h_af9b7ff1ffc6f76d0e76908df77cb7fb6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{independent_8h_af9b7ff1ffc6f76d0e76908df77cb7fb6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{independent_8h_a92c624e96d06dbc1be4ebfbd69560552}\label{independent_8h_a92c624e96d06dbc1be4ebfbd69560552}} 
 \index{independent.h@{independent.h}!runAlgorithm@{runAlgorithm}}
 \index{runAlgorithm@{runAlgorithm}!independent.h@{independent.h}}
 \doxysubsubsection{\texorpdfstring{runAlgorithm()}{runAlgorithm()}}
 {\footnotesize\ttfamily void run\+Algorithm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&}]{graph,  }\item[{int}]{source,  }\item[{int}]{destination,  }\item[{std\+::unordered\+\_\+set$<$ int $>$ \&}]{avoid\+Nodes,  }\item[{std\+::unordered\+\_\+set$<$ int $>$ \&}]{avoid\+Edges,  }\item[{const std\+::string \&}]{mode,  }\item[{bool}]{parked,  }\item[{std\+::ostream \&}]{out,  }\item[{bool}]{is\+First\+Run }\end{DoxyParamCaption})}
 
+
+
+Runs the shortest path algorithm to compute the best and alternative routes. 
+
+This function executes Dijkstra\textquotesingle{}s algorithm to find the best or alternative route between the given source and destination. If it\textquotesingle{}s the first run, intermediate nodes are added to the set of avoided nodes for the alternative route.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph where the algorithm will search for routes. \\
+\hline
+{\em source} & The starting node for the route. \\
+\hline
+{\em destination} & The target node for the route. \\
+\hline
+{\em avoid\+Nodes} & A set of nodes to avoid during the second run (used in the alternative route). \\
+\hline
+{\em avoid\+Edges} & A set of edges to avoid (not used in the current implementation). \\
+\hline
+{\em mode} & The mode of transportation (e.\+g., \char`\"{}driving\char`\"{}, \char`\"{}walking\char`\"{}). \\
+\hline
+{\em parked} & Indicates if there is parking available at the source or destination. \\
+\hline
+{\em out} & The output stream where results are printed. \\
+\hline
+{\em is\+First\+Run} & Flag indicating if it is the first execution (for determining best or alternative route).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges. Dijkstra\textquotesingle{}s algorithm runs twice. 
+\end{DoxyNote}

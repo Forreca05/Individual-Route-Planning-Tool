@@ -1,0 +1,13 @@
+<map id="dijkstra" name="dijkstra">
+<area shape="rect" id="node1" title="Implements Dijkstra&#39;s algorithm to find the shortest path in a graph." alt="" coords="535,107,599,133"/>
+<area shape="rect" id="node2" href="$environmentally_8cpp.html#a037d5f4a1af8df6d06723fea13eaeecf" title="Processes a batch file for the environemental pathfinding." alt="" coords="121,5,234,32"/>
+<area shape="rect" id="node4" href="$environmentally_8cpp.html#a263124ccb51866298f6e2db44d5fd92e" title="Reads input from a file and computes the environmental routes to an output file." alt="" coords="104,56,251,83"/>
+<area shape="rect" id="node5" href="$independent_8cpp.html#a5be247e6c66666e3e780945897c47bd6" title="Runs the shortest path algorithm in order to output the result." alt="" coords="345,157,440,184"/>
+<area shape="rect" id="node8" href="$environmentally_8cpp.html#a31f218195ea06653aca2e57c925b8ac6" title="Runs the environmentally friendly route algorithm." alt="" coords="299,56,487,83"/>
+<area shape="rect" id="node9" href="$restricted_8cpp.html#a6dafc87dd3bc69c8cf9b9ef7d0caa6bb" title="Runs the restricted pathfinding algorithm, considering avoidance and inclusion constraints." alt="" coords="315,208,470,235"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Entry point of the program." alt="" coords="5,132,56,159"/>
+<area shape="rect" id="node6" href="$independent_8cpp.html#a3d4070fe6b54ae9d9fe96b6d0886f19e" title="Reads user input and computes the best and alternative routes." alt="" coords="131,107,223,133"/>
+<area shape="rect" id="node7" href="$independent_8cpp.html#a2e96ae2bc3470165a9ff98dac7be186f" title="Reads input from a file and computes the best and alternative routes to an output file." alt="" coords="114,157,241,184"/>
+<area shape="rect" id="node10" href="$restricted_8cpp.html#a0d1c3c7f9007152506d7c99574f1a0f8" title="Handles user input for restricted routes." alt="" coords="139,208,215,235"/>
+<area shape="rect" id="node11" href="$restricted_8cpp.html#abfbdad06caba3c398b069bda12f07e04" title="Processes a batch file for the restricted pathfinding." alt="" coords="122,259,233,285"/>
+</map>
