@@ -39,10 +39,10 @@ public:
     std::string getLocation() const;
     void setLocation(std::string &location);
     void setHasParking(bool hasParking);
-    
+
     std::string getName() const;
     void setName(const std::string &name);
-    
+
     std::string getCode() const;
     void setCode(std::string &code);
 
@@ -124,7 +124,7 @@ public:
     * Auxiliary function to find a vertex with a given the content.
     */
     Vertex<T> *findVertex(const T &in) const;
-    
+
     /*
      *  Adds a vertex with a given content or info (in) to a graph (this).
      *  Returns true if successful, and false if a vertex with that content already exists.
@@ -155,7 +155,7 @@ protected:
      * Finds the index of the vertex with a given content.
      */
     int findVertexIdx(const T &in) const;
-    
+
     /**
     * Auxiliary function to set the "path" field to make a spanning tree.
     */

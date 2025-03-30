@@ -1,0 +1,5 @@
+<map id="restricted.h" name="restricted.h">
+<area shape="rect" id="node1" title="Header file for the Restricted route algorithm." alt="" coords="55,5,142,32"/>
+<area shape="rect" id="node2" href="$main_8cpp.html" title="Main program for loading a graph and performing various algorithms." alt="" coords="5,80,80,107"/>
+<area shape="rect" id="node3" href="$restricted_8cpp.html" title="Implementation of the restricted route algorithm." alt="" coords="104,80,205,107"/>
+</map>

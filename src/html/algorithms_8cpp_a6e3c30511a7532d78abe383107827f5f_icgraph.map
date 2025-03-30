@@ -1,0 +1,8 @@
+<map id="selectEdge" name="selectEdge">
+<area shape="rect" id="node1" title="Selects an edge between two vertices." alt="" coords="299,81,385,108"/>
+<area shape="rect" id="node2" href="$environmentally_8cpp.html#a037d5f4a1af8df6d06723fea13eaeecf" title="Processes a batch file for the environemental pathfinding." alt="" coords="121,5,234,32"/>
+<area shape="rect" id="node4" href="$environmentally_8cpp.html#a263124ccb51866298f6e2db44d5fd92e" title="Reads input from a file and computes the environmental routes to an output file." alt="" coords="104,56,251,83"/>
+<area shape="rect" id="node5" href="$restricted_8cpp.html#a0d1c3c7f9007152506d7c99574f1a0f8" title="Handles user input for restricted routes." alt="" coords="139,107,215,133"/>
+<area shape="rect" id="node6" href="$restricted_8cpp.html#abfbdad06caba3c398b069bda12f07e04" title="Processes a batch file for the restricted pathfinding." alt="" coords="122,157,233,184"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Entry point of the program." alt="" coords="5,81,56,108"/>
+</map>

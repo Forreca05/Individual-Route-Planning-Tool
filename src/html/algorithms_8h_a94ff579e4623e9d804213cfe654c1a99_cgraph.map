@@ -1,0 +1,19 @@
+<map id="dijkstra" name="dijkstra">
+<area shape="rect" id="node1" title="Implements Dijkstra&#39;s algorithm to find the shortest path in a graph." alt="" coords="5,278,69,305"/>
+<area shape="rect" id="node2" href="$classMutablePriorityQueue.html#a0878839cc1d2dba2b8ab2e589ecc6405" title=" " alt="" coords="117,5,264,47"/>
+<area shape="rect" id="node3" href="$classMutablePriorityQueue.html#a2edbb1f4a6fa3ff735700dfcebebe8d4" title=" " alt="" coords="117,71,264,112"/>
+<area shape="rect" id="node4" href="$classMutablePriorityQueue.html#a3880874d7364279ac0d6d31302b28853" title=" " alt="" coords="117,136,264,177"/>
+<area shape="rect" id="node5" href="$classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="129,202,253,229"/>
+<area shape="rect" id="node6" href="$classVertex.html#a0010a7d0b7db1bb81dd2ebb1ffae650a" title=" " alt="" coords="138,253,243,279"/>
+<area shape="rect" id="node7" href="$classVertex.html#a48eae2f7af2362634adab02b7b2dbec6" title=" " alt="" coords="137,303,245,330"/>
+<area shape="rect" id="node8" href="$classGraph.html#a41624b03fcb6bd29e4df574a1ec58541" title=" " alt="" coords="120,354,261,381"/>
+<area shape="rect" id="node9" href="$classMutablePriorityQueue.html#a058fc182052af82e10cc3719e448b62d" title=" " alt="" coords="117,405,264,447"/>
+<area shape="rect" id="node10" href="$algorithms_8cpp.html#a66d9be712c57900cde4bbab69dd0e4d5" title="Relaxes an edge based on the given mode of transportation." alt="" coords="145,471,236,498"/>
+<area shape="rect" id="node16" href="$classVertex.html#a060fbea0c3738cc3e09d84ad8c431b34" title=" " alt="" coords="319,598,429,625"/>
+<area shape="rect" id="node11" href="$classEdge.html#a9a2de066dff8513dd788d553fc1d0c81" title=" " alt="" coords="321,294,427,321"/>
+<area shape="rect" id="node12" href="$classVertex.html#a01e90e3cdb2ee11dd3b1d593c8207382" title=" " alt="" coords="319,345,429,371"/>
+<area shape="rect" id="node13" href="$classEdge.html#ae8ebcbdf43a401d92e861eecc28447f2" title=" " alt="" coords="315,395,433,422"/>
+<area shape="rect" id="node14" href="$classEdge.html#a40fc1470c5339203defca19b67c2535b" title=" " alt="" coords="323,446,425,473"/>
+<area shape="rect" id="node15" href="$classEdge.html#ad81552257b0296e38e5167de287c3a43" title=" " alt="" coords="312,497,436,523"/>
+<area shape="rect" id="node17" href="$classVertex.html#a5ebf4b550ec94b89a8f80df1a53cc97d" title=" " alt="" coords="317,547,431,574"/>
+</map>

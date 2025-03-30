@@ -1,0 +1,76 @@
+\hypertarget{main_8cpp}{}\doxysection{main.\+cpp File Reference}
+\label{main_8cpp}\index{main.cpp@{main.cpp}}
+
+
+Main program for loading a graph and performing various algorithms.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include \char`\"{}Graph.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}algorithms.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}independent.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}restricted.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}environmentally.\+h\char`\"{}}\newline
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Entry point of the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main program for loading a graph and performing various algorithms. 
+
+This file contains the main logic for reading a graph from CSV files and running different algorithms based on the user input. The program supports both terminal-\/based interaction and batch processing modes. It performs operations based on the specified type\+: independent, restricted, or environmentally.
+
+\begin{DoxyAuthor}{Author}
+João Pascoal Faria 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+March 2025 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Entry point of the program. 
+
+The main function initializes the graph and performs the corresponding algorithm based on user input. The program supports two modes\+: terminal and batch. In terminal mode, the user provides input interactively. In batch mode, the program reads input from a file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments passed to the program. \\
+\hline
+{\em argv} & The array of arguments passed to the program. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Return code indicating success or failure of execution. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}

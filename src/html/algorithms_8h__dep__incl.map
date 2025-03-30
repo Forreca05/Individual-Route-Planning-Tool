@@ -1,0 +1,8 @@
+<map id="algorithms.h" name="algorithms.h">
+<area shape="rect" id="node1" title="Header file for search algorithms used in graph&#45;based navigation." alt="" coords="308,5,401,32"/>
+<area shape="rect" id="node2" href="$algorithms_8cpp.html" title="Implementation of search algorithms for graph&#45;based navigation." alt="" coords="5,80,112,107"/>
+<area shape="rect" id="node3" href="$environmentally_8cpp.html" title="Implentation of the algorithm that computes the best route with both walking and driving." alt="" coords="136,80,272,107"/>
+<area shape="rect" id="node4" href="$independent_8cpp.html" title=" " alt="" coords="296,80,413,107"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="Main program for loading a graph and performing various algorithms." alt="" coords="437,80,512,107"/>
+<area shape="rect" id="node6" href="$restricted_8cpp.html" title="Implementation of the restricted route algorithm." alt="" coords="536,80,637,107"/>
+</map>
