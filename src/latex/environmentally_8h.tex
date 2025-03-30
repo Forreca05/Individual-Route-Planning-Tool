@@ -72,7 +72,7 @@ This function reads user inputs for mode(must be \char`\"{}driving-\/walking\cha
 {\em graph} & The graph where to search.\\
 \hline
 \end{DoxyParams}
-Complexity is O(V log V + E), due to multiple executions of Dijkstra\textquotesingle{}s algorithm. Here is the call graph for this function\+:
+Complexity is O(P(V + E) log V), where P is the number of parking nodes, V is the number of vertices and E is the number of edges, since Dijkstra\textquotesingle{}s algorithm is used multiple times (in the run\+Environmentally\+Algorithm function). Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -124,7 +124,7 @@ This function reads the route request from an input file and writes the results 
 {\em output\+Filename} & Output file to store the results.\\
 \hline
 \end{DoxyParams}
-Complexity O((V + E) log V). Here is the call graph for this function\+:
+Complexity is O(P(V + E) log V), where P is the number of parking nodes, V is the number of vertices and E is the number of edges, since Dijkstra\textquotesingle{}s algorithm is used multiple times (in the run\+Environmentally\+Algorithm function). Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -193,12 +193,12 @@ This function calculates a route that minimizes driving distance while ensuring 
 \hline
 {\em mode} & The mode of transportation (only \char`\"{}driving-\/walking\char`\"{} is valid). \\
 \hline
-{\em parked} & Indicates of there is parking avaliable. \\
+{\em parked} & Indicates if there is parking avaliable. \\
 \hline
 {\em out} & The output stream to write the result.\\
 \hline
 \end{DoxyParams}
-Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges, since Dijkstra\textquotesingle{}s algorithm is used multiple times. \mbox{[}O(n log(n))\mbox{]} Here is the call graph for this function\+:
+Complexity is O(P(V + E) log V), where P is the number of parking nodes, V is the number of vertices and E is the number of edges, since Dijkstra\textquotesingle{}s algorithm is used multiple times. Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
