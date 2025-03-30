@@ -1,5 +1,5 @@
 /**
-* @file environmentally.h
+ * @file environmentally.h
  * @brief Header file for environmentally friendly route algorithm.
  *
  * This file contains function declarations for calculating and processing environmentally friendly routes

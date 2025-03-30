@@ -1,7 +1,7 @@
 <map id="Vertex::getAdj" name="Vertex::getAdj">
 <area shape="rect" id="node1" title=" " alt="" coords="647,157,752,184"/>
 <area shape="rect" id="node2" href="$algorithms_8cpp.html#a94ff579e4623e9d804213cfe654c1a99" title="Implements Dijkstra&#39;s algorithm to find the shortest path in a graph." alt="" coords="535,120,599,147"/>
-<area shape="rect" id="node13" href="$algorithms_8cpp.html#a6e3c30511a7532d78abe383107827f5f" title="Selects an edge between two vertices." alt="" coords="349,208,436,235"/>
+<area shape="rect" id="node13" href="$algorithms_8cpp.html#a6e3c30511a7532d78abe383107827f5f" title="Selects an edge between two vertices in the graph." alt="" coords="349,208,436,235"/>
 <area shape="rect" id="node3" href="$environmentally_8cpp.html#a037d5f4a1af8df6d06723fea13eaeecf" title="Processes a batch file for the environemental pathfinding." alt="" coords="121,107,234,133"/>
 <area shape="rect" id="node5" href="$environmentally_8cpp.html#a263124ccb51866298f6e2db44d5fd92e" title="Reads input from a file and computes the environmental routes to an output file." alt="" coords="104,157,251,184"/>
 <area shape="rect" id="node6" href="$independent_8cpp.html#a5be247e6c66666e3e780945897c47bd6" title="Runs the shortest path algorithm in order to output the result." alt="" coords="345,5,440,32"/>

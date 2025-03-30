@@ -1,5 +1,5 @@
-<map id="relaxDriving" name="relaxDriving">
-<area shape="rect" id="node1" title="Relaxes an edge based on the given mode of transportation." alt="" coords="647,107,737,133"/>
+<map id="relax" name="relax">
+<area shape="rect" id="node1" title="Relaxes an edge based on the given mode of transportation." alt="" coords="647,107,697,133"/>
 <area shape="rect" id="node2" href="$algorithms_8cpp.html#a94ff579e4623e9d804213cfe654c1a99" title="Implements Dijkstra&#39;s algorithm to find the shortest path in a graph." alt="" coords="535,107,599,133"/>
 <area shape="rect" id="node3" href="$environmentally_8cpp.html#a037d5f4a1af8df6d06723fea13eaeecf" title="Processes a batch file for the environemental pathfinding." alt="" coords="121,5,234,32"/>
 <area shape="rect" id="node5" href="$environmentally_8cpp.html#a263124ccb51866298f6e2db44d5fd92e" title="Reads input from a file and computes the environmental routes to an output file." alt="" coords="104,56,251,83"/>
