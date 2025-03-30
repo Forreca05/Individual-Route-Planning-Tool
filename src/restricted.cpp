@@ -132,7 +132,7 @@ void restricted(Graph<int> &graph) {
 
     std::cout << "IncludeNode: ";
     std::getline(std::cin, line);
-    if (!line.empty()) {std::cin >> includeNode;}
+    if (!line.empty()) {includeNode = std::stoi(line);}
 
     runRestrictedAlgorithm(graph, source, destination, includeNode, avoidNodes, mode, parked, std::cout);
 }

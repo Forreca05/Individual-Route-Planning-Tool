@@ -25,7 +25,7 @@
  */
 
 bool relaxDriving(Edge<int>* edge, const std::string& mode, bool& parked) {
-    if (edge->getDriving() == -1) return false;
+    if ((mode == "driving" || !parked) && edge->getDriving() == -1) return false;
     Vertex<int> *u = edge->getOrig();
     Vertex<int> *v = edge->getDest();
 

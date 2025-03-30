@@ -40,10 +40,11 @@
  */
 
 void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination, int maxWalk,
-                                  const std::unordered_set<int>& avoidNodes,const std::unordered_map<int,
+                                  std::unordered_set<int>& avoidNodes, std::unordered_map<int,
                                   double>& time_to_id, const std::string &mode, bool parked, std::ostream &out) {
 
     int total = 100000, middle = -1;
+    double prevWalkDist = 0;
     bool route = false;
 
     parked = true;
@@ -52,20 +53,115 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
         if (graph.findVertex(destination)->getDist() <= maxWalk) {
             route = true;
             int distt = pair.second + graph.findVertex(destination)->getDist();
-            if (distt < total) {
+            if (distt < total || (distt == total && graph.findVertex(destination)->getDist() > prevWalkDist)) {
                 total = distt;
                 middle = pair.first;
+                prevWalkDist = graph.findVertex(destination)->getDist();
             }
         }
     }
 
     if (!route) {
-        out << "Source:" << source << "\nDestination:" << destination << std::endl;
-        out << "DrivingRoute:" << std::endl;
-        out << "ParkingNode:" << std::endl;
-        out << "WalkingRoute:" << std::endl;
-        out << "TotalTime:" << std::endl;
-        out << "Message:No possible route with max. walking time of " << maxWalk << " minutes." << std::endl;
+        // out << "Source:" << source << "\nDestination:" << destination << std::endl;
+        // out << "DrivingRoute:" << std::endl;
+        // out << "ParkingNode:" << std::endl;
+        // out << "WalkingRoute:" << std::endl;
+        // out << "TotalTime:" << std::endl;
+        // out << "Message:No possible route with max. walking time of " << maxWalk << " minutes." << std::endl;
+        // return;
+
+        // Mudei aqui o codigo, em vez de dar print daquela mensagem ele vai aumentando o maxWalk até encontrar um que funcione
+        while (!route) {
+            maxWalk++;
+            for (const auto& pair : time_to_id) {
+                dijkstra(&graph, pair.first, destination, avoidNodes, mode, parked);
+                if (graph.findVertex(destination)->getDist() <= maxWalk) {
+                    route = true;
+                    int distt = pair.second + graph.findVertex(destination)->getDist();
+                    if (distt < total || (distt == total && graph.findVertex(destination)->getDist() > prevWalkDist)) {
+                        total = distt;
+                        middle = pair.first;
+                        prevWalkDist = graph.findVertex(destination)->getDist();
+                    }
+                }
+            }
+        }
+
+        parked = false;
+        dijkstra(&graph, source, middle, avoidNodes, mode, parked);
+        std::vector<int> path = getPath(&graph, source, middle);
+        int meioDist = graph.findVertex(middle)->getDist();
+        out << "Source:" << source << std::endl << "Destination:" << destination << std::endl;
+        out << "DrivingRoute:" << path[0];
+        for (unsigned i = 1; i < path.size(); i++) {
+            out << ',' << path[i];
+        }
+        out << "(" << meioDist << ")" << std::endl;
+
+        out << "ParkingNode:" << middle << std::endl;
+
+        parked = true;
+        dijkstra(&graph, middle, destination, avoidNodes, mode, parked);
+        std::vector<int> path2 = getPath(&graph, middle, destination);
+        out << "WalkingRoute:" << path2[0];
+        for (unsigned i = 1; i < path2.size(); i++) {
+            out << ',' << path2[i];
+        }
+        int fimDist = graph.findVertex(destination)->getDist();
+        out << "(" << fimDist << ")" << std::endl;
+
+        out << "TotalTime:" << total << std::endl;
+
+        for (Vertex<int>* v : graph.getVertexSet()) {
+            if (v->hasParking()) {
+                dijkstra(&graph, source, v->getInfo(), avoidNodes, "driving", parked);
+                time_to_id[v->getInfo()] = graph.findVertex(v->getInfo())->getDist();
+            }
+        }
+        time_to_id[middle] = 1000000;
+        total = 100000, middle = -1;
+        prevWalkDist = 0;
+        parked = true;
+        for (const auto& pair : time_to_id) {
+            dijkstra(&graph, pair.first, destination, avoidNodes, mode, parked);
+            std::cout << pair.first << " " << graph.findVertex(destination)->getDist() << std::endl;;
+            if (graph.findVertex(destination)->getDist() <= maxWalk) {
+                route = true;
+                int distt = pair.second + graph.findVertex(destination)->getDist();
+                if (distt < total || (distt == total && graph.findVertex(destination)->getDist() > prevWalkDist)) {
+                    total = distt;
+                    middle = pair.first;
+                    std::cout << pair.first;
+                    prevWalkDist = graph.findVertex(destination)->getDist();
+                }
+            }
+        }
+
+        parked = false;
+        dijkstra(&graph, source, middle, avoidNodes, mode, parked);
+        path = getPath(&graph, source, middle);
+        std::cout << middle;
+        meioDist = graph.findVertex(middle)->getDist();
+        out << "Source:" << source << std::endl << "Destination:" << destination << std::endl;
+        out << "DrivingRoute:" << path[0];
+        for (unsigned i = 1; i < path.size(); i++) {
+            out << ',' << path[i];
+        }
+        out << "(" << meioDist << ")" << std::endl;
+
+        out << "ParkingNode:" << middle << std::endl;
+
+        parked = true;
+        dijkstra(&graph, middle, destination, avoidNodes, mode, parked);
+        path2 = getPath(&graph, middle, destination);
+        out << "WalkingRoute:" << path2[0];
+        for (unsigned i = 1; i < path2.size(); i++) {
+            out << ',' << path2[i];
+        }
+        fimDist = graph.findVertex(destination)->getDist();
+        out << "(" << fimDist << ")" << std::endl;
+
+        out << "TotalTime:" << total << std::endl;
         return;
     }
 
@@ -174,7 +270,7 @@ void environmentally(Graph<int>& graph) {
 
     for (Vertex<int>* v : graph.getVertexSet()) {
         if (v->hasParking()) {
-            dijkstra(&graph, source, v->getInfo(), avoidNodes, mode, parked);
+            dijkstra(&graph, source, v->getInfo(), avoidNodes, "driving", parked);
             time_to_id[v->getInfo()] = graph.findVertex(v->getInfo())->getDist();
         }
     }
