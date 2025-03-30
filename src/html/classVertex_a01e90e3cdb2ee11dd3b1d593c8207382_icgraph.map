@@ -1,7 +1,7 @@
 <map id="Vertex::getDist" name="Vertex::getDist">
-<area shape="rect" id="node1" title=" " alt="" coords="788,107,899,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="748,107,859,133"/>
 <area shape="rect" id="node2" href="$algorithms_8cpp.html#ab7aef16e7a3d361d03b62363222cd13b" title="Retrieves the path from origin to destination." alt="" coords="535,81,601,108"/>
-<area shape="rect" id="node13" href="$algorithms_8cpp.html#a66d9be712c57900cde4bbab69dd0e4d5" title="Relaxes an edge based on the given mode of transportation." alt="" coords="649,132,740,159"/>
+<area shape="rect" id="node13" href="$algorithms_8cpp.html#ad8496e52a27cdd64d1812b4f31f52648" title="Relaxes an edge based on the given mode of transportation." alt="" coords="649,132,700,159"/>
 <area shape="rect" id="node3" href="$independent_8cpp.html#a5be247e6c66666e3e780945897c47bd6" title="Runs the shortest path algorithm in order to output the result." alt="" coords="345,233,440,260"/>
 <area shape="rect" id="node7" href="$environmentally_8cpp.html#a31f218195ea06653aca2e57c925b8ac6" title="Runs the environmentally friendly route algorithm." alt="" coords="299,81,487,108"/>
 <area shape="rect" id="node10" href="$restricted_8cpp.html#a6dafc87dd3bc69c8cf9b9ef7d0caa6bb" title="Runs the restricted pathfinding algorithm, considering avoidance and inclusion constraints." alt="" coords="315,31,470,57"/>

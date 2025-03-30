@@ -1,5 +1,5 @@
 /**
- * @file
+ * @file algorithms.h
  * @brief Header file for search algorithms used in graph-based navigation.
  *
  * This header file contains function declarations for various search algorithms

@@ -1,5 +1,5 @@
 /**
- * @file
+ * @file algorithms.cpp
  * @brief Implementation of search algorithms for graph-based navigation.
  * 
  * This file contains the main functions used to perform searches in a graph.
@@ -140,6 +140,18 @@ std::vector<int> getPath(Graph<int>* g, const int& origin, const int& dest) {
     return res;
 }
 
+/**
+ * @brief Selects an edge between two vertices in the graph.
+ *
+ * This function searches for an edge from the origin vertex to the destination vertex
+ * and marks it as selected. If the edge exists, it is set as selected; otherwise, no changes are made.
+ *
+ * @param g Pointer to the graph object.
+ * @param origin The starting node.
+ * @param dest The target node.
+ *
+ * @complexity O(V) in dense graphs, O(1) in the best case.
+ */
 
 void selectEdge(Graph<int>* g, const int& origin, const int& dest) {
     Vertex<int> *source = g->findVertex(origin);
@@ -154,3 +166,4 @@ void selectEdge(Graph<int>* g, const int& origin, const int& dest) {
         }
     }
 }
+

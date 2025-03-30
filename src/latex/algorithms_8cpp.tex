@@ -18,14 +18,14 @@ Include dependency graph for algorithms.\+cpp\+:
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \mbox{\hyperlink{algorithms_8cpp_a66d9be712c57900cde4bbab69dd0e4d5}{relax\+Driving}} (\mbox{\hyperlink{classEdge}{Edge}}$<$ int $>$ $\ast$edge, const std\+::string \&mode, bool \&parked)
+bool \mbox{\hyperlink{algorithms_8cpp_ad8496e52a27cdd64d1812b4f31f52648}{relax}} (\mbox{\hyperlink{classEdge}{Edge}}$<$ int $>$ $\ast$edge, const std\+::string \&mode, bool \&parked)
 \begin{DoxyCompactList}\small\item\em Relaxes an edge based on the given mode of transportation. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{algorithms_8cpp_a94ff579e4623e9d804213cfe654c1a99}{dijkstra}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$g, const int \&origin, const int \&destination, const std\+::unordered\+\_\+set$<$ int $>$ \&avoid\+Nodes, const std\+::string \&mode, bool \&parked)
 \begin{DoxyCompactList}\small\item\em Implements Dijkstra\textquotesingle{}s algorithm to find the shortest path in a graph. \end{DoxyCompactList}\item 
 std\+::vector$<$ int $>$ \mbox{\hyperlink{algorithms_8cpp_ab7aef16e7a3d361d03b62363222cd13b}{get\+Path}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$g, const int \&origin, const int \&dest)
 \begin{DoxyCompactList}\small\item\em Retrieves the path from origin to destination. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{algorithms_8cpp_a6e3c30511a7532d78abe383107827f5f}{select\+Edge}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$g, const int \&origin, const int \&dest)
-\begin{DoxyCompactList}\small\item\em Selects an edge between two vertices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Selects an edge between two vertices in the graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -117,11 +117,11 @@ Here is the caller graph for this function\+:
 \includegraphics[width=350pt]{algorithms_8cpp_ab7aef16e7a3d361d03b62363222cd13b_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{algorithms_8cpp_a66d9be712c57900cde4bbab69dd0e4d5}\label{algorithms_8cpp_a66d9be712c57900cde4bbab69dd0e4d5}} 
-\index{algorithms.cpp@{algorithms.cpp}!relaxDriving@{relaxDriving}}
-\index{relaxDriving@{relaxDriving}!algorithms.cpp@{algorithms.cpp}}
-\doxysubsubsection{\texorpdfstring{relaxDriving()}{relaxDriving()}}
-{\footnotesize\ttfamily bool relax\+Driving (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{Edge}}$<$ int $>$ $\ast$}]{edge,  }\item[{const std\+::string \&}]{mode,  }\item[{bool \&}]{parked }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{algorithms_8cpp_ad8496e52a27cdd64d1812b4f31f52648}\label{algorithms_8cpp_ad8496e52a27cdd64d1812b4f31f52648}} 
+\index{algorithms.cpp@{algorithms.cpp}!relax@{relax}}
+\index{relax@{relax}!algorithms.cpp@{algorithms.cpp}}
+\doxysubsubsection{\texorpdfstring{relax()}{relax()}}
+{\footnotesize\ttfamily bool relax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{Edge}}$<$ int $>$ $\ast$}]{edge,  }\item[{const std\+::string \&}]{mode,  }\item[{bool \&}]{parked }\end{DoxyParamCaption})}
 
 
 
@@ -146,7 +146,7 @@ Complexity O(1) Here is the call graph for this function\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=277pt]{algorithms_8cpp_a66d9be712c57900cde4bbab69dd0e4d5_cgraph}
+\includegraphics[width=247pt]{algorithms_8cpp_ad8496e52a27cdd64d1812b4f31f52648_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function\+:
@@ -154,20 +154,22 @@ Here is the caller graph for this function\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{algorithms_8cpp_a66d9be712c57900cde4bbab69dd0e4d5_icgraph}
+\includegraphics[width=350pt]{algorithms_8cpp_ad8496e52a27cdd64d1812b4f31f52648_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{algorithms_8cpp_a6e3c30511a7532d78abe383107827f5f}\label{algorithms_8cpp_a6e3c30511a7532d78abe383107827f5f}} 
 \index{algorithms.cpp@{algorithms.cpp}!selectEdge@{selectEdge}}
 \index{selectEdge@{selectEdge}!algorithms.cpp@{algorithms.cpp}}
 \doxysubsubsection{\texorpdfstring{selectEdge()}{selectEdge()}}
-{\footnotesize\ttfamily void select\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$}]{g,  }\item[{const int \&}]{origin,  }\item[{const int \&}]{destination }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void select\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$}]{g,  }\item[{const int \&}]{origin,  }\item[{const int \&}]{dest }\end{DoxyParamCaption})}
 
 
 
-Selects an edge between two vertices. 
+Selects an edge between two vertices in the graph. 
 
-This function marks an edge between two vertices as \char`\"{}selected\char`\"{}. The edge selection process is performed by iterating over the adjacency list of the source vertex and setting the corresponding edge to be selected.
+Selects an edge between two vertices.
+
+This function searches for an edge from the origin vertex to the destination vertex and marks it as selected. If the edge exists, it is set as selected; otherwise, no changes are made.
 
 
 \begin{DoxyParams}{Parameters}
@@ -175,10 +177,10 @@ This function marks an edge between two vertices as \char`\"{}selected\char`\"{}
 \hline
 {\em origin} & The starting node. \\
 \hline
-{\em destination} & The target node. \\
+{\em dest} & The target node.\\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function\+:
+@complexity O(\+V) in dense graphs, O(1) in the best case. Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}

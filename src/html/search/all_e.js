@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['relaxdriving_78',['relaxDriving',['../algorithms_8cpp.html#a66d9be712c57900cde4bbab69dd0e4d5',1,'relaxDriving(Edge&lt; int &gt; *edge, const std::string &amp;mode, bool &amp;parked):&#160;algorithms.cpp'],['../algorithms_8h.html#a66d9be712c57900cde4bbab69dd0e4d5',1,'relaxDriving(Edge&lt; int &gt; *edge, const std::string &amp;mode, bool &amp;parked):&#160;algorithms.cpp']]],
+  ['relax_78',['relax',['../algorithms_8cpp.html#ad8496e52a27cdd64d1812b4f31f52648',1,'relax(Edge&lt; int &gt; *edge, const std::string &amp;mode, bool &amp;parked):&#160;algorithms.cpp'],['../algorithms_8h.html#ad8496e52a27cdd64d1812b4f31f52648',1,'relax(Edge&lt; int &gt; *edge, const std::string &amp;mode, bool &amp;parked):&#160;algorithms.cpp']]],
   ['removeedge_79',['removeEdge',['../classVertex.html#ac1f1dd0a8e1019a242f1120d6559c754',1,'Vertex::removeEdge()'],['../classGraph.html#a8949d071d45bf93e171e275462e1007a',1,'Graph::removeEdge()']]],
   ['removeoutgoingedges_80',['removeOutgoingEdges',['../classVertex.html#a414ce58fdf35ee5200a82912f3865506',1,'Vertex']]],
   ['removevertex_81',['removeVertex',['../classGraph.html#af9c903104ad69a7782979fa9caedf163',1,'Graph']]],
