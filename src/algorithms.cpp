@@ -24,7 +24,7 @@
  * Complexity O(1)
  */
 
-bool relaxDriving(Edge<int>* edge, const std::string& mode, bool& parked) {
+bool relax(Edge<int>* edge, const std::string& mode, bool& parked) {
     if ((mode == "driving" || !parked) && edge->getDriving() == -1) return false;
     Vertex<int> *u = edge->getOrig();
     Vertex<int> *v = edge->getDest();
@@ -99,7 +99,7 @@ void dijkstra(Graph<int>* g, const int& origin, const int& destination, const st
         for (Edge<int> *e : u->getAdj()) {
             if (e->isSelected()) continue;
             if (avoidNodes.count(e->getDest()->getInfo())) continue;
-            if (relaxDriving(e, mode, parked)) {
+            if (relax(e, mode, parked)) {
                 pq.decreaseKey(e->getDest());
             }
         }

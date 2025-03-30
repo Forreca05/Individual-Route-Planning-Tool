@@ -49,6 +49,7 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
 
     parked = true;
     for (const auto& pair : time_to_id) {
+        if (pair.second == INF) continue;
         dijkstra(&graph, pair.first, destination, avoidNodes, mode, parked);
         if (graph.findVertex(destination)->getDist() <= maxWalk) {
             route = true;
@@ -60,7 +61,7 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
             }
         }
     }
-
+    
     if (!route) {
         // out << "Source:" << source << "\nDestination:" << destination << std::endl;
         // out << "DrivingRoute:" << std::endl;
@@ -72,7 +73,12 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
 
         while (!route) {
             maxWalk++;
+            // Arbitrary high value to avoid infinite loops, could be anything
+            if (maxWalk > 100000) {
+                break;
+            }
             for (const auto& pair : time_to_id) {
+                if (pair.second == INF) continue;
                 dijkstra(&graph, pair.first, destination, avoidNodes, mode, parked);
                 if (graph.findVertex(destination)->getDist() <= maxWalk) {
                     route = true;
@@ -86,7 +92,7 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
             }
         }
 
-        parked = false;
+        if (route){parked = false;
         dijkstra(&graph, source, middle, avoidNodes, mode, parked);
         std::vector<int> path = getPath(&graph, source, middle);
         int meioDist = graph.findVertex(middle)->getDist();
@@ -128,6 +134,7 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
         parked = true;
         while (!route) {
             for (const auto& pair : time_to_id) {
+                if (pair.second == INF) continue;
                 dijkstra(&graph, pair.first, destination, avoidNodes, mode, parked);
                 if (graph.findVertex(destination)->getDist() <= maxWalk) {
                     int distt = pair.second + graph.findVertex(destination)->getDist();
@@ -167,13 +174,20 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
         out << "(" << fimDist << ")" << std::endl;
 
         out << "TotalTime2:" << total << std::endl;
-        return;
+        return;}
     }
 
+    if (!route) {
+        out << "There is no possible route" << std::endl;
+        return;
+    }
     parked = false;
+    avoidNodes.insert(destination);
     dijkstra(&graph, source, middle, avoidNodes, mode, parked);
+    avoidNodes.erase(destination);
     std::vector<int> path = getPath(&graph, source, middle);
     int meioDist = graph.findVertex(middle)->getDist();
+    std::cout << meioDist << std::endl;
     out << "Source:" << source << std::endl << "Destination:" << destination << std::endl;
     out << "DrivingRoute:" << path[0];
     for (unsigned i = 1; i < path.size(); i++) {
@@ -273,12 +287,14 @@ void environmentally(Graph<int>& graph) {
         }
     }
 
+    avoidNodes.insert(destination);
     for (Vertex<int>* v : graph.getVertexSet()) {
         if (v->hasParking()) {
             dijkstra(&graph, source, v->getInfo(), avoidNodes, "driving", parked);
             time_to_id[v->getInfo()] = graph.findVertex(v->getInfo())->getDist();
         }
     }
+    avoidNodes.erase(destination);
 
     runEnvironmentallyAlgorithm(graph, source, destination, maxWalk, avoidNodes, time_to_id, mode, parked, std::cout);
 }

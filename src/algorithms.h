@@ -31,7 +31,7 @@
  *
  * @complexity O(1)
  */
-bool relaxDriving(Edge<int>* edge, const std::string& mode, bool& parked);
+bool relax(Edge<int>* edge, const std::string& mode, bool& parked);
 
 /**
  * @brief Implements Dijkstra's algorithm to find the shortest path in a graph.
