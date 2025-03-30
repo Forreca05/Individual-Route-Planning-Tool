@@ -1,3 +1,15 @@
+/**
+ * @file independant.cpp 
+ * @brief Implentation of the algorithm that computes the 2 best alternative routes. 
+ * 
+ * Identifies a best alternative independent route, ensuring the two routes share no intermediate
+ * nodes or segments, except for the source and destination, and that the alternative route is equal
+ * to or greater in travel time than the primary route. 
+ * 
+ * 
+ * 
+ *  */
+
 #include <iostream>
 #include <unordered_set>
 #include <vector>
