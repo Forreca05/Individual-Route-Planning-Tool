@@ -1,0 +1,75 @@
+\hypertarget{restricted_8h}{}\doxysection{restricted.\+h File Reference}
+\label{restricted_8h}\index{restricted.h@{restricted.h}}
+{\ttfamily \#include \char`\"{}Graph.\+h\char`\"{}}\newline
+Include dependency graph for restricted.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{restricted_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{restricted_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{restricted_8h_a2684f6f091ea65081d0e297e40977fc0}{run\+Restricted\+Algorithm}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&graph, int source, int destination, int include\+Node, std\+::unordered\+\_\+set$<$ int $>$ \&avoid\+Nodes, std\+::unordered\+\_\+set$<$ int $>$ \&avoid\+Edges, const std\+::string \&mode, bool parked, std\+::ostream \&out)
+\item 
+void \mbox{\hyperlink{restricted_8h_a0d1c3c7f9007152506d7c99574f1a0f8}{restricted}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&graph)
+\begin{DoxyCompactList}\small\item\em Handles user input for restricted routes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{restricted_8h_ad1759cbac674b0e34150314a9578b78b}{restricted\+Batch}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&graph, const std\+::string \&input\+File, const std\+::string \&output\+File)
+\begin{DoxyCompactList}\small\item\em Processes a batch file for the restricted pathfinding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{restricted_8h_a0d1c3c7f9007152506d7c99574f1a0f8}\label{restricted_8h_a0d1c3c7f9007152506d7c99574f1a0f8}} 
+\index{restricted.h@{restricted.h}!restricted@{restricted}}
+\index{restricted@{restricted}!restricted.h@{restricted.h}}
+\doxysubsubsection{\texorpdfstring{restricted()}{restricted()}}
+{\footnotesize\ttfamily void restricted (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&}]{graph }\end{DoxyParamCaption})}
+
+
+
+Handles user input for restricted routes. 
+
+This function reads user input for mode, source, destination, nodes to avoid, edges to avoid, and an optional node to include in the path. It then calls the restricted pathfinding algorithm.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph representing the road network.\\
+\hline
+\end{DoxyParams}
+Complexity is O((V + E) log V), due to calling the pathfinding algorithm. \mbox{\Hypertarget{restricted_8h_ad1759cbac674b0e34150314a9578b78b}\label{restricted_8h_ad1759cbac674b0e34150314a9578b78b}} 
+\index{restricted.h@{restricted.h}!restrictedBatch@{restrictedBatch}}
+\index{restrictedBatch@{restrictedBatch}!restricted.h@{restricted.h}}
+\doxysubsubsection{\texorpdfstring{restrictedBatch()}{restrictedBatch()}}
+{\footnotesize\ttfamily void restricted\+Batch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&}]{graph,  }\item[{const std\+::string \&}]{filename,  }\item[{const std\+::string \&}]{output\+Filename }\end{DoxyParamCaption})}
+
+
+
+Processes a batch file for the restricted pathfinding. 
+
+Reads input parameters from a file and executes the restricted pathfinding algorithm for batch processing. (Batch mode)
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph representing the road network. \\
+\hline
+{\em filename} & The input file name. \\
+\hline
+{\em output\+Filename} & The output file name.\\
+\hline
+\end{DoxyParams}
+@complexity O((V + E) log V) per query, as it calls the pathfinding function. \mbox{\Hypertarget{restricted_8h_a2684f6f091ea65081d0e297e40977fc0}\label{restricted_8h_a2684f6f091ea65081d0e297e40977fc0}} 
+\index{restricted.h@{restricted.h}!runRestrictedAlgorithm@{runRestrictedAlgorithm}}
+\index{runRestrictedAlgorithm@{runRestrictedAlgorithm}!restricted.h@{restricted.h}}
+\doxysubsubsection{\texorpdfstring{runRestrictedAlgorithm()}{runRestrictedAlgorithm()}}
+{\footnotesize\ttfamily void run\+Restricted\+Algorithm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&}]{graph,  }\item[{int}]{source,  }\item[{int}]{destination,  }\item[{int}]{include\+Node,  }\item[{std\+::unordered\+\_\+set$<$ int $>$ \&}]{avoid\+Nodes,  }\item[{std\+::unordered\+\_\+set$<$ int $>$ \&}]{avoid\+Edges,  }\item[{const std\+::string \&}]{mode,  }\item[{bool}]{parked,  }\item[{std\+::ostream \&}]{out }\end{DoxyParamCaption})}
+

@@ -1,0 +1,63 @@
+\hypertarget{utils_8cpp}{}\doxysection{utils.\+cpp File Reference}
+\label{utils_8cpp}\index{utils.cpp@{utils.cpp}}
+
+
+Implementation of utilitary functions to load a graph parsing from a CSV file.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}utils.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Mutable\+Priority\+Queue.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+Include dependency graph for utils.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \mbox{\hyperlink{utils_8cpp_a9678f56ff8191d9cd0bb6f3388dd3304}{load\+Graph\+From\+CSV}} (const std\+::string \&locations\+File, const std\+::string \&distances\+File)
+\begin{DoxyCompactList}\small\item\em load a graph from CSV files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of utilitary functions to load a graph parsing from a CSV file. 
+
+This file contains the implementation of the function that parses the CSV files keeping the information about locations and distances and loads them into a graph. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{utils_8cpp_a9678f56ff8191d9cd0bb6f3388dd3304}\label{utils_8cpp_a9678f56ff8191d9cd0bb6f3388dd3304}} 
+\index{utils.cpp@{utils.cpp}!loadGraphFromCSV@{loadGraphFromCSV}}
+\index{loadGraphFromCSV@{loadGraphFromCSV}!utils.cpp@{utils.cpp}}
+\doxysubsubsection{\texorpdfstring{loadGraphFromCSV()}{loadGraphFromCSV()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraph}{Graph}}$<$int$>$ load\+Graph\+From\+CSV (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{locations\+File,  }\item[{const std\+::string \&}]{distances\+File }\end{DoxyParamCaption})}
+
+
+
+load a graph from CSV files. 
+
+Reads two CSV files with the information about locations and distances and biuld the corresponding graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em locations\+File} & Path to the Locations.\+csv file. \\
+\hline
+{\em distance\+SFile} & Path to the Distances.\+csv file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Graph$<$int$>$ object containing the data form both files.
+\end{DoxyReturn}
+complexity is O(L + E), where L is the number of locations and E the umber of edges \mbox{[}O(n)\mbox{]} $<$Maps the locations code to a numeric id
+
+$<$ Assocciates location code to its id
+
+$<$ Driving time. (-\/1 when not appliable)
+
+$<$ Walking time.

@@ -1,0 +1,116 @@
+\hypertarget{algorithms_8h}{}\doxysection{algorithms.\+h File Reference}
+\label{algorithms_8h}\index{algorithms.h@{algorithms.h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}Graph.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+Include dependency graph for algorithms.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{algorithms_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{algorithms_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{algorithms_8h_a66d9be712c57900cde4bbab69dd0e4d5}{relax\+Driving}} (\mbox{\hyperlink{classEdge}{Edge}}$<$ int $>$ $\ast$edge, const std\+::string \&mode, bool \&parked)
+\begin{DoxyCompactList}\small\item\em Relaxes an edge based on the given mode of transportation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{algorithms_8h_a94ff579e4623e9d804213cfe654c1a99}{dijkstra}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$g, const int \&origin, const int \&destination, const std\+::unordered\+\_\+set$<$ int $>$ \&avoid\+Nodes, const std\+::string \&mode, bool \&parked)
+\begin{DoxyCompactList}\small\item\em Implements Dijkstra\textquotesingle{}s algorithm to find the shortest path in a graph. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{algorithms_8h_ab7aef16e7a3d361d03b62363222cd13b}{get\+Path}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$g, const int \&origin, const int \&dest)
+\begin{DoxyCompactList}\small\item\em Retrieves the path from origin to destination. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{algorithms_8h_a9abe780f4cb48f0fc49bc46281a7ee43}{select\+Edge}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$g, const int \&origin, const int \&destination)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{algorithms_8h_a94ff579e4623e9d804213cfe654c1a99}\label{algorithms_8h_a94ff579e4623e9d804213cfe654c1a99}} 
+\index{algorithms.h@{algorithms.h}!dijkstra@{dijkstra}}
+\index{dijkstra@{dijkstra}!algorithms.h@{algorithms.h}}
+\doxysubsubsection{\texorpdfstring{dijkstra()}{dijkstra()}}
+{\footnotesize\ttfamily void dijkstra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$}]{g,  }\item[{const int \&}]{origin,  }\item[{const int \&}]{destination,  }\item[{const std\+::unordered\+\_\+set$<$ int $>$ \&}]{avoid\+Nodes,  }\item[{const std\+::string \&}]{mode,  }\item[{bool \&}]{parked }\end{DoxyParamCaption})}
+
+
+
+Implements Dijkstra\textquotesingle{}s algorithm to find the shortest path in a graph. 
+
+Computes the shortest path from an origin node to a destination node, avoiding specified nodes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointer to the graph. \\
+\hline
+{\em origin} & The starting node. \\
+\hline
+{\em destination} & The target node. \\
+\hline
+{\em avoid\+Nodes} & Set of nodes to be avoided. \\
+\hline
+{\em mode} & The mode of transportation. \\
+\hline
+{\em parked} & Indicates of there is parking avaliable.\\
+\hline
+\end{DoxyParams}
+@complexity O((V + E) log V) \mbox{\Hypertarget{algorithms_8h_ab7aef16e7a3d361d03b62363222cd13b}\label{algorithms_8h_ab7aef16e7a3d361d03b62363222cd13b}} 
+\index{algorithms.h@{algorithms.h}!getPath@{getPath}}
+\index{getPath@{getPath}!algorithms.h@{algorithms.h}}
+\doxysubsubsection{\texorpdfstring{getPath()}{getPath()}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ get\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$}]{g,  }\item[{const int \&}]{origin,  }\item[{const int \&}]{dest }\end{DoxyParamCaption})}
+
+
+
+Retrieves the path from origin to destination. 
+
+Constructs the shortest path found by Dijkstra\textquotesingle{}s algorithm.
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointer to the graph. \\
+\hline
+{\em origin} & The starting node. \\
+\hline
+{\em dest} & The destination node.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector containing the path from origin to destination.
+\end{DoxyReturn}
+@complexity O(\+V) \mbox{\Hypertarget{algorithms_8h_a66d9be712c57900cde4bbab69dd0e4d5}\label{algorithms_8h_a66d9be712c57900cde4bbab69dd0e4d5}} 
+\index{algorithms.h@{algorithms.h}!relaxDriving@{relaxDriving}}
+\index{relaxDriving@{relaxDriving}!algorithms.h@{algorithms.h}}
+\doxysubsubsection{\texorpdfstring{relaxDriving()}{relaxDriving()}}
+{\footnotesize\ttfamily bool relax\+Driving (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{Edge}}$<$ int $>$ $\ast$}]{edge,  }\item[{const std\+::string \&}]{mode,  }\item[{bool \&}]{parked }\end{DoxyParamCaption})}
+
+
+
+Relaxes an edge based on the given mode of transportation. 
+
+Updates the distance and path of a vertex if a shorter path is found via the given edge.
+
+
+\begin{DoxyParams}{Parameters}
+{\em edge} & The edge to relax. \\
+\hline
+{\em mode} & The mode of transportation. \\
+\hline
+{\em parked} & Indicates of there is parking avaliable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the relaxation was successful, false otherwise.
+\end{DoxyReturn}
+Complexity O(1) \mbox{\Hypertarget{algorithms_8h_a9abe780f4cb48f0fc49bc46281a7ee43}\label{algorithms_8h_a9abe780f4cb48f0fc49bc46281a7ee43}} 
+\index{algorithms.h@{algorithms.h}!selectEdge@{selectEdge}}
+\index{selectEdge@{selectEdge}!algorithms.h@{algorithms.h}}
+\doxysubsubsection{\texorpdfstring{selectEdge()}{selectEdge()}}
+{\footnotesize\ttfamily void select\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$}]{g,  }\item[{const int \&}]{origin,  }\item[{const int \&}]{destination }\end{DoxyParamCaption})}
+

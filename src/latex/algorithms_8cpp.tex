@@ -1,0 +1,117 @@
+\hypertarget{algorithms_8cpp}{}\doxysection{algorithms.\+cpp File Reference}
+\label{algorithms_8cpp}\index{algorithms.cpp@{algorithms.cpp}}
+
+
+Implementation of search algorithms for graph-\/based navigation.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}algorithms.\+h\char`\"{}}\newline
+Include dependency graph for algorithms.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{algorithms_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{algorithms_8cpp_a66d9be712c57900cde4bbab69dd0e4d5}{relax\+Driving}} (\mbox{\hyperlink{classEdge}{Edge}}$<$ int $>$ $\ast$edge, const std\+::string \&mode, bool \&parked)
+\begin{DoxyCompactList}\small\item\em Relaxes an edge based on the given mode of transportation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{algorithms_8cpp_a94ff579e4623e9d804213cfe654c1a99}{dijkstra}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$g, const int \&origin, const int \&destination, const std\+::unordered\+\_\+set$<$ int $>$ \&avoid\+Nodes, const std\+::string \&mode, bool \&parked)
+\begin{DoxyCompactList}\small\item\em Implements Dijkstra\textquotesingle{}s algorithm to find the shortest path in a graph. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{algorithms_8cpp_ab7aef16e7a3d361d03b62363222cd13b}{get\+Path}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$g, const int \&origin, const int \&dest)
+\begin{DoxyCompactList}\small\item\em Retrieves the path from origin to destination. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{algorithms_8cpp_a6e3c30511a7532d78abe383107827f5f}{select\+Edge}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$g, const int \&origin, const int \&dest)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of search algorithms for graph-\/based navigation. 
+
+This file contains the main functions used to perform searches in a graph. It includes implementations for Dijkstra\textquotesingle{}s algorithm, path retrieval, edge selection, and relaxation functions for different transportation modes. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{algorithms_8cpp_a94ff579e4623e9d804213cfe654c1a99}\label{algorithms_8cpp_a94ff579e4623e9d804213cfe654c1a99}} 
+\index{algorithms.cpp@{algorithms.cpp}!dijkstra@{dijkstra}}
+\index{dijkstra@{dijkstra}!algorithms.cpp@{algorithms.cpp}}
+\doxysubsubsection{\texorpdfstring{dijkstra()}{dijkstra()}}
+{\footnotesize\ttfamily void dijkstra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$}]{g,  }\item[{const int \&}]{origin,  }\item[{const int \&}]{destination,  }\item[{const std\+::unordered\+\_\+set$<$ int $>$ \&}]{avoid\+Nodes,  }\item[{const std\+::string \&}]{mode,  }\item[{bool \&}]{parked }\end{DoxyParamCaption})}
+
+
+
+Implements Dijkstra\textquotesingle{}s algorithm to find the shortest path in a graph. 
+
+Computes the shortest path from an origin node to a destination node, avoiding specified nodes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointer to the graph. \\
+\hline
+{\em origin} & The starting node. \\
+\hline
+{\em destination} & The target node. \\
+\hline
+{\em avoid\+Nodes} & Set of nodes to be avoided. \\
+\hline
+{\em mode} & The mode of transportation. \\
+\hline
+{\em parked} & Indicates of there is parking avaliable.\\
+\hline
+\end{DoxyParams}
+@complexity O((V + E) log V) \mbox{\Hypertarget{algorithms_8cpp_ab7aef16e7a3d361d03b62363222cd13b}\label{algorithms_8cpp_ab7aef16e7a3d361d03b62363222cd13b}} 
+\index{algorithms.cpp@{algorithms.cpp}!getPath@{getPath}}
+\index{getPath@{getPath}!algorithms.cpp@{algorithms.cpp}}
+\doxysubsubsection{\texorpdfstring{getPath()}{getPath()}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ get\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$}]{g,  }\item[{const int \&}]{origin,  }\item[{const int \&}]{dest }\end{DoxyParamCaption})}
+
+
+
+Retrieves the path from origin to destination. 
+
+Constructs the shortest path found by Dijkstra\textquotesingle{}s algorithm.
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointer to the graph. \\
+\hline
+{\em origin} & The starting node. \\
+\hline
+{\em dest} & The destination node.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector containing the path from origin to destination.
+\end{DoxyReturn}
+@complexity O(\+V) \mbox{\Hypertarget{algorithms_8cpp_a66d9be712c57900cde4bbab69dd0e4d5}\label{algorithms_8cpp_a66d9be712c57900cde4bbab69dd0e4d5}} 
+\index{algorithms.cpp@{algorithms.cpp}!relaxDriving@{relaxDriving}}
+\index{relaxDriving@{relaxDriving}!algorithms.cpp@{algorithms.cpp}}
+\doxysubsubsection{\texorpdfstring{relaxDriving()}{relaxDriving()}}
+{\footnotesize\ttfamily bool relax\+Driving (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{Edge}}$<$ int $>$ $\ast$}]{edge,  }\item[{const std\+::string \&}]{mode,  }\item[{bool \&}]{parked }\end{DoxyParamCaption})}
+
+
+
+Relaxes an edge based on the given mode of transportation. 
+
+Updates the distance and path of a vertex if a shorter path is found via the given edge.
+
+
+\begin{DoxyParams}{Parameters}
+{\em edge} & The edge to relax. \\
+\hline
+{\em mode} & The mode of transportation. \\
+\hline
+{\em parked} & Indicates of there is parking avaliable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the relaxation was successful, false otherwise.
+\end{DoxyReturn}
+Complexity O(1) \mbox{\Hypertarget{algorithms_8cpp_a6e3c30511a7532d78abe383107827f5f}\label{algorithms_8cpp_a6e3c30511a7532d78abe383107827f5f}} 
+\index{algorithms.cpp@{algorithms.cpp}!selectEdge@{selectEdge}}
+\index{selectEdge@{selectEdge}!algorithms.cpp@{algorithms.cpp}}
+\doxysubsubsection{\texorpdfstring{selectEdge()}{selectEdge()}}
+{\footnotesize\ttfamily void select\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ $\ast$}]{g,  }\item[{const int \&}]{origin,  }\item[{const int \&}]{dest }\end{DoxyParamCaption})}
+

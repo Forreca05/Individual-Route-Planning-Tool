@@ -1,0 +1,76 @@
+\hypertarget{independent_8h}{}\doxysection{independent.\+h File Reference}
+\label{independent_8h}\index{independent.h@{independent.h}}
+{\ttfamily \#include \char`\"{}Graph.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for independent.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{independent_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{independent_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{independent_8h_a92c624e96d06dbc1be4ebfbd69560552}{run\+Algorithm}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&graph, int source, int destination, std\+::unordered\+\_\+set$<$ int $>$ \&avoid\+Nodes, std\+::unordered\+\_\+set$<$ int $>$ \&avoid\+Edges, const std\+::string \&mode, bool parked, std\+::ostream \&out, bool is\+First\+Run)
+\item 
+void \mbox{\hyperlink{independent_8h_a3d4070fe6b54ae9d9fe96b6d0886f19e}{independent}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&graph)
+\begin{DoxyCompactList}\small\item\em Reads user input and computes the best and alternative routes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{independent_8h_af9b7ff1ffc6f76d0e76908df77cb7fb6}{independent\+Batch}} (\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&graph, const std\+::string \&input\+File, const std\+::string \&output\+File)
+\begin{DoxyCompactList}\small\item\em Reads input from a file and computes the best and alternative routes to an output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{independent_8h_a3d4070fe6b54ae9d9fe96b6d0886f19e}\label{independent_8h_a3d4070fe6b54ae9d9fe96b6d0886f19e}} 
+\index{independent.h@{independent.h}!independent@{independent}}
+\index{independent@{independent}!independent.h@{independent.h}}
+\doxysubsubsection{\texorpdfstring{independent()}{independent()}}
+{\footnotesize\ttfamily void independent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&}]{graph }\end{DoxyParamCaption})}
+
+
+
+Reads user input and computes the best and alternative routes. 
+
+The function reads the user for the source, destination, and mode of transport. Then computes the best route and an alternative route by avoiding the intermediate nodes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph where to search.\\
+\hline
+\end{DoxyParams}
+Complexity O((V + E) log V). \mbox{\Hypertarget{independent_8h_af9b7ff1ffc6f76d0e76908df77cb7fb6}\label{independent_8h_af9b7ff1ffc6f76d0e76908df77cb7fb6}} 
+\index{independent.h@{independent.h}!independentBatch@{independentBatch}}
+\index{independentBatch@{independentBatch}!independent.h@{independent.h}}
+\doxysubsubsection{\texorpdfstring{independentBatch()}{independentBatch()}}
+{\footnotesize\ttfamily void independent\+Batch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&}]{graph,  }\item[{const std\+::string \&}]{input\+Filename,  }\item[{const std\+::string \&}]{output\+Filename }\end{DoxyParamCaption})}
+
+
+
+Reads input from a file and computes the best and alternative routes to an output file. 
+
+This function reads the route request from an input file and writes the results to an output file. (Batch mode)
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The graph where to search. \\
+\hline
+{\em input\+Filename} & Input file containing route queries. \\
+\hline
+{\em output\+Filename} & Output file to store the results.\\
+\hline
+\end{DoxyParams}
+Complexity O((V + E) log V). \mbox{\Hypertarget{independent_8h_a92c624e96d06dbc1be4ebfbd69560552}\label{independent_8h_a92c624e96d06dbc1be4ebfbd69560552}} 
+\index{independent.h@{independent.h}!runAlgorithm@{runAlgorithm}}
+\index{runAlgorithm@{runAlgorithm}!independent.h@{independent.h}}
+\doxysubsubsection{\texorpdfstring{runAlgorithm()}{runAlgorithm()}}
+{\footnotesize\ttfamily void run\+Algorithm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \&}]{graph,  }\item[{int}]{source,  }\item[{int}]{destination,  }\item[{std\+::unordered\+\_\+set$<$ int $>$ \&}]{avoid\+Nodes,  }\item[{std\+::unordered\+\_\+set$<$ int $>$ \&}]{avoid\+Edges,  }\item[{const std\+::string \&}]{mode,  }\item[{bool}]{parked,  }\item[{std\+::ostream \&}]{out,  }\item[{bool}]{is\+First\+Run }\end{DoxyParamCaption})}
+
