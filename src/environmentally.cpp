@@ -112,35 +112,47 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
 
         out << "TotalTime1:" << total << std::endl;
 
+        int prevMiddle = middle;
+        avoidNodes.insert(destination);
         for (Vertex<int>* v : graph.getVertexSet()) {
             if (v->hasParking()) {
                 dijkstra(&graph, source, v->getInfo(), avoidNodes, "driving", parked);
                 time_to_id[v->getInfo()] = graph.findVertex(v->getInfo())->getDist();
+                std::cout << graph.findVertex(v->getInfo())->getDist() << std::endl;
             }
         }
-        time_to_id[middle] = 1000000;
+        avoidNodes.erase(destination);
+
+        time_to_id[prevMiddle] = 1000000;
         total = 100000, middle = -1;
         prevWalkDist = 0;
+        route = false;
         parked = true;
-        for (const auto& pair : time_to_id) {
-            dijkstra(&graph, pair.first, destination, avoidNodes, mode, parked);
-            std::cout << pair.first << " " << graph.findVertex(destination)->getDist() << std::endl;;
-            if (graph.findVertex(destination)->getDist() <= maxWalk) {
-                route = true;
-                int distt = pair.second + graph.findVertex(destination)->getDist();
-                if (distt < total || (distt == total && graph.findVertex(destination)->getDist() > prevWalkDist)) {
-                    total = distt;
-                    middle = pair.first;
-                    prevWalkDist = graph.findVertex(destination)->getDist();
+        while (!route) {
+            for (const auto& pair : time_to_id) {
+                dijkstra(&graph, pair.first, destination, avoidNodes, mode, parked);
+                if (graph.findVertex(destination)->getDist() <= maxWalk) {
+                    int distt = pair.second + graph.findVertex(destination)->getDist();
+                    if (pair.second != INF && (distt < total || (distt == total && graph.findVertex(destination)->getDist() > prevWalkDist))) {
+                        route = true;
+                        total = distt;
+                        middle = pair.first;
+                        prevWalkDist = graph.findVertex(destination)->getDist();
+                        std::cout << middle;
+                    }
                 }
             }
+            maxWalk++;
+            std::cout << maxWalk << std::endl;
         }
-
+        
         parked = false;
+        avoidNodes.insert(destination);
         dijkstra(&graph, source, middle, avoidNodes, mode, parked);
+        avoidNodes.erase(destination);
         path = getPath(&graph, source, middle);
-        std::cout << middle;
         meioDist = graph.findVertex(middle)->getDist();
+        // return;
         out << "Source:" << source << std::endl << "Destination:" << destination << std::endl;
         out << "DrivingRoute2:" << path[0];
         for (unsigned i = 1; i < path.size(); i++) {
@@ -354,12 +366,14 @@ void environmentallyBatch(Graph<int>& graph, const std::string& filename, const 
 
     file.close();
 
+    avoidNodes.insert(destination);
     for (Vertex<int>* v : graph.getVertexSet()) {
         if (v->hasParking()) {
             dijkstra(&graph, source, v->getInfo(), avoidNodes, mode, parked);
             time_to_id[v->getInfo()] = graph.findVertex(v->getInfo())->getDist();
         }
     }
+    avoidNodes.erase(destination);
 
     runEnvironmentallyAlgorithm(graph, source, destination, maxWalk, avoidNodes, time_to_id, mode, parked, outputFile);
     outputFile.close();
