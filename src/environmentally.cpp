@@ -70,7 +70,6 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
         // out << "Message:No possible route with max. walking time of " << maxWalk << " minutes." << std::endl;
         // return;
 
-        // Mudei aqui o codigo, em vez de dar print daquela mensagem ele vai aumentando o maxWalk até encontrar um que funcione
         while (!route) {
             maxWalk++;
             for (const auto& pair : time_to_id) {
@@ -118,7 +117,6 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
             if (v->hasParking()) {
                 dijkstra(&graph, source, v->getInfo(), avoidNodes, "driving", parked);
                 time_to_id[v->getInfo()] = graph.findVertex(v->getInfo())->getDist();
-                std::cout << graph.findVertex(v->getInfo())->getDist() << std::endl;
             }
         }
         avoidNodes.erase(destination);
@@ -138,12 +136,10 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
                         total = distt;
                         middle = pair.first;
                         prevWalkDist = graph.findVertex(destination)->getDist();
-                        std::cout << middle;
                     }
                 }
             }
             maxWalk++;
-            std::cout << maxWalk << std::endl;
         }
         
         parked = false;
@@ -152,8 +148,6 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
         avoidNodes.erase(destination);
         path = getPath(&graph, source, middle);
         meioDist = graph.findVertex(middle)->getDist();
-        // return;
-        out << "Source:" << source << std::endl << "Destination:" << destination << std::endl;
         out << "DrivingRoute2:" << path[0];
         for (unsigned i = 1; i < path.size(); i++) {
             out << ',' << path[i];
