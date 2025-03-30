@@ -29,7 +29,7 @@
  * @param source The starting node.
  * @param destination The target node.
  * @param includeNode A node that must be included in the path (-1 if not applicable).
- * @param avoidNodes A set of nodes to be avoided.
+ * @param avoidNodes Set of nodes to be avoided.
  * @param mode The mode of transportation.
  * @param parked Indicates of there is parking avaliable.
  * @param out The output stream to write the result.
@@ -138,7 +138,7 @@ void restricted(Graph<int> &graph) {
     runRestrictedAlgorithm(graph, source, destination, includeNode, avoidNodes, mode, parked, std::cout);
 }
 /**
- * @brief Processes a batch file for restricted pathfinding.
+ * @brief Processes a batch file for the restricted pathfinding.
  * 
  * Reads input parameters from a file and executes the restricted pathfinding algorithm for batch processing.
  * (Batch mode)

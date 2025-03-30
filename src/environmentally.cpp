@@ -1,3 +1,14 @@
+/**
+ * @file environmentally.cpp. 
+ * @brief Implentation of the algorithm that computes the best route with both walking and driving.
+ * 
+ * Computes routes that combine driving and walking, allowing users to:
+ * Drive the first section of the route and then park the vehicle.
+ * Walk the remaining distance to the destination.
+ * There is also a max walking time. ( Time the user is willing to walk after parking.)
+ * 
+ */
+
 #include <iostream>
 #include <unordered_set>
 #include <unordered_map>
@@ -7,6 +18,26 @@
 #include "algorithms.h"
 #include "Graph.h"
 #include "environmentally.h"
+
+/**
+ * @brief Runs the environmentally friendly route algorithm.
+ * 
+ * This function calculates a route that minimizes driving distance while ensuring the walking distance
+ * from a parking node to the destination does not exceed a given maximum.
+ *
+ * @param graph The graph where to search.
+ * @param source The starting node.
+ * @param destination The target node.
+ * @param maxWalk The maximum walking distance the user is willing to walk.
+ * @param avoidNodes Set of nodes to be avoided.
+ * @param time_to_id Map of parking nodes to their respective driving times.
+ * @param mode The mode of transportation (only "driving-walking" is valid).
+ * @param parked Indicates of there is parking avaliable.
+ * @param out The output stream to write the result.
+ * 
+ * Complexity is O((V + E) log V), where V is the number of vertices and E is the number of edges, 
+ * since Dijkstra's algorithm is used multiple times. [O(n log(n))]
+ */
 
 void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination, int maxWalk,
                                   const std::unordered_set<int>& avoidNodes,const std::unordered_map<int,
@@ -65,6 +96,16 @@ void runEnvironmentallyAlgorithm(Graph<int>& graph, int source, int destination,
 
     path.insert(path.end(), path2.begin() + 1, path2.end());  // Junta as duas rotas
 }
+
+/**
+ * @brief Processes a batch file for the environemental pathfinding.
+ * 
+ * This function reads user inputs for mode(must be "driving-walking"), processes them, and calls the environmentally friendly route algorithm.
+ * 
+ * @param graph The graph where to search.
+ * 
+ * Complexity is O(V log V + E), due to multiple executions of Dijkstra's algorithm.
+ */
 
 void environmentally(Graph<int>& graph) {
     std::string sourceStr, destinationStr, mode, segment;
@@ -140,6 +181,19 @@ void environmentally(Graph<int>& graph) {
 
     runEnvironmentallyAlgorithm(graph, source, destination, maxWalk, avoidNodes, time_to_id, mode, parked, std::cout);
 }
+
+/**
+ * @brief Reads input from a file and computes the environmental routes to an output file.
+ *
+ * This function reads the route request from an input file and writes the results to an output file.
+ * (Batch mode)
+ *
+ * @param graph The graph where to search.
+ * @param inputFilename Input file containing route queries.
+ * @param outputFilename Output file to store the results.
+ *
+ * Complexity O((V + E) log V).
+ */
 
 void environmentallyBatch(Graph<int>& graph, const std::string& filename, const std::string& outputFilename) {
     std::unordered_set<int> avoidNodes;
