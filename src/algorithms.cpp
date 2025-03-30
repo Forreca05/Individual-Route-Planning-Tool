@@ -1,5 +1,28 @@
+/**
+ * @file
+ * @brief Implementation of search algorithms for graph-based navigation.
+ * 
+ * This file contains the main functions used to perform searches in a graph.
+ * It includes implementations for Dijkstra's algorithm, path retrieval,
+ * edge selection, and relaxation functions for different transportation modes.
+ * 
+ */
+
 #include <iostream>
 #include "algorithms.h"
+
+/**
+ * @brief Relaxes an edge based on the given mode of transportation.
+ * 
+ * Updates the distance and path of a vertex if a shorter path is found via the given edge.
+ * 
+ * @param edge The edge to relax.
+ * @param mode The mode of transportation.
+ * @param parked Indicates of there is parking avaliable.
+ * @return True if the relaxation was successful, false otherwise.
+ * 
+ * Complexity O(1)
+ */
 
 bool relaxDriving(Edge<int>* edge, const std::string& mode, bool& parked) {
     if (edge->getDriving() == -1) return false;
@@ -39,6 +62,21 @@ bool relaxDriving(Edge<int>* edge, const std::string& mode, bool& parked) {
     return false;
 }
 
+/**
+ * @brief Implements Dijkstra's algorithm to find the shortest path in a graph.
+ * 
+ * Computes the shortest path from an origin node to a destination node, avoiding specified nodes.
+ * 
+ * @param g Pointer to the graph.
+ * @param origin The starting node.
+ * @param destination The target node.
+ * @param avoidNodes Set of nodes to be avoided.
+ * @param mode The mode of transportation.
+ * @param parked Indicates of there is parking avaliable.
+ * 
+ * @complexity O((V + E) log V)
+ */
+
 void dijkstra(Graph<int>* g, const int& origin, const int& destination, const std::unordered_set<int>& avoidNodes, const std::string& mode, bool& parked) {
     MutablePriorityQueue<Vertex<int>> pq;
     for (Vertex<int> *v : g->getVertexSet()) {
@@ -67,6 +105,20 @@ void dijkstra(Graph<int>* g, const int& origin, const int& destination, const st
         }
     }
 }
+
+/**
+ * @brief Retrieves the path from origin to destination.
+ * 
+ * Constructs the shortest path found by Dijkstra's algorithm.
+ * 
+ * @param g Pointer to the graph.
+ * @param origin The starting node.
+ * @param dest The destination node.
+ * 
+ * @return A vector containing the path from origin to destination.
+ * 
+ * @complexity O(V)
+ */
 
 std::vector<int> getPath(Graph<int>* g, const int& origin, const int& dest) {
     std::vector<int> res;

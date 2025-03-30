@@ -8,7 +8,6 @@
  *  Simultaniously avoiding nodes and sections,
  *  Including specific nodes the route has to visit. 
  * 
- * 
 */
 
 #include <iostream>
