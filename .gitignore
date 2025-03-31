@@ -10,3 +10,8 @@
 /src/main
 output.txt
 input.txt
+.vscode/
+docs/
+/src/Doxyfile
+/src/html
+/src/latex
